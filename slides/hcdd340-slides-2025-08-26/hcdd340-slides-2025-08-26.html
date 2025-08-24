@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-08-21">
+  <title>HCDD 340 (2025-08-21)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="hcdd-340">HCDD 340</h2>
+<h3 id="human-centered-design-for-mobile-computing">Human-Centered
+Design for Mobile Computing</h3>
+<div class="t-left">
+<p>Saeed Abdullah (saeed@psu.edu)</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="introduction">Introduction</h3>
+<ul>
+<li><p>Associate Professor in IST</p></li>
+<li><p>Research</p>
+<ul>
+<li>Digital Health</li>
+<li>Human Computer Interaction (HCI)</li>
+<li>Human-centered AI</li>
+</ul></li>
+<li><p>Wellbeing &amp; Health Innovation <a
+href="https://whilab.org/">(WHI)</a> lab</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="teaching-assistant">Teaching Assistant</h3>
+<figure>
+<img data-src="./images/Yash-Mahajan.png" style="width:25.0%"
+alt="Yash Mahajan (yrm5029@psu.edu)" />
+<figcaption aria-hidden="true">Yash Mahajan
+(yrm5029@psu.edu)</figcaption>
+</figure>
+</section>
+<section class="slide level0">
+
+<h3 id="course-logistics">Course Logistics</h3>
+<ul>
+<li>Yash Mahajan
+<ul>
+<li>Monday and Wednesday: 12:00 - 1:30pm</li>
+</ul></li>
+<li>Saeed Abdullah
+<ul>
+<li>Friday 2:00 – 3:00pm</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="we-will-use-zoom-for-office-hours">We will use Zoom for office
+hours</h3>
+<ul>
+<li><p>Reserve your slots <a
+href="https://outlook.office365.com/owa/calendar/HCDD340OfficeHours@PennStateOffice365.onmicrosoft.com/bookings/">here</a></p></li>
+<li><p>All slots are booked for a given day? 🤯</p>
+<ul>
+<li>Please send us an email and we will try to schedule a meeting with
+you.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="human-centered-design-hcd-for-mobile-computing">Human-Centered
+Design (HCD) for Mobile Computing</h4>
+<ul>
+<li>What is mobile computing?
+<ul>
+<li>Sub-domain in human-computer interaction (HCI)</li>
+</ul></li>
+<li>Key attribute: “Information at your fingertips”
+<ul>
+<li>Portable, Connected, Interactive, and Personal devices
+<ul>
+<li>Phones, wearables, …</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="this-course-will-focus-on-progressive-web-apps-pwa">This course
+will focus on progressive web apps (<span
+class="t-salmon">PWA</span>)</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="what-is-a-progressive-web-app">What is a progressive web
+app?</h3>
+<ul>
+<li><p>Built using web platform technologies</p></li>
+<li><p>User experience like a platform-specific app</p>
+<ul>
+<li>Windows, macOS, Android apps</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="why-pwas">Why PWAs?</h3>
+<h4 id="best-of-both-worlds-web-and-app-specific-platforms">Best of both
+worlds? (Web and app specific platforms)</h4>
+<ul>
+<li>Web platform is widely available
+<ul>
+<li>Accessible development and distribution</li>
+</ul></li>
+<li>Increasingly better integration with platform</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="why-pwas-1">Why PWAs?</h3>
+<p><a
+href="https://www.forbes.com/sites/forbestechcouncil/2018/03/09/why-progressive-web-apps-will-replace-native-mobile-apps/"><img
+data-src="./images/forbes-pwa.png" style="width:40.0%" /></a></p>
+<div class="t-ref">
+<p><a
+href="https://www.forbes.com/sites/forbestechcouncil/2018/03/09/why-progressive-web-apps-will-replace-native-mobile-apps/">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="why-pwas-2">Why PWAs?</h3>
+<p><a
+href="https://business.adobe.com/blog/basics/progressive-web-app-examples"><img
+data-src="./images/adobe-pwa.png" style="width:40.0%" /></a></p>
+<div class="t-ref">
+<p><a
+href="https://business.adobe.com/blog/basics/progressive-web-app-examples">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li><p>Become familiar with processes and tools for PWA design and
+development</p></li>
+<li><p>Understand HCD design requirements and guidelines</p></li>
+<li><p>Translate design ideas into functional prototypes</p></li>
+<li><p>Learn to use generative AI tools for design and
+development</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="learning-objectives-1">Learning Objectives</h3>
+<ul>
+<li><p>Become familiar with processes and tools for PWA design and
+development</p></li>
+<li><p>Understand HCD design requirements and guidelines</p></li>
+<li><p>Translate design ideas into functional prototypes</p></li>
+<li><p><span class="t-salmon"><strong>Learn to use generative AI
+tools</strong></span> for design and development</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="ai-upskilling-a-key-objective"><span class="r-big-text"><span
+class="t-salmon">AI Upskilling</span>: A Key Objective</span></h2>
+</section>
+<section class="slide level0">
+
+<h3 id="a-transformative-shift-in-workforce"><span class="t-clover">A
+transformative shift in workforce</span></h3>
+<p><img data-src="./images/hcai.jpg" class="r-strech"
+style="max-width: 80%" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="ai-upskilling-a-key-objective-1">AI Upskilling: : A Key
+Objective</h3>
+<ul>
+<li>Preparation for a transformative shift in workforce</li>
+<li>Critical assessment of strength and limitations of AI</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="ai-upskilling-a-key-objective-2">AI Upskilling: : A Key
+Objective</h3>
+<ul>
+<li>You are <del>allowed</del> (encouraged) to <strong>use AI for all
+class deliverables</strong>
+<ul>
+<li>assignments, final project</li>
+</ul></li>
+<li>We will have class activities focusing on GenAI use for design and
+implementation</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="learning-objectives-2">Learning Objectives</h3>
+<ul>
+<li><p>Become familiar with processes and tools for PWA design and
+development</p></li>
+<li><p>Understand HCD design requirements and guidelines</p></li>
+<li><p>Translate design ideas into functional prototypes</p></li>
+<li><p>Learn to use generative AI tools for design and
+development</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 class="r-big-text"
+id="my-hope-this-class-will-help-you-get-a-job">My hope: this class will
+help you get a <span class="t-salmon"><strong>job</strong></span></h3>
+<ul>
+<li>Enhancing your CV
+<ul>
+<li>Concrete development and design skills</li>
+<li>GenAI skills</li>
+</ul></li>
+<li>A portfolio for potential employer
+<ul>
+<li>Final project</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="resources">Resources</h3>
+<ul>
+<li>Slides will point to relevant resources. E.g.,:
+<ul>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps">Progressive
+web apps from MDN Web Docs</a></li>
+<li><a href="https://web.dev/learn/pwa">Lean PWA</a></li>
+<li><a href="https://eloquentjavascript.net/">Eloquent
+JavaScript</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="resources-llm">Resources: LLM</h3>
+<ul>
+<li>You will need access to an LLM (whatever is free/cheap for you)
+<ul>
+<li>ChatGPT, Gemma, Claude</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="resources-development">Resources: Development</h3>
+<ul>
+<li>Editing html, css, and javascript files</li>
+<li><a href="https://code.visualstudio.com/download">VS Code</a> is a
+good option</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="course-structure">Course Structure</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="grading">Grading</h3>
+<div class="l-double">
+<div class="start">
+<ul>
+<li>A: 100–93%</li>
+<li>A-: 92–90%</li>
+<li>B+: 89–87%</li>
+<li>B: 86-83%</li>
+<li>B-: 82–80%</li>
+</ul>
+</div>
+<div class="End">
+<ul>
+<li>C+: 79–77%</li>
+<li>C: 76–70%</li>
+<li>D: 69–60%</li>
+<li>F: &lt;60%</li>
+</ul>
+</div>
+</div>
+<p>Cutoff point for each grade is the lower number <strong>without
+rounding</strong> (e.g., 89.9% will result in B+)</p>
+</section>
+<section class="slide level0">
+
+<h3 id="grading-1">Grading</h3>
+<ul>
+<li>Assignment — 48%</li>
+<li>Final Project — 45%</li>
+<li>Attendance and Class Participation — 7%</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="assignments-48">Assignments — 48%</h3>
+<ul>
+<li>Assignment 1: 16 points</li>
+<li>Assignment 2: 16 points</li>
+<li>Assignment 3: 16 points</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grading-2">Grading</h3>
+<ul>
+<li>Assignment — 48%</li>
+<li><strong>Final Project — 45%</strong></li>
+<li>Attendance and Class Participation — 7%</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-45">Final Project — 45%</h3>
+<ul>
+<li>Will be done in ~3 person groups</li>
+<li>See your group in Canvas -&gt; People -&gt; Group</li>
+<li>Excellent opportunity for learning by doing</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-topic">Final project topic</h3>
+<ul>
+<li>Considerable flexibility in terms of topic
+<ul>
+<li>develop a chatbot interface?</li>
+<li>redesign an existing app (e.g., Penn State Go app, Apple
+Music)?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-topic-1">Final project topic</h3>
+<ul>
+<li>Focus on your portfolio
+<ul>
+<li>Showcasing it in your job/internship applications?</li>
+</ul></li>
+<li>Maybe prototype for broader reach?
+<ul>
+<li><a
+href="https://nittanyai.psu.edu/alliance-programs/nittany-ai-challenge/">Nittany
+AI Challenge</a></li>
+<li><a href="https://pennstateideamakers.weebly.com/">IdeaMakers
+Challenge</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-topic-start-thinking-about-it">Final project
+topic: Start thinking about it!</h3>
+<h4 id="we-are-happy-to-discuss-options">We are happy to discuss
+options!</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-2-presentations-3-submissions">Final project — 2
+presentations &amp; 3 submissions</h3>
+<ul>
+<li>Proposal submission: 5 points</li>
+<li>Proposal Presentation: 8 points</li>
+<li>Final presentation: 10 point</li>
+<li>Code and documentation: 20 point</li>
+<li>Mandatory group review: 2 points</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="mandatory-group-review">Mandatory group review</h3>
+<ul>
+<li>Due at the end of the class</li>
+<li>Report evaluating performance of each group member (including
+yourself)</li>
+<li>Will also be used to <span class="t-salmon"><strong>adjust project
+grades</strong></span></li>
+<li><strong>Be fair, courteous, and respectful</strong> to your group
+member</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-details-in-the-syllabus">Final project: Details in
+the syllabus</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="grading-3">Grading</h3>
+<ul>
+<li>Assignment — 48%</li>
+<li>Final Project — 45%</li>
+<li><strong>Attendance and Class Participation — 7%</strong></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="attendance-is-critical">Attendance is critical</h3>
+<ul>
+<li>Key approach: Learning by doing</li>
+<li>Classes will involve activities
+<ul>
+<li>Helping to understand concept</li>
+<li>Very relevant for assignments and final project</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="attendance-and-class-participation-7">Attendance and Class
+Participation — 7%</h3>
+<ul>
+<li>We will take attendance on <strong>random days</strong></li>
+<li><strong>Each missed class</strong> will lead to <span
+class="t-salmon"><strong>1% grade deduction</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="need-to-skip-a-class-let-me-know-beforehand">Need to skip a
+class? Let me know <span
+class="t-salmon"><strong>beforehand</strong></span></h3>
+<ul>
+<li>We will allow skipping classes for
+<ul>
+<li>“<a
+href="https://aappm.psu.edu/policy/e-11-class-attendance">University-sanctioned
+activity</a>”</li>
+<li>Health reasons 🤧</li>
+</ul></li>
+<li>You must communicate to us <span class="t-clover"><strong>before the
+class</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="late-submissions-points-deduction">Late submissions: Points
+deduction</h3>
+<ul>
+<li>25% up to 12 hours</li>
+<li>50% up to 24 hours</li>
+<li>100% after 48 hours</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grade-disputes">Grade Disputes</h3>
+<ul>
+<li>You must get in touch within one week</li>
+<li>No point change at the end of the semester</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="academic-integrity">Academic Integrity</h3>
+<ul>
+<li>You are responsible to read and follow the <a
+href="https://ist.psu.edu/current-students/current-undergraduate-students/academic-advising/academic-integrity">Code
+of Conduct</a>
+<ul>
+<li>When in doubt, talk to us</li>
+</ul></li>
+<li>I am <span class="t-salmon"><strong>required</strong></span> to
+report any academic integrity violation in the class</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="for-this-course-code-is-similar-to-writing">For this course:
+Code is similar to writing</h3>
+<ul>
+<li>Similar academic integrity rules apply in this course</li>
+<li>Assignments must consist of your individual efforts
+<ul>
+<li>No copying code from other students</li>
+</ul></li>
+<li>It is ok to help others, but do not share code directly
+<ul>
+<li>A good rule of thumb: <strong>close your laptop as you help
+others</strong></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation">Is this a violation?</h3>
+<ul>
+<li><p>Sahiti and Hee Jeong are working on the first assignment. Hee
+Jeong is having difficulty with using appropriate layout
+parameters.</p></li>
+<li><p>Sahiti suggested that Hee Jeong should look at a specific slide
+from the class (“slide 19 from Monday”)</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-no">Is this a violation? No</h3>
+<ul>
+<li><p>Sahiti and Hee Jeong are working on the first assignment. Hee
+Jeong is having difficulty with using appropriate layout
+parameters.</p></li>
+<li><p>Sahiti suggested that Hee Jeong should look at a specific slide
+from the class (“slide 19 from Monday”)</p>
+<ul>
+<li>No violation here</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-1">Is this a violation?</h3>
+<ul>
+<li><p>Sahiti and Hee Jeong are working on the first assignment. Hee
+Jeong is having difficulty with using appropriate layout
+parameters.</p></li>
+<li><p>Sahiti looked at her own code and suggested: “use a border margin
+of 20 pixels.” And, Hee Jeong updated it accordingly.</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-yes">Is this a violation? <span
+class="t-salmon">Yes</span></h3>
+<ul>
+<li><p>Sahiti and Hee Jeong are working on the first assignment. Hee
+Jeong is having difficulty with using appropriate layout
+parameters.</p></li>
+<li><p>Sahiti looked at her own code and suggested: “use a border margin
+of 20 pixels”. And, Hee Jeong updated it accordingly.</p></li>
+<li><p>Who would be responsible for violation here?</p></li>
+</ul>
+<div class="fragment fade-in">
+<p><strong>Both violated academic integrity</strong></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-2">Is this a violation?</h3>
+<ul>
+<li><p>Hee Jeong has completed the second assignment. But, Sahiti’s code
+is not working as expected and she asked for help.</p></li>
+<li><p>Hee Jeong looked at her code and helped her to debug: “add a log
+statement here and let’s see what is the value of the variable”</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-no-1">Is this a violation? No</h3>
+<ul>
+<li><p>Hee Jeong has completed the second assignment. But, Sahiti’s code
+is not working as expected and she asked for help.</p></li>
+<li><p>Hee Jeong looked at her code and helped her to debug: “add a log
+statement here and let’s see what is the value of the variable”</p></li>
+<li><p>No violation here (no code sharing)</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-3">Is this a violation?</h3>
+<ul>
+<li><p>Hee Jeong has completed the second assignment. But, Sahiti’s code
+is not working as expected and she asked for help.</p></li>
+<li><p>Hee Jeong looked at her code and read the corresponding lines to
+Sahiti: “this is how I did it”</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="is-this-a-violation-yes-1">Is this a violation? <span
+class="t-salmon">Yes</span></h3>
+<ul>
+<li><p>Hee Jeong has completed the second assignment. But, Sahiti’s code
+is not working as expected and she asked for help.</p></li>
+<li><p>Hee Jeong looked at her code and read the corresponding lines to
+Sahiti: “this is how I did it”</p></li>
+<li><p><strong>Both violated academic integrity</strong></p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-the-recommended-sanction-for-copying-code">What’s the
+recommended sanction for copying code?</h3>
+<ul>
+<li><p>Hee Jeong knows that Sahiti took the same class semester. She
+asked Sahiti to take a look at her submitted final project from last
+year. Hee Jeong then used Sahiti’s code for her own final
+project.</p></li>
+<li><p>Given <a
+href="https://ist.psu.edu/sites/default/files/undergrad-grad-studies/ist-ai-sanction-guidelines.pdf">the
+IST guideline</a>, what sanction would you recommend?</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="academic-integrity-please-be-mindful">Academic Integrity: Please
+be mindful</h3>
+<ul>
+<li>I am <span class="t-salmon"><strong>required</strong></span> to
+report any academic integrity violation in the class</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="disability-accommodation-please-let-me-know">Disability
+Accommodation: <span class="t-clover">Please let me know</span></h3>
+</section>
+<section class="slide level0">
+
+<h3 id="counseling-and-psychological-services">Counseling and
+psychological services</h3>
+<ul>
+<li>Your overall wellbeing is important</li>
+<li>Counseling and Psychological Services at University Park</li>
+<li>Don’t hesitate to get in touch if I can help</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fixed-seating-arrangement-for-groups">Fixed seating arrangement
+for groups</h3>
+<p><img data-src="./images/hcdd-340-seatings-2025-08-23.png"
+style="max-width: 35%" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="fixed-seating-arrangement-for-groups-why">Fixed seating
+arrangement for groups: Why?</h3>
+<ul>
+<li>Leads to better group communications</li>
+<li>Fostering supportive and constructive interactions as members do
+class activities together</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fixed-seating-arrangement-for-groups-1">Fixed seating
+arrangement for groups</h3>
+<p><img data-src="./images/hcdd-340-seatings-2025-08-23.png"
+style="max-width: 35%" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="check-out-notebooklm">Check out NotebookLM</h3>
+<ul>
+<li><p>Course syllabus in <a href="#/">NotebookLM</a></p>
+<ul>
+<li>You can create your own using <a href="#/">the markdown
+source</a></li>
+</ul></li>
+<li><p>Can you get it to make an error in answering questions?</p></li>
+<li><p>What do you think about the podcast format?</p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo">Todo</h3>
+<ul>
+<li>Install Visual Studio Code</li>
+<li>Install <a
+href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server">Live
+Preview extension from Microsoft</a>
+<ul>
+<li>Settings -&gt; Extensions</li>
+<li>Search for “Live Preview”</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hcdd-340-goals">HCDD 340: Goals</h3>
+<div class="t-left">
+<p><span class="t-clover"><strong>Learn</strong></span> about exciting
+things. Get your <span class="t-clover"><strong>CV &amp;
+portfolio</strong></span> shining. Have <strong><span
+class="t-salmon">fun</span></strong>!</p>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: false,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

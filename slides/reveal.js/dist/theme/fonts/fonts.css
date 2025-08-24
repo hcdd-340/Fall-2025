@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "Cooper"; /* Choose a descriptive name */
+    src: url("Cooper.woff2") format("woff2");
+    font-weight: normal; /* Adjust as needed for specific font weights */
+    font-style: normal;  /* Adjust as needed for italic styles */
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Inter;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("InterVariable-Italic.woff2") format("woff2");
+}
+
