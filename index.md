@@ -1,5 +1,5 @@
 ---
-page-title: HCDD 340 — Fall 2025
+pagetitle: HCDD 340 — Fall 2025
 css: tufte.css
 date: 2025
 ---
