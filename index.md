@@ -2,12 +2,16 @@
 pagetitle: HCDD 340 — Fall 2025
 css: tufte.css
 date: 2025
+include-before: |
+    <article>
+include-after: |
+    </article>
 ---
-
-<article>
-
+<section>
 # HCDD 340 — Fall 2025
-[Human-Centered Design for Mobile Computing]{.subtitle}
+
+<p class="subtitle">Human-Centered Design for Mobile Computing</p>
+</section>
 
 <section>
 
@@ -22,5 +26,3 @@ date: 2025
     + [Activity: 01](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-01.0)
 
 </section>
-
-</article>
