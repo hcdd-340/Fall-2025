@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2025-09-02" />
+  <title>HCDD 340 — Assignment 01</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../tufte.css" />
+</head>
+<body>
+<article>
+<header id="title-block-header">
+<h1 class="title">HCDD 340 — Assignment 01</h1>
+</header>
+<section>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of Content</h2>
+<ul>
+<li><a href="#description" id="toc-description">Description</a></li>
+<li><a href="#deliverables" id="toc-deliverables">Deliverables</a></li>
+<li><a href="#requirements-rubrics"
+id="toc-requirements-rubrics">Requirements &amp; Rubrics</a>
+<ul>
+<li><a href="#step-1-setup" id="toc-step-1-setup">Step 1
+— Setup</a></li>
+<li><a href="#step-2-first-set-of-rules"
+id="toc-step-2-first-set-of-rules">Step 2 — First set of rules</a></li>
+<li><a href="#step-3-adding-new-rules"
+id="toc-step-3-adding-new-rules">Step 3 — Adding new rules</a></li>
+</ul></li>
+<li><a href="#implementation-suggestions"
+id="toc-implementation-suggestions">Implementation suggestions</a></li>
+</ul>
+</nav>
+</section>
+<section>
+<h2 id="description">Description</h2>
+<p><label for="mn-ack" class="margin-toggle">⊕</label>
+<input type="checkbox" id="mn-ack" class="margin-toggle"/> <span
+class="marginnote"> Inspired from the <a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Fundamental_CSS_comprehension">MDN
+challenge</a> </span></p>
+<p>This assignment will focus on displaying a Penn State profile. Please
+use the starter file in Canvas (Files → Assignment → Assignment-01). You
+will <strong>only</strong> update the CSS rules for the assignment
+(i.e., no need to change <code>index.html</code>)</p>
+<p>The completed assignments should look something similar to:</p>
+<p><img src="./images/hcdd-340-assignment-01-screenshot-2025-08-31.png"
+style="max-inline-size: 100%; max-width: 385px; block-size: auto; object-fit: cover;" /></p>
+</section>
+<section>
+<h2 id="deliverables">Deliverables</h2>
+<p>Please upload the following files (as a zip file):</p>
+<ul>
+<li><strong>Two screenshots</strong> of the page in
+<ul>
+<li>Chrome</li>
+<li>Firefox</li>
+</ul></li>
+<li>Your <strong>code folder</strong>. For grading, we will open the
+<code>index.html</code> in a browser. The uploaded folder must be
+self-contained — please make sure that there is no error when loading
+<code>index.html</code> in a browser</li>
+</ul>
+</section>
+<section>
+<h2 id="requirements-rubrics">Requirements &amp; Rubrics</h2>
+<h3 id="step-1-setup">Step 1 — Setup</h3>
+<ul>
+<li><p>Create a new CSS file in the same directory as
+<code>index.html</code></p></li>
+<li><p>Link the CSS file in <code>index.html</code> (hint: use
+<code>&lt;link&gt;</code> tag) (<strong>1 pt</strong>)</p></li>
+</ul>
+<h3 id="step-2-first-set-of-rules">Step 2 — First set of rules</h3>
+<p>We will use the provided <code>style-hints.txt</code> file to write
+the first set of CSS rules:</p>
+<ul>
+<li><p>Copy the common rules (the top 3 ones) to your CSS file
+(<strong>1 pts</strong>)</p></li>
+<li><p>Next you will have to match the following selectors with their
+declarations within <code>style-hints.txt</code> (<strong>1
+pts</strong>)</p>
+<ul>
+<li><code>.card article img</code>
+<ul>
+<li>It should have <code>max-height</code> of 100% (so that it can grow
+or shrink depending on the parent container height)</li>
+</ul></li>
+<li><code>.card header</code>
+<ul>
+<li>Should have a darker background (e.g., <code>#009CDE</code>) and
+border radius of <code>1.4em</code> (for rounded corner — you can try
+different values)</li>
+</ul></li>
+<li><code>.card footer</code>
+<ul>
+<li>Should have rounded corner</li>
+</ul></li>
+<li><code>.card</code>
+<ul>
+<li>Should have a black border with a border-radius of
+<code>1.5em</code> (for rounded corners). It should have a Penn State
+color as background (e.g., <code>#96BEE650</code>)</li>
+</ul></li>
+</ul></li>
+<li><p>There are two errors in the declarations, please fix those errors
+(<strong>1 pts</strong>)</p>
+<ul>
+<li>Hint: Take a look at the Warnings and Errors in Firefox Dev
+Tools</li>
+</ul></li>
+</ul>
+<h3 id="step-3-adding-new-rules">Step 3 — Adding new rules</h3>
+<ul>
+<li><p>Write a rule that targets both header and footer (<strong>2
+pt</strong>)</p>
+<ul>
+<li>They should have 40% of the height (combined) of the card</li>
+</ul></li>
+<li><p>Make sure that the <code>article</code> element has 60% of the
+height of the card (<strong>2 pt</strong>)</p></li>
+<li><p><code>&lt;p&gt;</code> inside the <code>article</code> should
+have:</p>
+<ul>
+<li>effective font-size of 19.2px, but expressed in <code>em</code>
+(<strong>1 pt</strong>)</li>
+<li>it should have a padding of <code>1em</code> (<strong>1
+pt</strong>)</li>
+<li>all text should be center-aligned (<strong>1 pt</strong>)</li>
+<li>the first line (i.e., profile name) should be 1) bold; and 2) with
+an effective font-size of 20.8px (but defined in <code>em</code>s)
+(<strong>2 pts</strong>)</li>
+</ul></li>
+<li><p><code>&lt;h2&gt;</code> within the <code>header</code> element
+should have:</p>
+<ul>
+<li>effective font size of 24.0px (but defined in <code>em</code>s)
+(<strong>1 pt</strong>)</li>
+<li>a reasonable line height (e.g., 1.2? 1.5?) (<strong>1
+pt</strong>)</li>
+</ul></li>
+<li><p><code>&lt;p&gt;</code> within <code>footer</code> should
+have:</p>
+<ul>
+<li>effective font size of 24.0px (but defined in <code>em</code>s)
+(<strong>1 pt</strong>)</li>
+<li>should <code>float</code> right (so that all icons are sticking to
+the right side) (<strong>1 pt</strong>)</li>
+</ul></li>
+</ul>
+</section>
+<section>
+<h2 id="implementation-suggestions">Implementation suggestions</h2>
+<ul>
+<li>To represent font-sizes using <code>em</code> values, you will have
+to figure out the base font size. You can check the Dev Tool to figure
+it out (also, we define it in the <code>style-hints.txt</code>)</li>
+<li>Given the elements are contained within the <code>.card</code>, you
+might consider using descendant relationships for different rules.</li>
+<li>You can use the Dev Tool to see different computed values</li>
+</ul>
+</section>
+</article>
+</body>
+</html>
