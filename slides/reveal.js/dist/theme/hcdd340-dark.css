@@ -377,3 +377,6 @@
   font-size: small;
   text-align: right;
 }
+.reveal a {
+  text-decoration: underline;
+}
