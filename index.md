@@ -14,11 +14,17 @@ include-after: |
 </section>
 
 <section>
+## Week 2
 
+* 2025-09-02
+    + [Slides](slides/hcdd340-slides-2025-09-02/hcdd340-slides-2025-09-02.html)
+    + [Activity: 02](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-02.0)
+</section>
+
+<section>
 ## Week 1
 * 2025-08-28
     + [Slides](slides/hcdd340-slides-2025-08-28/hcdd340-slides-2025-08-28.html)
-    + [Activity: 02](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-02.0)
 
 
 * 2025-08-26
