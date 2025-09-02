@@ -19,6 +19,7 @@ include-after: |
 * 2025-09-02
     + [Slides](slides/hcdd340-slides-2025-09-02/hcdd340-slides-2025-09-02.html)
     + [Activity: 02](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-02.0)
+    + [Assignment 01](./assignments/assignment-01/hcdd-340-assignment-01-2025-09-02.html)
 </section>
 
 <section>
