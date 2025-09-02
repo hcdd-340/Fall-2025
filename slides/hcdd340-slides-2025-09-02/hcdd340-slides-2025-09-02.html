@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-09-02">
+  <title>HCDD 340 — 2025-09-02</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="hcdd-340">HCDD 340</h2>
+<h3 id="css-intro">CSS Intro</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="fixed-seating-arrangement-for-groups">Fixed seating arrangement
+for groups</h3>
+<p><img data-src="./images/hcdd-340-seatings-2025-08-23.png"
+style="max-width: 35%" /></p>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+</section>
+<section class="slide level0">
+
+<h3 id="css-rules-contain-selectors-and-declarations">CSS rules contain
+selectors and declarations</h3>
+<p><img data-src="./images/css-selector.svg" style="width:70.0%" /></p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/selectors#the_parts_of_a_css_rule">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="selectors">Selectors</h3>
+<h4 id="different-patterns-to-identify-match-elements">Different
+“patterns” to identify match elements</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="universal-selector-matches-all-elements">Universal selector
+(<span class="t-salmon"><strong>*</strong></span>) matches all
+elements</h3>
+<pre ><code class="css" data-line-numbers="1">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="type-selector-matches-corresponding-html-elements">Type selector
+matches corresponding HTML elements</h3>
+<pre ><code class="css" data-line-numbers="1">section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}</code></pre>
+<p>Matches all <strong><code>&lt;section&gt;</code></strong>
+elements</p>
+</section>
+<section class="slide level0">
+
+<h3 id="type-selector-matches-corresponding-html-elements-1">Type
+selector matches corresponding HTML elements</h3>
+<pre ><code class="css">h4 {
+    font-size: 1em;
+}</code></pre>
+<div class="fragment fade-in">
+<p>Matches all <strong><code>&lt;h4&gt;</code></strong> elements</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="class-selector-matches-elements-with-a-given-class">Class
+selector matches elements with a given class</h3>
+<pre ><code class="css" data-line-numbers="1">.orange {
+ color: #f0a202
+}</code></pre>
+<p><small>styles.css</small></p>
+<pre ><code class="html" data-line-numbers="1">&lt;h1 class="orange"&gt;HCDD 340&lt;/h1&gt;
+&lt;h1&gt;Goals&lt;/h1&gt;
+</code></pre>
+<p><small>index.html</small></p>
+<div class="fragment fade-in">
+<p><strong><span class="t-salmon">.</span></strong> is in CSS rules, but
+<strong>not</strong> in html</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="id-selector-matches-elements-with-the-given-id">ID selector
+matches elements with the given id</h3>
+<pre ><code class="css" data-line-numbers="1">#penn-state {
+    border: 1px solid #96BEE6;
+}</code></pre>
+<p><small>styles.css</small></p>
+<pre ><code class="html" data-line-numbers="1">&lt;div id="penn-state"&gt;
+We are!
+&lt;/div&gt;</code></pre>
+<p><small>index.html</small></p>
+<div class="fragment fade-in">
+<p><strong><span class="t-salmon">#</span></strong> is in CSS rules, but
+<strong>not</strong> in html</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3
+id="attribute-selector-matches-elements-with-a-given-attribute-or-a-value">Attribute
+selector matches elements with a given attribute or a value</h3>
+<h4 id="select-element-if-a-given-attribute-is-present">Select element
+if a given attribute is present</h4>
+<pre ><code class="css" data-line-numbers="1">[data-college] {
+    color: #96BEE6;
+}</code></pre>
+<p><small>styles.css</small></p>
+<pre ><code class="html" data-line-numbers="1,2">&lt;div data-college="IST"&gt;Information Sciences and Technology&lt;/div&gt;
+&lt;div data-college="HHD"&gt;Health and Human Development&lt;/div&gt;</code></pre>
+<p><small>index.html</small></p>
+<p><strong>Both</strong> <code>&lt;div&gt;</code>s will match (i.e.,
+attribute “college” is present)</p>
+</section>
+<section class="slide level0">
+
+<h3
+id="attribute-selector-matches-elements-with-a-given-attribute-or-a-value-1">Attribute
+selector matches elements with a given attribute or a value</h3>
+<h4 id="select-element-if-the-attribute-has-a-given-value">Select
+element if the attribute has a given value</h4>
+<pre ><code class="css" data-line-numbers="1">[data-college="IST"] {
+    color: #96BEE6;
+}</code></pre>
+<p><small>styles.css</small></p>
+<pre ><code class="html" data-line-numbers="1,2">&lt;div data-college="IST"&gt;Information Sciences and Technology&lt;/div&gt;
+&lt;div data-college="HHD"&gt;Health and Human Development&lt;/div&gt;</code></pre>
+<p><small>index.html</small></p>
+<p>Only the <strong>first</strong> <code>&lt;div&gt;</code> will be
+selected</p>
+</section>
+<section class="slide level0">
+
+<h3 id="pseudo-classes">Pseudo-classes</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="pseudo-classes-1">Pseudo-classes</h3>
+<h4 id="select-a-specific-state-of-a-given-element">Select a specific
+<span class="t-salmon">state</span> of a given element (<span
+class="t-salmon">:</span>)</h4>
+<pre ><code class="css">h2:hover {
+  color: blue;
+}</code></pre>
+<p>Change outline when <code>&lt;h2&gt;</code> is
+<code>hovered</code></p>
+</section>
+<section class="slide level0">
+
+<h3 id="pseudo-classes-2">Pseudo-classes</h3>
+<h4 id="select-a-specific-state-of-a-given-element-1">Select a specific
+<span class="t-salmon">state</span> of a given element (<span
+class="t-salmon">:</span>)</h4>
+<pre ><code class="css">p:nth-child(even) {
+  background: blue;
+}</code></pre>
+<p>All <strong>even</strong> paragraphs will have <code>blue</code>
+background</p>
+</section>
+<section class="slide level0">
+
+<h3 id="many-pseudo-classes-available">Many pseudo-classes
+available</h3>
+<ul>
+<li><code>:first-child</code></li>
+<li><code>:last-child</code></li>
+<li><code>:visited</code></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="pseudo-elements">Pseudo-elements</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="pseudo-elements-1">Pseudo-elements</h3>
+<h4 id="specific-part-of-a-selected-element">Specific part of a selected
+element (<span class="t-salmon">::</span>)</h4>
+<pre ><code class="css">p::first-letter {
+  color: goldenrod;
+  font-weight: bold;
+}</code></pre>
+<p>Changes the <strong>first letter</strong> of each paragraph — <a
+href="https://codepen.io/web-dot-dev/pen/JjEJmOx">check it out</a></p>
+</section>
+<section class="slide level0">
+
+<h3 id="pseudo-elements-2">Pseudo-elements</h3>
+<h4 id="before-and-after-for-inserting-elements"><span
+class="t-salmon">::before</span> and <span
+class="t-salmon">::after</span> for inserting elements</h4>
+<pre ><code class="css">.exciting-text::after {
+  content: " &lt;- EXCITING!";
+  color: darkgreen;
+  font-weight: bolder;
+}
+
+.boring-text::after {
+  content: " &lt;- BORING";
+  color: darkviolet;
+  font-weight: bolder;
+}</code></pre>
+<p>Check out <a
+href="https://developer.mozilla.org/en-US/play?uuid=dcc94b29-c181-4bb0-b383-f631f740d3a4&amp;state=fVDBTsMwDP0VkzMt91B2YCDYgSEhDhxySVu3DaROlXgwNO3fcTs6MSHtFMfv%2BT0%2F71THvVdaFQNU3qZ0Y1QZoqM2Y9yyUYtHjAguQQo9wuCtIwi%2BhgMJRlJeXA0LQ8VwyqUQe%2BsnBnBneQQIHXcY52mhAG4rx%2FI5qhz3mJF5k2Ugjq7c8GQc4OluPWqiTd9gqYZmQ78i6lJVKUmq%2FERDa9uwuO8MAVSihsQajIIig%2Fu35ep1tX64MOr6APsQNdQ2frQRkaZmIzPZF7q2k7lSzoBR%2BntDhvI%2FVzvnc%2Fv8Ii7%2FTT5d8MjnXSTW%2B5hKXrlij1L6kaX2Pw%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2F%3A%3Aafter%2F">the
+example</a></p>
+</section>
+<section class="slide level0">
+
+<h3 id="grouping-selectors">Grouping selectors</h3>
+<h4 id="apply-same-rule-to-multiple-selectors">Apply same rule to
+multiple selectors</h4>
+<pre ><code class="css" data-line-numbers="1">h1, h2, h3, h4, h5 {
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    font-weight: bold;
+}</code></pre>
+<p>Separated by <strong>commas</strong></p>
+</section>
+<section class="slide level0">
+
+<h3 id="combinators">Combinators</h3>
+<h4
+id="combine-selectors-to-select-elements-in-relation-to-others">Combine
+selectors to select elements in relation to others</h4>
+<ul>
+<li>Descendant</li>
+<li>Child</li>
+<li>Next-sibling</li>
+<li>Subsequent-sibling</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="descendant-combinator">Descendant combinator</h3>
+<h4 id="parent-and-descendant-selectors-separated-by-a-space">Parent and
+descendant selectors separated by a space</h4>
+<pre ><code class="css">p strong {
+  color: red;
+}</code></pre>
+<p>All <code>&lt;strong&gt;</code> elements within
+<code>&lt;p&gt;</code> elements will have <span
+style="color: red;">red</span> color</p>
+</section>
+<section class="slide level0">
+
+<h3 id="child-combinator">Child combinator</h3>
+<h4 id="parent-and-children-selectors-separated-by-a">Parent and
+children selectors separated by a &gt;</h4>
+<pre ><code >div &gt; p {
+    color: red;
+}</code></pre>
+<p>Only the direct children will be selected (more restrictive than
+descendant combinator)</p>
+</section>
+<section class="slide level0">
+
+<h3 id="next-sibling-combinator">Next sibling combinator</h3>
+<h4
+id="an-element-immediately-follows-another-element-within-same-parent">An
+element immediately follows another element within same parent (+)</h4>
+<pre ><code class="css">img + p {
+  font-weight: bold;
+}</code></pre>
+<p>A paragraph that immediately follows an image (within same parent)
+will have <strong>bold</strong> text</p>
+</section>
+<section class="slide level0">
+
+<h3 id="subsequent-sibling-combinator">Subsequent sibling
+combinator</h3>
+<h4
+id="an-element-immediately-follows-another-element-within-same-parent-1">An
+element <del>immediately</del> follows another element within same
+parent (~)</h4>
+<pre ><code class="css">img ~ p {
+}</code></pre>
+<p>Any paragraph that <del>immediately</del> follows an image (within
+same parent) will have <strong>bold</strong> text</p>
+<h3 id="what-happens-if-there-are-no-css-rules-for-a-given-page">What
+happens if there are no CSS rules for a given page? 🤔</h3>
+<div class="fragment fade-in">
+<p>A browser will apply <span class="t-salmon">default styles</span></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="what-happens-when-multiple-rules-apply">What happens when
+multiple rules apply?</h3>
+<h4 id="handling-conflicts">Handling conflicts</h4>
+<pre ><code class="css">h1 {
+  color: red;
+}
+h1 {
+  color: blue;
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-conflicts-1">Handling conflicts</h3>
+<h4 id="cascading-determines-which-rules-actually-apply">Cascading
+determines which rules actually apply</h4>
+<ul>
+<li>Position and order</li>
+<li>Specificity</li>
+<li>Origin</li>
+<li>Importance</li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/the-cascade#resources">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="class-activity">Class activity</h3>
+<h4 id="starter-files-here">Starter files <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-02.0.zip">here</a></h4>
+<ul>
+<li>Unzip the file</li>
+<li>Open the folder in VS Code
+<ul>
+<li>File –&gt; Open Folder</li>
+</ul></li>
+<li>Click on Show Preview
+<ul>
+<li>Top right corner</li>
+</ul></li>
+<li>Also, open <code>index.html</code> in Chrome/Firefox</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todos">Todos</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Only change <code>styles.css</code></li>
+<li>Paragraph directly after an <code>&lt;h2&gt;</code>:
+<ul>
+<li>bold</li>
+<li>the first line: red</li>
+</ul></li>
+<li>Even rows in a table
+<ul>
+<li>background color: <code>#333333</code></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="./images/activity-02.png" style="width:100.0%" /></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="class-activity-1">Class activity</h3>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>Paragraph directly after an <code>&lt;h2&gt;</code>:
+<ul>
+<li>Which combinator to use?</li>
+<li>bold</li>
+<li>the first line: red
+<ul>
+<li>pseudo element <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/::first-line">::first-line</a></li>
+</ul></li>
+</ul></li>
+<li>Even rows in a table
+<ul>
+<li>pseudo-class <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child">:nth-child</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Nesting selectors</li>
+<li>Dimensions</li>
+<li>Assignment 01</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="nesting-selectors">Nesting selectors</h2>
+<h3 id="organizing-hierarchical-rulesets">Organizing hierarchical
+rulesets</h3>
+<pre ><code class="css">.feature button {
+  color: blue;
+}
+
+.feature .link {
+   color: red;
+}
+
+.feature .text {
+   font-size: 1.3em;
+}</code></pre>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/nesting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="nesting-selectors-1">Nesting selectors</h2>
+<h3 id="organizing-hierarchical-rulesets-1">Organizing hierarchical
+rulesets</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre ><code class="css" data-line-numbers="1–12">.feature {
+  button {
+    color: blue;
+  }
+
+  .link {
+    color: red;
+  }
+
+  .text {
+    font-size: 1.3em;
+  }
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre ><code class="css" data-line-numbers="0">.feature button {
+  color: blue;
+}
+
+.feature .link {
+   color: red;
+}
+
+.feature .text {
+   font-size: 1.3em;
+}</code></pre>
+</div>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/nesting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="can-have-multiple-levels-nested">Can have multiple levels
+nested</h2>
+<pre ><code class="css">.feature {
+  .heading {
+    color: blue;
+
+    a {
+      color: green;
+    }
+  }
+}</code></pre>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/nesting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="what-happens-here">What happens here?</h2>
+<pre ><code class="css" data-line-numbers="1-4">.feature {
+  + .heading {
+    color: blue;
+  }
+
+
+  &gt; p {
+    font-size: 1.3em;
+  }
+}</code></pre>
+<div class="fragment fade-in">
+<p>Selects <code>.headings</code> that are immediate sibling of
+<code>.feature</code></p>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/nesting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="what-happens-here-1">What happens here?</h2>
+<pre ><code class="css" data-line-numbers="1, 3-4">.feature {
+  + .heading {
+    color: blue;
+  }
+
+  &gt; p {
+    font-size: 1.3em;
+  }
+}</code></pre>
+<div class="fragment fade-in">
+<p>Selects <code>&lt;p&gt;</code> that are direct children of
+<code>.feature</code></p>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/nesting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="parent-selector-when-nesting"><code>&amp;</code> = parent
+selector when nesting</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<pre ><code class="css">.feature {
+ & button {
+    color: blue;
+  }
+}</code></pre>
+</div><div class="column" style="width:10%;">
+<h4 id="section">=</h4>
+</div><div class="column" style="width:45%;">
+<pre ><code class="css">.feature button {
+  color: blue;
+}</code></pre>
+</div>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/nesting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li>Nesting selectors</li>
+<li><span class="t-salmon"><strong>Dimensions</strong></span></li>
+<li>Assignment 01</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="absolute-units">Absolute units</h2>
+<pre ><code class="css" data-line-numbers="2, 3">div {
+  width: 10cm;
+  height: 5cm;
+  background: black;
+}</code></pre>
+<div class="fragment fade-in">
+<p>A 10x5 <strong>cm</strong> rectangle</p>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/sizing">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="absolute-units-1">Absolute units</h2>
+<p><img data-src="./images/absolute-units.png"
+style="max-width: 640px" /></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="absolute-units-2">Absolute units</h2>
+<h3 id="more-useful-for-print">More useful for print</h3>
+<ul>
+<li>These lengths are “perceptual”
+<ul>
+<li>“16px looks roughly the same on a phone, laptop, or TV screen at
+typical viewing distance”</li>
+</ul></li>
+<li><code>1px</code> might not be equal one physical device pixel
+<ul>
+<li>can correspond to multiple pixels on HD displays</li>
+</ul></li>
+<li><code>1cm</code> might be longer than actual centimeter</li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="dimensions-relative-units">Dimensions: <span
+class="t-salmon">relative</span> units</h2>
+<h3 id="calculated-in-relation-to-a-base-value">Calculated in relation
+to a base value</h3>
+<ul>
+<li><code>em</code>
+<ul>
+<li>Historically, the height of the capital letter “M”</li>
+<li>“parent element’s font-size”, if used for font-size</li>
+<li>“own font-size”, for everything else</li>
+</ul></li>
+<li><code>rem</code>
+<ul>
+<li>root element’s font size</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="how-would-this-look">How would this look?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre ><code class="css">html {
+  font-size: 16px;
+}
+
+.ems li {
+  font-size: 1.3em;
+}
+
+.rems li {
+  font-size: 1.3rem;
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre ><code class="html">&lt;ul class="rems"&gt;
+  &lt;li&gt;One&lt;/li&gt;
+  &lt;li&gt;Two&lt;/li&gt;
+  &lt;li&gt;
+    Three
+    &lt;ul&gt;
+      &lt;li&gt;Three A&lt;/li&gt;
+      &lt;li&gt;
+        Three B
+        &lt;ul&gt;
+          &lt;li&gt;Three B 2&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="using-rems">Using <code>rem</code>s</h2>
+<p><img data-src="./images/rems-example.png"
+style="max-width: 440px" /></p>
+</section>
+<section class="slide level0">
+
+<h2 id="how-would-this-look-1">How would this look?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre ><code class="css">html {
+  font-size: 16px;
+}
+
+.ems li {
+  font-size: 1.3em;
+}
+
+.rems li {
+  font-size: 1.3rem;
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre ><code class="html">&lt;ul class="ems"&gt;
+  &lt;li&gt;One&lt;/li&gt;
+  &lt;li&gt;Two&lt;/li&gt;
+  &lt;li&gt;
+    Three
+    &lt;ul&gt;
+      &lt;li&gt;Three A&lt;/li&gt;
+      &lt;li&gt;
+        Three B
+        &lt;ul&gt;
+          &lt;li&gt;Three B 2&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="using-ems">Using <code>em</code>s</h2>
+<p><img data-src="./images/ems-example.png"
+style="max-width: 440px" /></p>
+</section>
+<section class="slide level0">
+
+<h2 id="effective-font-size">Effective font-size?</h2>
+<h4 id="for-three-b-2-in-pixels">For <code>Three B 2</code> (in
+pixels)</h4>
+<div class="fragment fade-in">
+<p>Check <a
+href="https://developer.mozilla.org/en-US/play?uuid=2f9af54e-b3c4-4da1-834d-c21f2044ed85&amp;state=3VHNCsIwDH6VkLNuqOBhzoF7AS879iKj2krbSTtRHHt3U2z3g%2FgCnvLly5cvJOlQtFphhvldQa1Ozu0Zcu0YFswA5EoWR8PzlGLMq0czy30EqITl%2FAPJKpChwZfgMDRFPuLQDOVITC3mNiWsZ0ZUS6fzxtrABy7kBCar2r%2FeFRdYO0ff9U%2BGzgvOjWmXTr54Bqvt7bljpvc3SegOoOS3JtlwPYjsb5WNMpp59SMptoJrTlDJi2ixfwM%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FStyling_basics%2FValues_and_units%2F">it
+out</a> using Dev Tool</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="using-rem-and-em">Using <code>rem</code> and
+<code>em</code></h2>
+<h3 id="set-the-effective-font-size-three-b-2-to-be-30px">Set the
+effective font-size <code>Three B 2</code> to be 30px</h3>
+</section>
+<section class="slide level0">
+
+<h2 id="dimensions-relative-units-1">Dimensions: <span
+class="t-salmon">relative</span> units</h2>
+<h3 id="can-lead-to-more-responsive-designs">Can lead to more responsive
+designs</h3>
+<ul>
+<li>We will use relative units (specifically for font sizes)</li>
+<li>Relative units allows adapting to device sizes and user
+preferences</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="dimensions-percentage">Dimensions: <span
+class="t-salmon">percentage</span></h2>
+<h3 id="relative-to-some-other-dimensions">Relative to some other
+dimensions</h3>
+<pre ><code class="css">div {
+  width: 300px;
+  height: 100px;
+}
+
+div p {
+  width: 50%;
+}</code></pre>
+<p><code>&lt;p&gt;</code>: 50% width of the parent div</p>
+</section>
+<section class="slide level0">
+
+<h2 id="what-happens-here-2">What happens here?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre ><code class="css">.box {
+  background-color: lightblue;
+  border: 5px solid darkblue;
+  margin: 1em 0;
+}
+.wrapper {
+  width: 400px;
+  border: 5px solid;
+}
+.px {
+  width: 200px;
+}
+.percent {
+  width: 40%;
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre ><code class="html">&lt;div class="box px"&gt;
+  I am 200px wide
+&lt;/div&gt;
+&lt;div class="box percent"&gt;
+  I am 40% wide
+&lt;/div&gt;
+&lt;div class="wrapper"&gt;
+  &lt;div class="box px"&gt;
+    I am 200px wide
+  &lt;/div&gt;
+  &lt;div class="box percent"&gt;
+    I am 40% wide
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="percentage-width-is-calculated-from-the-parent">Percentage width
+is calculated from the parent</h2>
+<p><img data-src="./images/percentage-width.png"
+style="max-width: 440px" /></p>
+<div class="fragment fade-in">
+<p>Check <a
+href="https://developer.mozilla.org/en-US/play?uuid=6135c271-bb03-4738-8efe-b83bf0285a09&amp;state=lVDJTsMwEP2VkaXeSkkruIS2d%2F7BF8ceJabeNHZopKr%2FzmQpEhSEOI01781bfBFd8U7UYm%2FsO2incj5I0cQB0iDF8RWUh11VpQHO1uD%2BkVlHGe7JSBpDuV08Vavf%2BWdSifnMlQHgX74%2F0f9wXqZYC50z99yMR5dRqlH61FLsg3nQ0UWqwdm2K43r8WXCIxnk7TOHyNFZA0bR6RNOyhgb2hq2nHLaeEWtDbxADxVvrjJslrKzIwcrXc0Zbxf3FoQNaq1ST8nhrMEqafgisFsEFnD%2BgW8Wqxnn3m9jbZ6lQ4%2F8nFqK6wc%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FStyling_basics%2FValues_and_units%2F">it
+out</a>!</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo">Todo</h2>
+<h3 id="make-the-inner-box-width-same-as-the-wrapper">Make the inner box
+width same as the <code>wrapper</code></h3>
+<p><img data-src="./images/percentage-width.png"
+style="max-width: 440px" /></p>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-1">Todo</h2>
+<h3 id="check-out-the-interactive-example">Check out the <a
+href="https://2019.wattenberger.com/blog/css-percents">interactive
+example</a></h3>
+<p>How does percentage value for <code>margin-top</code> work?</p>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Nesting selectors</li>
+<li>Dimensions</li>
+<li><span class="t-salmon"><strong>Assignment 01</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="assignment-01">Assignment 01</h2>
+<h3 id="see-description"><a
+href="../../assignments/assignment-01/hcdd-340-assignment-01-2025-09-02.html">See
+description</a></h3>
+<p><img
+data-src="../../assignments/assignment-01/images/hcdd-340-assignment-01-screenshot-2025-08-31.png"
+style="max-width: 240px" /></p>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
