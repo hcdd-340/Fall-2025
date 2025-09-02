@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * A simple theme for reveal.js presentations, similar
  * to the default theme. The accent color is darkblue.
@@ -380,4 +381,6 @@
 .reveal a {
   text-decoration: underline;
 }
+.reveal ul ul {
+  list-style-type: "‣ ";
 }
