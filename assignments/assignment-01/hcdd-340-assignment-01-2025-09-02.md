@@ -22,7 +22,7 @@ include-after: |
     Inspired from the [MDN challenge](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Fundamental_CSS_comprehension)
 </span>
 
-This assignment will focus on displaying a Penn State profile. Please use the starter file in Canvas (Files → Assignment → Assignment-01). You will **only** update the CSS rules for the assignment (i.e., no need to change `index.html`)
+This assignment will focus on displaying a Penn State profile. Please use the starter file in Canvas (Files → Assignments → Assignment-01). You will **only** update the CSS rules for the assignment (i.e., no need to change `index.html`)
 
 
 The completed assignments should look something similar to:
