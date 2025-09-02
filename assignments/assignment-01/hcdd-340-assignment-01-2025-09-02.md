@@ -57,7 +57,7 @@ Please upload the following files (as a zip file):
 ### Step 2 — First set of rules
 We will use the provided `style-hints.txt` file to write the first set of CSS rules:
 
-* Copy the common rules (the top 3 ones) to your CSS file (**1 pts**)
+* Copy the common rules (the top 3 ones) to your CSS file
 
 * Next you will have to match the following selectors with their declarations within `style-hints.txt` (**1 pts**)
 	* `.card article img`
