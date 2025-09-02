@@ -361,16 +361,6 @@
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
   text-align: left;
 }
-.reveal .l-multiple {
-  display: flex;
-  justify-content: space-around;
-}
-.reveal .l-double {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-}
 .reveal .t-salmon {
   color: #FF7E79;
 }
