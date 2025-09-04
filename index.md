@@ -15,6 +15,8 @@ include-after: |
 
 <section>
 ## Week 2
+* 2025-09-04
+    + [Slides](slides/hcdd340-slides-2025-09-04/hcdd340-slides-2025-09-04.html)
 
 * 2025-09-02
     + [Slides](slides/hcdd340-slides-2025-09-02/hcdd340-slides-2025-09-02.html)
