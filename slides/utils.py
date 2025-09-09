@@ -40,9 +40,9 @@ def create(dest: str, template_dir: str, overwrite: bool) -> None:
 
 
 @slides.command()
-@click.option("-s", "--source", help="Source file", type=click.Path(file_okay=True))
+@click.option("-s", "--source", help="Source file", type=click.Path(file_okay=True, exists=True))
 @click.option(
-    "-t", "--template-dir", help="Template directory", type=click.Path(dir_okay=True)
+    "-t", "--template-dir", help="Template directory", type=click.Path(dir_okay=True, exists=True)
 )
 @click.option("--overwrite", is_flag=True, default=False)
 @click.option("-o", "--output", type=click.Path(dir_okay=False, writable=True))
