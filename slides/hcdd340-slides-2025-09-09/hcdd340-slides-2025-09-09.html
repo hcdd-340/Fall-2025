@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-09-09">
+  <title>HCDD 340 — 2025-09-09</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="hcdd-340">HCDD 340</h2>
+<h3 id="layout">Layout</h3>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>Dimension: Percentage</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="dimensions-percentage">Dimensions: <span
+class="t-salmon">percentage</span></h2>
+<h3 id="relative-to-some-other-dimensions">Relative to some other
+dimensions</h3>
+<pre ><code class="css">div {
+  width: 300px;
+  height: 100px;
+}
+
+div p {
+  width: 50%;
+}</code></pre>
+<p><code>&lt;p&gt;</code>: 50% width of the parent div</p>
+</section>
+<section class="slide level0">
+
+<h2 id="dimensions-percentage-1">Dimensions: <span
+class="t-salmon">percentage</span></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre ><code class="css">.box {
+  background-color: lightblue;
+  border: 5px solid darkblue;
+  margin: 1em 0;
+}
+.wrapper {
+  width: 400px;
+  border: 5px solid;
+}
+.px {
+  width: 200px;
+}
+.percent {
+  width: 40%;
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre ><code class="html">&lt;div class="box px"&gt;
+  I am 200px wide
+&lt;/div&gt;
+&lt;div class="box percent"&gt;
+  I am 40% wide
+&lt;/div&gt;
+&lt;div class="wrapper"&gt;
+  &lt;div class="box px"&gt;
+    I am 200px wide
+  &lt;/div&gt;
+  &lt;div class="box percent"&gt;
+    I am 40% wide
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="percentage-width-is-calculated-from-the-parent">Percentage width
+is calculated from the parent</h3>
+<p><img data-src="./images/percentage-width.png"
+style="max-width: 440px;" /></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/play?uuid=6135c271-bb03-4738-8efe-b83bf0285a09&amp;state=lVDJTsMwEP2VkaXeSkkruIS2d%2F7BF8ceJabeNHZopKr%2FzmQpEhSEOI01781bfBFd8U7UYm%2FsO2incj5I0cQB0iDF8RWUh11VpQHO1uD%2BkVlHGe7JSBpDuV08Vavf%2BWdSifnMlQHgX74%2F0f9wXqZYC50z99yMR5dRqlH61FLsg3nQ0UWqwdm2K43r8WXCIxnk7TOHyNFZA0bR6RNOyhgb2hq2nHLaeEWtDbxADxVvrjJslrKzIwcrXc0Zbxf3FoQNaq1ST8nhrMEqafgisFsEFnD%2BgW8Wqxnn3m9jbZ6lQ4%2F8nFqK6wc%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FStyling_basics%2FValues_and_units%2F">Source</a>!</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Box model</li>
+<li>Layout flow</li>
+<li>Float</li>
+<li>Positioning</li>
+<li>Flexbox</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="everything-displayed-in-css-is-a-box">Everything displayed in
+CSS is a <span class="t-salmon">box</span>!</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="the-box-model">The Box Model</h3>
+<ul>
+<li>Each element has a rectangular box
+<ul>
+<li>text</li>
+<li>elements that looks circular</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="check-the-circular-images-in-the-lab-page">Check the <a
+href="https://whilab.org/members.html">circular images in the lab
+page</a></h4>
+<p><img data-src="./images/lab-members.png"
+style="max-width:440px" /></p>
+<ul>
+<li>Inspect -&gt; Layout (Firefox)</li>
+<li>Inspect -&gt; Computed (Chrome)</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="how-does-the-box-model-work">How does the box model work?</h3>
+<h4 id="it-is-all-box-stacking">It is all box stacking</h4>
+<ul>
+<li><p>Putting boxes together to show the page</p></li>
+<li><p>Outer display type</p>
+<ul>
+<li>How boxes are laid out in relation to other boxes</li>
+</ul></li>
+<li><p>Inner display type</p>
+<ul>
+<li>How elements within the box are laid out</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="block-boxes"><span class="t-salmon">Block</span> boxes</h3>
+<h4 id="h1-p"><code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, …</h4>
+<ul>
+<li>The box will break into a new line</li>
+<li>If width is not specified
+<ul>
+<li>will use up available space within parent</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="inline-boxes"><span class="t-salmon">Inline</span> boxes</h3>
+<h4 id="span-a"><code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>,
+…</h4>
+<ul>
+<li>The box will <strong>not</strong> break into a new line</li>
+<li><code>width</code> and <code>height</code> can’t be set</li>
+<li>If there is no space, then the overflow will continue to a new
+line</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="inline-block-boxes"><span class="t-salmon">Inline Block</span>
+boxes</h3>
+<ul>
+<li>The box will <strong>not</strong> break into a new line</li>
+<li>But, you can set <code>width</code> and <code>height</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="you-can-change-box-display-types">You can change box display
+types</h3>
+<h4 id="set-the-display-property">Set the <code>display</code>
+property</h4>
+<pre ><code class="css">.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+}</code></pre>
+<pre ><code class="html">&lt;p class="inline"&gt;First inline para.&lt;/p&gt;
+&lt;p class="inline"&gt;Second inline para.&lt;/p&gt;
+&lt;p&gt;Another &lt;span class="block"&gt;para with span.&lt;p&gt;</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="box-model-areas">Box model areas</h3>
+<p><img data-src="./images/box-model-areas.svg"
+style="max-width:500px" /></p>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/box-model">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="box-model-areas-1">Box model areas</h3>
+<figure>
+<img data-src="./images/box-model-analogy.jpg" style="max-width:500px"
+alt="Similar to picture frames" />
+<figcaption aria-hidden="true">Similar to picture frames</figcaption>
+</figure>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/box-model">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="box-model-areas-2">Box model areas</h3>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Content</li>
+<li>Padding</li>
+<li>Border</li>
+<li>Margin</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="./images/box-model-areas.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/box-model">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="controlling-the-box-areas">Controlling the box areas</h3>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li><code>height</code> and <code>width</code>
+<ul>
+<li>applies to <code>content</code> box</li>
+</ul></li>
+<li><code>padding</code> and <code>border</code>
+<ul>
+<li>adds to <code>content</code> box sizes</li>
+</ul></li>
+<li><code>margin</code> does <strong>not</strong> count to box size
+<ul>
+<li>it is the outside space</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="./images/box-model-areas.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a href="https://web.dev/learn/css/box-model">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="whats-the-total-height-and-width-here">What’s the total height
+and width here?</h4>
+<pre ><code class="css">.box {
+  width: 350px;
+  height: 150px;
+  margin: 10px;
+  padding: 25px;
+  border: 5px solid black;
+}</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model#the_standard_css_box_model">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="whats-the-total-height-and-width-here-1">What’s the total height
+and width here?</h4>
+<div class="columns">
+<div class="column" style="width:60%;">
+<pre ><code class="css">.box {
+  width: 350px;
+  height: 150px;
+  margin: 10px;
+  padding: 25px;
+  border: 5px solid black;
+}</code></pre>
+</div><div class="column" style="width:40%;">
+<p><img data-src="./images/standard-box-model.png" /></p>
+</div>
+</div>
+<ul>
+<li>Width: 410px
+<ul>
+<li>350 + 25 * 2 + 5 * 2</li>
+</ul></li>
+<li>Height: 210px
+<ul>
+<li>150 + 10 * 2 + 5 * 2</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model#the_standard_css_box_model">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="this-default-rule-is">This default rule is 👎🏾</h3>
+<h4
+id="inconvenient-to-add-padding-and-border-to-get-actual-box-size">Inconvenient
+to add padding and border to get actual box size</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="alternative-box-model">Alternative box model</h3>
+<h4 id="box-sizing-border-box"><code>box-sizing: border-box;</code></h4>
+<ul>
+<li>Height and width applies to <strong>the box</strong>
+<ul>
+<li>instead of the content</li>
+</ul></li>
+<li>Border and padding get <em>pushed in</em>
+<ul>
+<li>content = box - (border + height)</li>
+</ul></li>
+<li>More predictable</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-the-total-height-and-width-here-2">What’s the total height
+and width here?</h3>
+<pre ><code class="css" line-numbers="2">.box {
+  box-sizing: border-box;
+  width: 350px;
+  height: 150px;
+  margin: 10px;
+  padding: 25px;
+  border: 5px solid black;
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-the-total-height-and-width-here-3">What’s the total height
+and width here?</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<pre ><code class="css" line-numbers="2">.box {
+  box-sizing: border-box;
+  width: 350px;
+  height: 150px;
+  margin: 10px;
+  padding: 25px;
+  border: 5px solid black;
+}</code></pre>
+</div><div class="column" style="width:40%;">
+<p><img data-src="./images/alternate-box-model.png" /></p>
+</div>
+</div>
+<ul>
+<li>Width = 350px</li>
+<li>Height = 150px</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="box-models">Box models</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<figure>
+<img data-src="./images/standard-box-model.png" alt="Default" />
+<figcaption aria-hidden="true">Default</figcaption>
+</figure>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="./images/alternate-box-model.png" alt="Alternative" />
+<figcaption aria-hidden="true">Alternative</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="this-default-rule-is-1">This default rule is 👎🏾</h3>
+<h4
+id="inconvenient-to-add-padding-and-border-to-get-actual-box-size-1">Inconvenient
+to add padding and border to get actual box size</h4>
+<ul>
+<li>Todo
+<ul>
+<li>Go to the activity from <a
+href="(https://developer.mozilla.org/en-US/play?uuid=6135c271-bb03-4738-8efe-b83bf0285a09&amp;state=lVDJTsMwEP2VkaXeSkkruIS2d%2F7BF8ceJabeNHZopKr%2FzmQpEhSEOI01781bfBFd8U7UYm%2FsO2incj5I0cQB0iDF8RWUh11VpQHO1uD%2BkVlHGe7JSBpDuV08Vavf%2BWdSifnMlQHgX74%2F0f9wXqZYC50z99yMR5dRqlH61FLsg3nQ0UWqwdm2K43r8WXCIxnk7TOHyNFZA0bR6RNOyhgb2hq2nHLaeEWtDbxADxVvrjJslrKzIwcrXc0Zbxf3FoQNaq1ST8nhrMEqafgisFsEFnD%2BgW8Wqxnn3m9jbZ6lQ4%2F8nFqK6wc%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FStyling_basics%2FValues_and_units%2F)">our
+last class</a></li>
+<li>Make the inner box width same as the <code>wrapper</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo">Todo</h3>
+<p>Now use the alternative box model:</p>
+<pre ><code class="css">html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}</code></pre>
+<div class="fragment fade-in">
+<p>More predictable height and width</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="alternative-box-model-is-more-common">Alternative box model is
+more common</h4>
+<pre ><code class="css">html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}</code></pre>
+<div class="t-ref">
+<ul>
+<li><a
+href="https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/">CSS
+Tricks</a></li>
+<li><a
+href="https://piccalil.li/blog/a-more-modern-css-reset/">Resets</a></li>
+</ul>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li>Box model</li>
+<li>Layout flow</li>
+<li><span class="t-salmon"><strong>Float</strong></span></li>
+<li>Positioning</li>
+<li>Flexbox</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="float">Float</h2>
+<ul>
+<li>Takes an element out of the normal box stacking flow</li>
+<li>Places it left or right side of the parent</li>
+<li>Other inline elements will “float” (“wrap”) around it
+<ul>
+<li>Mostly for image and text</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="float-1">Float</h2>
+<pre ><code class="css">.box {
+  float: left;
+}</code></pre>
+<pre ><code class="html">&lt;div class="box"&gt;Float&lt;/div&gt;
+&lt;p&gt;
+  Lorem ipsum dolor sit amet
+&lt;/p&gt;</code></pre>
+<p><a
+href="https://developer.mozilla.org/en-US/play?uuid=e4c62dcc-370e-4541-8305-44fb930b108d&amp;state=ZVRdi9xGEPwrzT7FsKc7bwiB8yVgbAwGxwRM8nQvvTO92k5GM7r5UA6M%2F3uqR9o9hzxJGnVXV1dXz9fduU5hd797OL%2F%2B9UNIXEmeeZqDPNzi5DE%2BxgevC7nApfzyuDum58fdGvhwix9rxIwH0aeUZSKdS5vIp5AyFa3Ek9Q9uRSLuCq1ZWKvsxancSQJWgf63EJgCs3VVoiDPjWeDLCD7EkaBUa4IqaXmPEpGVSXFuZWucpA75sWOgGvUMpO9zS3sGjkTOoJFFoxxAYqudUMhls5Cx7oXeZCc8q1agVvnWbJXqVSbNHtCaVaqFmdSqEqIaxogUEHQZc2B0hxO38vyRfxxCgETNdyQb0JOrIBWjUe6GOsMkqmoGODCF29PaFWqdBBrtiGZlxpkbCnRRfJmQmppYL6mo0%2BWuajmsiLnNUZ4kqXogANnTigQBUxPHkGnSClsQdUNTJAriw2roWDiQmpWxno7ToVWmVPodWZkfCllVmi11I6INBfpAMLjBmpEoUjnTDAI4iUBFwHjl4j4BJ0P4NPRTeoOrZtlmu%2FxvTaJDf8xQi30Q30e07AOAYGg0qdXxS3UqaFs%2BLh0jQln2hVkKkBc6A%2Fqtliw%2B%2Bu2VuZivc8SazwR%2BFZJf5%2FpJ9R5eo78roVrTJhonTUI%2FRoE5pInctm6k69V7gq3v3YXSXWy5nLOqlVN0LPMHEqTfKLC8iDlaloRj5hKcAcsUV8n2exZQIh9AYDIezJtoJhMYTYYP6zh53Otm7rZg30py48re5%2B8aBt6WUZUYpmjEshUV8rQh2Hha7mzIF%2B44a879YliNuWz1JDOsL3tqqrHa4VbcttNiurpZfcVuZi9qfNFgv6RG6wIRnnizerRqe%2BxbpizC0jGQZR9J%2F7TN5ZSnKK%2BpFrQm%2BGBwdz7ar28YwRv2FpmjlDJpgApwkY8Ejk4rp2Wb2tly00mriYZLffuVJwmw64J%2BmrgZ%2FsqryHCqf6xr4nzqPGm6zjGcevf5qf%2B%2FE%2F6uvZvu%2B2g7NsEXeXEwjnJd9kXJ%2Bt3NMl88ju7zGnFv2NsxHdUx6PPxzufqbDjwc6HO5e9bCZPRZuBKBMOPjWyf5lXPGsZ5kEr8Fq7r79Cw%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FFloats%2F">Example</a></p>
+<p>Can you float it to right?</p>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Box model</li>
+<li>Layout flow</li>
+<li>Float</li>
+<li><span class="t-salmon"><strong>Positioning</strong></span></li>
+<li>Flexbox</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="positioning">Positioning</h2>
+<ul>
+<li>Mostly for elements out of the normal flow. E.g.,
+<ul>
+<li>Adding a caption on top of an image</li>
+<li>Fixed tab header</li>
+<li>Image that overlays over other elements</li>
+</ul></li>
+<li>Options
+<ul>
+<li>static (default), absolute, fixed, sticky</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="relative-position"><span class="t-salmon">Relative</span>
+Position</h2>
+<ul>
+<li>Element placed following the normal flow</li>
+<li>You can move the final position
+<ul>
+<li><code>top</code>, <code>bottom</code>, <code>left</code>,
+<code>right</code> values</li>
+</ul></li>
+</ul>
+<p>Check it <a
+href="https://developer.mozilla.org/en-US/play?uuid=b42a3e52-0006-4440-82b8-5bf24bd7d398&amp;state=bZS9btswEMdf5SCgU1zJQdFFcTNky1AU6NJFCyWeJTonkhWp2EYQoA%2FRJ%2ByT9I6UEzvJRPHI%2B93Xn3oqhjhSUReb4fr2J5KK5hHBu2CicdbYflPxQWMbu%2FG8ANyDGkFBq4LpoCXXPQDhIxIg4Yg2lvD9CErvVMebjy4EYDY4Cxb3AiRjMUCL5PYwYsmBKr8EhI5UCN%2Ba4pQP6qZIWdwdQeNWzRRhjxC8snC9Xn8Ct4U4IOyNjoNs3DyBV5OksoRfgbJanNgKKkBURELkT7ncDYY0dM7GVMsPNkXHdxak%2BA5o%2BiGCWRzyVbjiOFpzw%2BBKcK2bNE7Zq8oeF6WlKn7lLAJyiiqihvaYmKOaemNDCXfYqTmgVJJtHI5I%2BcBxVksRArogXDbA4qkPC3UF1vFgXBzeJ3RvZRqvk9pIZ2%2FJPCBTpWCLmyrZUify8duTPF7BSSZBjZhmnDosC4cfcMpzeBFKxEPkxDRyfiYNkRvDXEZ2%2BBGOZ%2FOI05ZVIz03l4nL7ZzcflKe3aNjzbLgciYcgBUVTEsI%2F%2F78hYsC00SVEe2nrJayVsJ0E%2BzmEKF3IuB3UK5sBePcDWdEM6pe5kEE2tUpMTP2svLYpo7FPcToQ11Vo7Zlb%2BIwt6VxVRh4tvoz6x9jqBIlVHhQoyf%2BIGf7cuf7psgkRZFJwRrvMcrAO%2BIuNwVUt6chF6uiC4FfenS%2Bhi9rf7hpLOE2vmxap4%2FwJMAknxq%2BrvMBLNqpYQ1qjo5Nz6Ian2%2B3qnvoJzdbXYP6Paub1wfAbH%2BA4MiwNGnGdLQ8lJqf7Bv8Ykjw9Kjf8bknF%2FjrMzxfOzmXr3%2BMzDjthZB%2Fcjdv0UckVlMyn7eI%2F1DnTXpOndxJI3llSY7InyQPvHj%2BDw%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FPositioning%2F">out</a>!</p>
+</section>
+<section class="slide level0">
+
+<h2 id="absolute-position"><span class="t-salmon">Absolute</span>
+Position</h2>
+<ul>
+<li>Element moves <strong>out of</strong> the normal flow</li>
+<li>Sits on a separate flow
+<ul>
+<li>great for isolated UI features
+<ul>
+<li>tab controls, menus, …</li>
+</ul></li>
+</ul></li>
+<li><code>top</code>, <code>bottom</code>, <code>left</code>,
+<code>right</code> values
+<ul>
+<li>placement within the <code>container</code> element</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="absolute-position-1"><span class="t-salmon">Absolute</span>
+Position</h2>
+<h3 id="whats-the-container-element">What’s the container element</h3>
+<ul>
+<li>Any ancestor element with their <code>position</code> <span
+class="t-salmon"><strong>explicitly defined</strong></span>
+<ul>
+<li>Default is the <code>&lt;html&gt;</code> element</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-1">Todo</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-03.0.zip">Activity
+03</a></li>
+<li>In <code>.absolute</code> class:
+<ul>
+<li>Set <code>position: absolute</code></li>
+</ul></li>
+<li>Change <code>top</code> property
+<ul>
+<li>To place the element before “Overview”</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="./images/activity-03.png" /></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-2">Todo</h2>
+<ul>
+<li>Now in <code>index.html</code>, set:
+<ul>
+<li><code>&lt;div class="relative"&gt;</code></li>
+</ul></li>
+<li>Where does the <code>&lt;p&gt;</code> move?
+<ul>
+<li>Why?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="absolute-position-2"><span class="t-salmon">Absolute</span>
+Position</h2>
+<h3 id="whats-the-container-element-1">What’s the container element</h3>
+<ul>
+<li>Any ancestor element with their <code>position</code> <span
+class="t-salmon"><strong>explicitly defined</strong></span>
+<ul>
+<li>Default is the <code>&lt;html&gt;</code> element</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="fixed-position"><span class="t-salmon">Fixed</span>
+Position</h2>
+<h3 id="fixed-in-relation-to-the-viewport">Fixed in relation to the
+viewport</h3>
+<ul>
+<li>Persistent element always visible</li>
+</ul>
+<p>See the <a
+href="https://developer.mozilla.org/en-US/play?uuid=4b106aef-bcf1-4131-ba0f-13aabfbe07f2&amp;state=pZNLjtswDIavQnjTFkjsCfpYeNIsuigwi6LLbryRLcZSolcleZJgMEAP0RP2JKXkPCcB2qIrJTL58edP6qkQUauiLuZitvgst8jB2SCjtEaafl7RbWMaM3d0ADwA08CgZUF20CrbrUHhIypAhRpNLOHLDhhfsY7%2B3AoIQGywBgxuElBJgwFaVHYDGksqVLl9QegUC%2BFjUxz0IG%2BKxcMrDcZGOF0CMzvQ1mN5ys1ivyEwjxDQMc8iBbY7sIMHzXwvTSjhE3ZsCAh2ub%2BDzirFXKDOJ7DJ6Ql0QYgCYSN5FCmN6ufjRJ1kda2N4qKZ0T2T2j1ZMQ%2BOmYWSaySqDIk2r%2FId9cT3n19%2BGf1LuKQkMI3ZRGA5ihKpNPpJJhwnEXEbSRhH0ieXKZOMIS4hO7yFK%2BHrI%2FoljYW8AHkpPEWP4jaeOUqPlpaCJjoqoQI0nSBbhfDrx0%2B4aJAsNpHJtFxZ1b6tSWJaD6shROht2pArKHU2AT104owoNevTPJQCbussTOo%2BnTQ239H2iBhdqKtKc1P2MoqhLaWtgqDZ8iktGMZQZUqocMu0U%2FRDWdOXK9c3xUhiKhIpGOkcxjTwTpHLTQHV4jDkYlJ0IdA7ai3fwVPKy1tSw%2Fu7O7e9TxcCZS9iDbN3x6txa2q4AzZES1fPjRGzMf%2Bw4jUs07vM8dE6Cr6%2FiR9Z07OQlnXr3tvB8Bo2QkbMt45xTvaTjjGTSrraRDG1y2ncOXw9ezMKOAd%2BOMb%2Bf4NUbwSc62PfBzaKtp6jr%2BGt20KwStKrU8Nt5Sf8qZXGpIW65vu9gwf87AxPYYfkP5u%2Fr3zV%2FF%2Bb%2FW9202Kt0l7RSS9UI%2F1UyeXi%2BTc%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FPositioning%2F">example</a></p>
+</section>
+<section class="slide level0">
+
+<h2 id="today-3">Today</h2>
+<ul>
+<li>Box model</li>
+<li>Layout flow</li>
+<li>Float</li>
+<li>Positioning</li>
+<li><span class="t-salmon"><strong>Flexbox</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="flexible-box-layout-model">Flexible Box Layout model</h3>
+<h3 id="modern-approach-to-layout">Modern approach to layout</h3>
+<pre ><code class="css" data-line-numbers="2">section {
+  display: flex;
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h2 id="flexbox">Flexbox</h2>
+<ul>
+<li>Single dimension layout</li>
+<li>Arrange items in rows or columns</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="flex-model">Flex model</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Main axis
+<ul>
+<li>Direction of how items are laid out</li>
+<li>row or column</li>
+</ul></li>
+<li>Cross axis
+<ul>
+<li>The other direction</li>
+</ul></li>
+<li>Parent element
+<ul>
+<li>with <code>display: flex</code></li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="./images/flex_terms.png" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="main-axis-direction">Main axis direction</h2>
+<h3 id="default-is-row">Default is row</h3>
+<pre ><code class="css">/* Set main axis to column */
+flex-direction: column;</code></pre>
+</section>
+<section class="slide level0">
+
+<h2 id="wrapping">Wrapping</h2>
+<h3 id="items-overflow-by-default">Items overflow by default</h3>
+<p><img data-src="./images/flex-overflow.jpg"
+style="max-width: 540px" /></p>
+<p>Not good for most cases</p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/flexbox#wrapping_flex_items">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="wrapping-to-next-line">Wrapping to next line</h2>
+<h3 id="flex-wrap-wrap"><code>flex-wrap: wrap;</code></h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<figure>
+<img data-src="./images/flex-overflow.jpg" alt="Default" />
+<figcaption aria-hidden="true">Default</figcaption>
+</figure>
+</div><div class="column" style="width:50%;">
+<figure>
+<img data-src="./images/flex-wrapped.png" alt="flex-wrap: wrap;" />
+<figcaption
+aria-hidden="true"><code>flex-wrap: wrap;</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/flexbox#wrapping_flex_items">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="flex-flow-shorthand">flex-flow shorthand</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<pre ><code class="css">flex-direction: row;
+flex-wrap: wrap;</code></pre>
+</div><div class="column" style="width:10%; align-self: flex-end;">
+<h2 id="section">=</h2>
+</div><div class="column" style="width:45%; align-self: flex-end;">
+<pre ><code class="css">flex-flow: row wrap;</code></pre>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox#flex-flow_shorthand">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-3">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-04.0.zip">Activity
+04</a> in Firefox/Chrome</li>
+<li>Go to Dev Tools –&gt; Layout
+<ul>
+<li>Firefox: “Flex Container”</li>
+<li>Chrome: “Flexbox”
+<ul>
+<li>Select <code>section</code></li>
+</ul></li>
+</ul></li>
+<li>Set flex direction to be <code>column</code></li>
+</ul>
+<div class="fragment fade-in">
+<p>Change it back to <strong><code>row</code></strong></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-4">Todo</h2>
+<ul>
+<li>Change Browser width</li>
+<li>Check the page in “iPhone”</li>
+<li>What happens?</li>
+</ul>
+<div class="fragment fade-in">
+<p>Enable <strong>wrapping</strong></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="flexible-sizing-of-items">Flexible sizing of items</h2>
+<h3 id="a-key-advantage">A key advantage!</h3>
+<ul>
+<li>Allows responsive design</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="flexible-sizing-of-items-1">Flexible sizing of items</h2>
+<h3 id="flex-proportion-values"><code>flex</code>: proportion
+values</h3>
+<ul>
+<li>How much available space an item will take
+<ul>
+<li><strong>compared</strong> to other flex items</li>
+<li>along the main axis</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-the-size-of-each-item">What’s the size of each item?</h3>
+<p>3 items — each with <span
+class="t-salmon"><code>flex: 2;</code></span></p>
+<div class="fragment fade-in">
+<p>Each will have same size</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-the-size-of-each-item-1">What’s the size of each
+item?</h3>
+<h4 id="items">3 items</h4>
+<pre ><code class="css">/* first item */
+flex: 1;
+
+
+/* second item */
+flex: 1;
+
+
+/* second item */
+flex: 2;</code></pre>
+<div class="fragment fade-in">
+<p>Item 3 <strong>twice</strong> the size of Item 1 and 2</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="flexible-sizing-of-items-2">Flexible sizing of items</h2>
+<h3 id="allows-setting-minimum-sizes">Allows setting minimum sizes</h3>
+<pre ><code class="css">/* at least 100 px */
+flex: 1 100px;</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="flex-auto"><code>flex: auto</code></h3>
+<ul>
+<li>Absorbs available space</li>
+<li>Shrinks to minimum size when necessary</li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex#examples">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-5">Todo</h2>
+<ul>
+<li>Open Activity-04 again</li>
+<li>Make <span class="t-salmon"><strong>Penn</strong></span> take 1/3 of
+all space
+<ul>
+<li>Each item should be at least 150px wide</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items">Aligning flex items</h3>
+<h4 id="across-cross-or-main-axis">Across cross or main axis</h4>
+<div style="background-color: #fdf6e3">
+<p><img data-src="./images/flex-alignment.png"
+style="max-width: 640px" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items-on-cross-axis">Aligning flex items on cross
+axis</h3>
+<h4 id="align-items"><code>align-items</code></h4>
+<ul>
+<li><code>stretch</code>
+<ul>
+<li>fills the parent</li>
+</ul></li>
+<li><code>center</code>
+<ul>
+<li>centers the items</li>
+</ul></li>
+<li>Other options
+<ul>
+<li><code>flex-start</code>, <code>flex-end</code>, <code>start</code>,
+<code>end</code>, …</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-6">Todo</h2>
+<ul>
+<li>Go <a
+href="https://developer.mozilla.org/en-US/play?uuid=4d653c42-c21b-46fe-8e01-189ee491eed1&amp;state=bZA%2Fb8IwEMW%2FyilSF9Q0MFC1aYTUdu2WoQuLE1%2FiA8dG%2FlOSIr57LwSqDEy23%2FN7%2FvlOiQqdTvKkkPSz2RqAooohWLMpO9JYZNfT3PkSsVV3nW8y%2B7tGqVxs7zofOvp5WZFNIMljUnvPYJWVA5zGSGNNSBvBXEMOXhifenTUvI3ekWRQObwuHy7HTvTpTXpeHvqr6FoyOaxYABGDZfW8Nfze1K%2BQWhVG%2F5aorJPoWOGAt5okVFrU%2Byk3Ic%2FQPP0i3325hjUZTP87n9ZzztX6YSrJFvAuJQw2Omg09pXt4bMsoUJtj0zkEBbZjFGSP2jB%2Fx8vXxqFptakFLDzOdRoArqLvos%2BUDOkNaOxyhM7iBpT4Ww0cnqcZ7wbR8xrUNghb%2FWIm5z%2FAA%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FFlexbox%2F">here</a></li>
+<li>Update <code>align-items</code>
+<ul>
+<li><code>stretch</code>, <code>center</code>, <code>start</code>, and
+<code>end</code></li>
+</ul></li>
+</ul>
+<div class="fragment fade-in">
+<ul>
+<li>Now set <code>flow-direction</code> to be <span
+class="t-salmon"><code>column</code></span>
+<ul>
+<li>Update <code>align-items</code></li>
+<li>What changes? Why?</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-one-item">Aligning one item</h3>
+<h4 id="align-self"><code>align-self</code></h4>
+<ul>
+<li><code>align-items</code> applies to all flex items</li>
+<li><code>align-self</code> applies to a single item
+<ul>
+<li>values similar to <code>align-items</code>
+<ul>
+<li><code>stretch</code>, <code>center</code>, <code>start</code>,
+<code>end</code>, …</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-7">Todo</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Go <a
+href="https://developer.mozilla.org/en-US/play?uuid=73be846f-78eb-4c16-8784-ecbcd5c1e225&amp;state=bZBBU8MgEIX%2Fyg4ndUya1rFjY83Rq5cecyGwDSiBDBCN0%2Bl%2FF8Kk06inZR5veR%2FvRITvFCnJnstPYIo691KTxow1qWoNEOXqTeN%2BFQ8X5fBllspl1aFC5pGH%2FYOw%2BHvx1Qx2luZJ7glzLjDkIRdO0dsYy9GWsOlH4MaH98C2zc1uC%2BuHHay3T7fP0cal6xX9LuGocJwUqmSrM%2Bmxc0nNnKfWT3cCZSt8eLQo%2Bug%2B13pKjPgplbKP1ppB84wZZUL%2BMhRWUOSbFH1N6IyS%2FwMmV2Ypl0MAeuwTZU85l7qNKAuSCu7Ko7TOZ0xIxRNV%2BlLo9ViC8xY9E1cr%2BVz4XzND7dEmb%2Bj4PVYcphfYYTiq2AY5%2FwA%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_flexible_box_layout%2FAligning_items_in_a_flex_container%2F">here</a></p></li>
+<li><p>Align “Four” to the end</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="./images/align-self.png" /></p>
+</div>
+</div>
+<div class="fragment fade-in">
+<p>Change <code>flex-direction</code> to <code>column</code>. What
+happens?</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="wrapping-1">Wrapping</h3>
+<h3 id="distribution-of-space-between-lines">Distribution of space
+between lines</h3>
+<ul>
+<li><code>align-content</code> determines space <strong>between</strong>
+flex lines</li>
+<li><span class="t-salmon"><strong>Only</strong></span> applicable when
+wrapping happens</li>
+<li>Options
+<ul>
+<li><code>space-between</code>, <code>space-around</code>,
+<code>space-evenly</code>, <code>center</code>, <code>start</code>,
+…</li>
+<li>See <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content">here</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-8">Todo</h3>
+<ul>
+<li><p>Go <a
+href="https://developer.mozilla.org/en-US/play?uuid=51eade2c-d49f-40d3-8bc7-2415f41c4a1d&amp;state=pZHBTsMwDIZfxcqJIbqtG5tYGL3BlQMce0kb0waypEqytWjau5O0dIhoF4QiJdaf39Zn%2B0hqt5OEki0XBygls%2FYhJ4XucpLlCiDI2bPC7SwEZ%2BW11bFSG4xdT3pvYkkcYteL6GIFD6gi7VFUtRu18SU3pLTW0089MRyDuRXc1RRuV%2FOmuw9CoQ1HQ2HRdMC1c8jBVMXVZg3pcgPp%2Bm7S27iwjWSfFN4kDokhSFrDGgrh7rUaAwaF5Xwsz6SoVFJq5VD5D9uwEpMCXYuovOGUq1z1dBlcD4QN41yoyhNdQrRaisuEgysxjIu9pbAak1n5URm9V9xTSO3L%2FE6GGcyni8m5JQppON8N%2FPCF%2FR%2F%2FWvBf5PEgTv1C38M%2B%2Fetq3KEPZZg4OX0B&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_flexible_box_layout%2FAligning_items_in_a_flex_container%2F">here</a></p></li>
+<li><p>Update <code>align-content</code>:</p>
+<ul>
+<li><code>center</code>, <code>end</code>,
+<code>space-around</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items-1">Aligning flex items</h3>
+<h4 id="across-cross-or-main-axis-1">Across cross or <span
+class="t-salmon">main</span> axis</h4>
+<div style="background-color: #fdf6e3">
+<p><img data-src="./images/flex-alignment.png"
+style="max-width: 640px" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items-on-main-axis">Aligning flex items on main
+axis</h3>
+<h4 id="justify-content"><code>justify-content</code></h4>
+<ul>
+<li>Similar to <code>align-content</code>
+<ul>
+<li>for space distribution <span class="t-salmon"><strong>across main
+axis</strong></span></li>
+<li>same values</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-9">Todo</h3>
+<ul>
+<li>Go <a
+href="https://developer.mozilla.org/en-US/play?uuid=8f108ea5-1b8e-4f4e-9555-371d148d430f&amp;state=bY%2FNTsMwEIRfZeUTINI%2FREVNyZErF46%2BOPY2cXFty%2BvQVFXfHbsQJEpPuxp9M7N7ZF3aWcbZWptPUFYSvQjW%2BEGwWjiAItdvDtfTsvwq73t%2FqXQRL6lX38dRGie7Z4ooF05yCRwLqw0FKw8cNhaH56Jse0pmc6iUdwld4kBBKqwaTHtEd0YaHzVGDoswgPYpoYbYNjerJcwfVjBfPt1m7CSccOeiGu6%2By4LU2rg2G2dh%2BJdE3pprQSNVRalNTxweR7NUH230vdP5WOtzzF8zTGE2Wfzckn%2FfltfzTB3uMK%2FWtF1ipy8%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_flexible_box_layout%2FAligning_items_in_a_flex_container%2F">here</a></li>
+<li>Update <code>justify-content</code>
+<ul>
+<li><code>start</code>, <code>end</code>, <code>center</code>,
+<code>space-around</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="gaps-between-rows-and-columns">Gaps between rows and
+columns</h3>
+<h4 id="gap-property-row-gap-column-gap"><code>gap</code> property:
+row-gap column-gap</h4>
+<div class="columns">
+<div class="column" style="width:45%;">
+<pre ><code class="css" data-line-numbers="5">section {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 10px 35px;
+    justify-content: space-between;
+    height: 600px;
+}</code></pre>
+<ul>
+<li>row gap: 10px</li>
+<li>column gap: 35px</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="images/flex-gap.png" /></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="auto-margins-for-main-axis-alignment"><code>auto</code> margins
+for main axis alignment</h3>
+<ul>
+<li><code>auto</code> margin takes up <span class="t-salmon"><strong>as
+much space as possible</strong></span></li>
+<li>you can use it to group elements</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="auto-margins-for-main-axis-alignment-1"><code>auto</code>
+margins for main axis alignment</h3>
+<figure>
+<img data-src="images/auto-margin.png" alt="margin-left: auto for d" />
+<figcaption aria-hidden="true"><span
+class="t-salmon"><code>margin-left: auto</code></span> for
+<code>d</code></figcaption>
+</figure>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/play?uuid=ed3bcae8-86ee-4465-8645-ca5939f53408&amp;state=bZDNTsMwEIRfZeUTIJL%2BICrqlhx75cLRFyd2bVPHtmynBFV9d2xCIhF62tVo5tPsXpCMrUYY7Zk6Q6NpCK8E1bYnqCIGIMvVm%2BH7RV4m5f3TzhXp%2Bcw14VwXZOIdbOdnqYM6T6FxokfUhJAqlakGXLKXqeA0%2FcJw1LzfZaW2nnGPYe16YDZGzsCL%2Bm67gdXTFlabl%2FtkuxJDzA%2BlgoeB5ChjyogUXLr%2FpGC1ugUaXYWnTHUBw%2FMYps1JeNsZVjRW24T5G4YFLMv1b5cy%2F2Go0VIvlCk0P0YMtIt2cKTTP%2FLlaUbJW55WrYSM6PoN&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_flexible_box_layout%2FAligning_items_in_a_flex_container%2F">Source</a></p>
+</div>
+<div class="fragment fade-in">
+<p>Set <code>left-margin</code> to <code>auto</code> for
+<code>Five</code> too</p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="flexbox-alignment-summary">Flexbox alignment summary</h3>
+<ul>
+<li><code>align-items</code>
+<ul>
+<li>all items as a group on the cross axis</li>
+</ul></li>
+<li><code>align-self</code>
+<ul>
+<li>a single item on the cross axis</li>
+</ul></li>
+<li><code>align-content</code>
+<ul>
+<li>space distribution on the cross axis</li>
+</ul></li>
+<li><code>justify-content</code>
+<ul>
+<li>space distribution on the main axis</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-4">Today</h2>
+<ul>
+<li>Box model</li>
+<li>Layout flow</li>
+<li>Float</li>
+<li>Positioning</li>
+<li>Flexbox</li>
+</ul>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
