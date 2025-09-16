@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-09-16">
+  <title>HCDD 340 — 2025-09-16</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="hcdd-340">HCDD 340</h2>
+<h3 id="grid">Grid</h3>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>Aligning flex items</li>
+<li>Chrome Dev Tool for flexbox</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items">Aligning flex items</h3>
+<h4 id="across-cross-or-main-axis">Across <span
+class="t-salmon">cross</span> or main axis</h4>
+<div style="background-color: #fdf6e3">
+<p><img data-src="./images/flex-alignment.png"
+style="max-width: 640px" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items-on-cross-axis">Aligning flex items on cross
+axis</h3>
+<h4 id="align-items"><code>align-items</code></h4>
+<ul>
+<li><p>applies to all flex items as a group</p></li>
+<li><p><code>stretch</code>: fills the parent</p></li>
+<li><p><code>center</code>: centers the items</p></li>
+<li><p>Other options</p>
+<ul>
+<li><code>flex-start</code>, <code>flex-end</code>, <code>start</code>,
+<code>end</code>, …</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-one-item">Aligning one item</h3>
+<h4 id="align-self"><code>align-self</code></h4>
+<ul>
+<li><code>align-self</code> applies to a <span
+class="t-salmon"><strong>single</strong></span> item
+<ul>
+<li>values similar to <code>align-items</code>
+<ul>
+<li><code>stretch</code>, <code>center</code>, <code>start</code>,
+<code>end</code>, …</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="wrapping">Wrapping</h3>
+<h3 id="distribution-of-space-between-lines">Distribution of space
+between lines</h3>
+<ul>
+<li><code>align-content</code> determines space <strong>between</strong>
+flex lines</li>
+<li><span class="t-salmon"><strong>Only</strong></span> applicable when
+wrapping happens</li>
+<li>Options
+<ul>
+<li><code>space-between</code>, <code>space-around</code>,
+<code>space-evenly</code>, <code>center</code>, <code>start</code>,
+…</li>
+<li>See <a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content">here</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items-1">Aligning flex items</h3>
+<h4 id="across-cross-or-main-axis-1">Across cross or <span
+class="t-salmon">main</span> axis</h4>
+<div style="background-color: #fdf6e3">
+<p><img data-src="./images/flex-alignment.png"
+style="max-width: 640px" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-flex-items-on-main-axis">Aligning flex items on main
+axis</h3>
+<h4 id="justify-content"><code>justify-content</code></h4>
+<ul>
+<li>Similar to <code>align-content</code>
+<ul>
+<li>for space distribution <span class="t-salmon"><strong>across main
+axis</strong></span></li>
+<li>same values</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="gaps-between-rows-and-columns">Gaps between rows and
+columns</h3>
+<h4 id="gap-property-row-gap-column-gap"><code>gap</code> property:
+row-gap column-gap</h4>
+<div class="columns">
+<div class="column" style="width:45%;">
+<pre ><code class="css" data-line-numbers="5">section {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 10px 35px;
+    justify-content: space-between;
+    height: 600px;
+}</code></pre>
+<ul>
+<li>row gap: 10px</li>
+<li>column gap: 35px</li>
+</ul>
+</div><div class="column" style="width:55%;">
+<p><img data-src="images/flex-gap.png" /></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="auto-margins-for-main-axis-alignment"><code>auto</code> margins
+for main axis alignment</h3>
+<ul>
+<li><code>auto</code> margin takes up <span class="t-salmon"><strong>as
+much space as possible</strong></span></li>
+<li>you can use it to group elements</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="auto-margins-for-main-axis-alignment-1"><code>auto</code>
+margins for main axis alignment</h3>
+<figure>
+<img data-src="images/auto-margin.png" alt="margin-left: auto for d" />
+<figcaption aria-hidden="true"><span
+class="t-salmon"><code>margin-left: auto</code></span> for
+<code>d</code></figcaption>
+</figure>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/play?uuid=ed3bcae8-86ee-4465-8645-ca5939f53408&amp;state=bZDNTsMwEIRfZeUTIJL%2BICrqlhx75cLRFyd2bVPHtmynBFV9d2xCIhF62tVo5tPsXpCMrUYY7Zk6Q6NpCK8E1bYnqCIGIMvVm%2BH7RV4m5f3TzhXp%2Bcw14VwXZOIdbOdnqYM6T6FxokfUhJAqlakGXLKXqeA0%2FcJw1LzfZaW2nnGPYe16YDZGzsCL%2Bm67gdXTFlabl%2FtkuxJDzA%2BlgoeB5ChjyogUXLr%2FpGC1ugUaXYWnTHUBw%2FMYps1JeNsZVjRW24T5G4YFLMv1b5cy%2F2Go0VIvlCk0P0YMtIt2cKTTP%2FLlaUbJW55WrYSM6PoN&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_flexible_box_layout%2FAligning_items_in_a_flex_container%2F">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="flexbox-alignment-summary">Flexbox alignment summary</h3>
+<ul>
+<li><code>align-items</code>
+<ul>
+<li>all items as a group on the cross axis</li>
+</ul></li>
+<li><code>align-self</code>
+<ul>
+<li>a single item on the cross axis</li>
+</ul></li>
+<li><code>align-content</code>
+<ul>
+<li>space distribution on the cross axis</li>
+</ul></li>
+<li><code>justify-content</code>
+<ul>
+<li>space distribution on the main axis</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class-1">Recap from last class</h2>
+<ul>
+<li>Aligning flex items</li>
+<li><span class="t-salmon"><strong>Chrome Dev Tool for
+flexbox</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="chrome-dev-tools">Chrome Dev Tools</h3>
+<h4 id="flexbox-editor">Flexbox editor</h4>
+<div class="columns" style="align-items: center">
+<div class="column" style="width:45%;">
+<p><img data-src="./images/chrome-flexbox-editor-button.png" /></p>
+</div><div class="column" style="width:45%;">
+<p><img data-src="./images/chrome-flexbox-editor.png" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.chrome.com/docs/devtools/css/flexbox">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<h3 id="grid-1">Grid</h3>
+</section>
+<section class="slide level0">
+
+<h2 id="grid-2">Grid</h2>
+<ul>
+<li>Two dimensional layout</li>
+<li>You can place item to specific location</li>
+<li>Items can be aligned within their area</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-or-flexbox">Grid or flexbox? 🧐</h3>
+<ul>
+<li>How to choose between grid or flexbox?</li>
+<li>No specific rules
+<ul>
+<li>Depends on the tasks</li>
+</ul></li>
+<li>Comparison between grid or flexbox
+<ul>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Relationship_of_grid_layout_with_other_layout_methods">Grid</a></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Relationship_of_flexbox_to_other_layout_methods#flexbox_and_grid_layout">Flexbox</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-terminologies">Grid terminologies</h3>
+<ul>
+<li>Lines</li>
+<li>Tracks</li>
+<li>Cells</li>
+<li>Gaps</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-lines">Grid Lines</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Horizontal and vertical lines</li>
+<li>Line number starts from <strong>one</strong>
+<ul>
+<li>follows writing mode</li>
+<li>script direction</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-line.svg" /></p>
+</div>
+</div>
+<p>For English, column number is 1 on the <strong>left</strong></p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="tracks">Tracks</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Space between two grid lines</li>
+<li>Row tracks
+<ul>
+<li>between two row lines</li>
+</ul></li>
+<li>Column tracks
+<ul>
+<li>between two column lines</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-tracks.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="cell">Cell</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Smallest intersection area between rows and columns</li>
+<li>Similar to a table or spreadsheet cell</li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-cell.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="area">Area</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Spanned over multiple cells</li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-area.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="gaps">Gaps</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Gutter or alley
+<ul>
+<li>between cells</li>
+</ul></li>
+<li>Can’t place an item in a gap</li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-gap.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-3">Grid</h3>
+<pre ><code class="css" data-line-numbers="2">.container {
+    display: grid;
+    grid-template-columns: 5em 100px 30%;
+    grid-template-rows: 200px auto;
+}</code></pre>
+<p>Creates a new grid</p>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-columns">Grid columns</h3>
+<pre ><code class="css" data-line-numbers="3">.container {
+    display: grid;
+    grid-template-columns: 5em 100px 30%;
+    grid-template-rows: 200px auto;
+}</code></pre>
+<p>3 column tracks with different sizes</p>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-rows">Grid rows</h3>
+<pre ><code class="css" data-line-numbers="4">.container {
+    display: grid;
+    grid-template-columns: 5em 100px 30%;
+    grid-template-rows: 200px auto;
+}</code></pre>
+<p>2 row tracks with different sizes</p>
+</section>
+<section class="slide level0">
+
+<h2 id="todo">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-05.0.zip">Activity
+05</a> in a browser</li>
+<li>Dev Tools –&gt; Layout –&gt; Grid</li>
+<li>Select <code>div.container</code></li>
+</ul>
+<p><img data-src="./images/chrome-grid-lines.png"
+style="max-width: 300px" /></p>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-1">Todo</h2>
+<ul>
+<li>Change <code>styles.css</code></li>
+<li>2 x 2 grid</li>
+</ul>
+<p><img data-src="./images/activity-05-2x2.png"
+style="max-width: 200px" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="fr-unit"><code>fr</code> unit</h3>
+<ul>
+<li>One <strong>fraction</strong> of the available space</li>
+<li>Allows flexible sizing</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-2">Todo</h3>
+<ul>
+<li>Go to <a
+href="https://developer.mozilla.org/en-US/play?uuid=3bae3f1e-f12d-4c7b-9f4d-d11896459179&amp;state=ZZBBT4QwEIX%2FyqQnNxGFms1qWTl69aBHLoUWGC0taQuy2ex%2Ft0VZEzw0M%2Fn6%2BvpmzqTzvSKMHAVOUCvu3HNJaqM9Ry1tSYpSA8TL4lXL431sruT9y2xJZ%2BVW9WJGu0U4bVVvOG%2BJnKRe2VrJLamdC3krI05wjuImhE0a3qM6MXBcu8RJi01e6kup766jQAFxxOVJZayQNrFc4OgY7Ic5j3jgQqBuGWTpL6l4%2FdlaM2qR1EYZy8C21Q1ND0AfKFCa7vI%2FPwZ0mMEZhWKRHZ4ge9wH1WH3L8wSQ6AbFA%2BpW4tiMYpN4mUfsJfxy7HXIWDW2PX8OIU1fMQthOo72cvQKmw7Ty7f&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FGrids%2F">the
+example</a></li>
+<li>Change the window size
+<ul>
+<li><code>iPad</code> and <code>iPhone</code></li>
+</ul></li>
+<li>What happens?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-3">Todo</h3>
+<ul>
+<li>Go to <a
+href="https://developer.mozilla.org/en-US/play?uuid=3bae3f1e-f12d-4c7b-9f4d-d11896459179&amp;state=ZZBBT4QwEIX%2FyqQnNxGFms1qWTl69aBHLoUWGC0taQuy2ex%2Ft0VZEzw0M%2Fn6%2BvpmzqTzvSKMHAVOUCvu3HNJaqM9Ry1tSYpSA8TL4lXL431sruT9y2xJZ%2BVW9WJGu0U4bVVvOG%2BJnKRe2VrJLamdC3krI05wjuImhE0a3qM6MXBcu8RJi01e6kup766jQAFxxOVJZayQNrFc4OgY7Ic5j3jgQqBuGWTpL6l4%2FdlaM2qR1EYZy8C21Q1ND0AfKFCa7vI%2FPwZ0mMEZhWKRHZ4ge9wH1WH3L8wSQ6AbFA%2BpW4tiMYpN4mUfsJfxy7HXIWDW2PX8OIU1fMQthOo72cvQKmw7Ty7f&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FGrids%2F">the
+example</a></li>
+<li>Make the first track twice the size
+<ul>
+<li>What should be the <code>fr</code> values?</li>
+</ul></li>
+</ul>
+<p><img data-src="./images/activity-grid-fr.png"
+style="max-width: 440px" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="repeat-function"><code>repeat</code> function</h3>
+<pre ><code class="css">/* equivalent rules */
+grid-template-columns: 1fr 1fr 1fr;
+
+grid-template-columns: repeat(3, 1fr);</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="repeat-function-1"><code>repeat</code> function</h3>
+<ul>
+<li>Two arguments
+<ul>
+<li>Number of times to repeat</li>
+<li>Entity to repeat</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="how-many-columns-here">How many columns here?</h3>
+<pre ><code class="css">grid-template-columns: 200px repeat(2, 1fr 2fr) 100px;</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-4">Todo</h3>
+<ul>
+<li>Go to <a
+href="https://developer.mozilla.org/en-US/play?uuid=3bae3f1e-f12d-4c7b-9f4d-d11896459179&amp;state=ZZBBT4QwEIX%2FyqQnNxGFms1qWTl69aBHLoUWGC0taQuy2ex%2Ft0VZEzw0M%2Fn6%2BvpmzqTzvSKMHAVOUCvu3HNJaqM9Ry1tSYpSA8TL4lXL431sruT9y2xJZ%2BVW9WJGu0U4bVVvOG%2BJnKRe2VrJLamdC3krI05wjuImhE0a3qM6MXBcu8RJi01e6kup766jQAFxxOVJZayQNrFc4OgY7Ic5j3jgQqBuGWTpL6l4%2FdlaM2qR1EYZy8C21Q1ND0AfKFCa7vI%2FPwZ0mMEZhWKRHZ4ge9wH1WH3L8wSQ6AbFA%2BpW4tiMYpN4mUfsJfxy7HXIWDW2PX8OIU1fMQthOo72cvQKmw7Ty7f&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FGrids%2F">the
+example</a></li>
+<li>Change grid columns:</li>
+</ul>
+<pre ><code class="css">grid-template-columns: 200px repeat(2, 1fr 2fr) 100px;</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="how-many-columns-here-1">How many columns here?</h3>
+<pre ><code class="css">grid-template-columns: 200px repeat(2, 1fr 2fr) 100px;</code></pre>
+<ul>
+<li>6 columns
+<ul>
+<li>200px, 1fr, 2fr, 1fr, 2fr, 100px</li>
+</ul></li>
+<li>You can mix <code>repeat</code> with other sizes</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="minmax-function"><code>minmax</code> function</h3>
+<ul>
+<li>Sets a minimum and maximum size for a track</li>
+<li>Adapts to different screen sizes</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="minmax-for-responsive-design"><code>minmax</code> for responsive
+design</h3>
+<h4 id="minmaxauto-1fr"><code>minmax(auto, 1fr);</code></h4>
+<p>Take at least minimum of content width but grow if there is space</p>
+</section>
+<section class="slide level0">
+
+<h3 id="create-as-many-columns-as-possible">Create as many columns as
+possible</h3>
+<ul>
+<li>A common pattern</li>
+<li>Can’t pre-specify the number of columns
+<ul>
+<li>available space is different across devices</li>
+</ul></li>
+<li>Use <code>auto-fit</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="create-as-many-columns-as-possible-1">Create as many columns as
+possible</h3>
+<h4 id="using-auto-fit">Using <code>auto-fit</code></h4>
+<pre ><code class="css">.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-5">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-05.0.zip">Activity
+05</a> in a browser</li>
+<li>Update <code>styles.css</code></li>
+</ul>
+<pre ><code class="css">.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-rows: 200px auto;
+    gap: 10px;
+}</code></pre>
+<div class="fragment fade-in">
+<p>What changes between <code>iPad</code> and <code>iPhone</code>
+displays?</p>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
