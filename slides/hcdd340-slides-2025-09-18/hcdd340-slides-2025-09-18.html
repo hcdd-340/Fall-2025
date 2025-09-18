@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-09-18">
+  <title>HCDD 340 — 2025-09-18</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="hcdd-340">HCDD 340</h2>
+<h3 id="grid">Grid</h3>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>Grid terminologies</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="grid-1">Grid</h2>
+<ul>
+<li>Two dimensional layout</li>
+<li>You can place item to specific location</li>
+<li>Items can be aligned within their area</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-terminologies">Grid terminologies</h3>
+<ul>
+<li>Lines</li>
+<li>Tracks</li>
+<li>Cells</li>
+<li>Gaps</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-lines">Grid Lines</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Horizontal and vertical lines</li>
+<li>Line number starts from <strong>one</strong>
+<ul>
+<li>follows writing mode</li>
+<li>script direction</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-line.svg" /></p>
+</div>
+</div>
+<p>For English, column number is 1 on the <strong>left</strong></p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="tracks">Tracks</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Space between two grid lines</li>
+<li>Row tracks
+<ul>
+<li>between two row lines</li>
+</ul></li>
+<li>Column tracks
+<ul>
+<li>between two column lines</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-tracks.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="cell">Cell</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Smallest intersection area between rows and columns</li>
+<li>Similar to a table or spreadsheet cell</li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-cell.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="area">Area</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Spanned over multiple cells</li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-area.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="gaps">Gaps</h3>
+<div class="columns">
+<div class="column" style="width:65%;">
+<ul>
+<li>Gutter or alley
+<ul>
+<li>between cells</li>
+</ul></li>
+<li>Can’t place an item in a gap</li>
+</ul>
+</div><div class="column" style="width:35%;">
+<p><img data-src="images/grid-gap.svg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-2">Grid</h3>
+<pre ><code class="css" data-line-numbers="2">.container {
+    display: grid;
+    grid-template-columns: 5em 100px 30%;
+    grid-template-rows: 200px auto;
+}</code></pre>
+<p>Creates a new grid</p>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-columns">Grid columns</h3>
+<pre ><code class="css" data-line-numbers="3">.container {
+    display: grid;
+    grid-template-columns: 5em 100px 30%;
+    grid-template-rows: 200px auto;
+}</code></pre>
+<p>3 column tracks with different sizes</p>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-rows">Grid rows</h3>
+<pre ><code class="css" data-line-numbers="4">.container {
+    display: grid;
+    grid-template-columns: 5em 100px 30%;
+    grid-template-rows: 200px auto;
+}</code></pre>
+<p>2 row tracks with different sizes</p>
+</section>
+<section class="slide level0">
+
+<h3 id="how-many-columns-here">How many columns here?</h3>
+<pre ><code class="css">grid-template-columns: 200px repeat(2, 1fr 2fr) 100px;</code></pre>
+<ul>
+<li>6 columns
+<ul>
+<li>200px, 1fr, 2fr, 1fr, 2fr, 100px</li>
+</ul></li>
+<li>You can mix <code>repeat</code> with other sizes</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="minmax-function"><code>minmax</code> function</h3>
+<ul>
+<li>Sets a minimum and maximum size for a track</li>
+<li>Adapts to different screen sizes</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="minmax-for-responsive-design"><code>minmax</code> for responsive
+design</h3>
+<h4 id="minmaxauto-1fr"><code>minmax(auto, 1fr);</code></h4>
+<p>Take at least minimum of content width but grow if there is space</p>
+</section>
+<section class="slide level0">
+
+<h3 id="create-as-many-columns-as-possible">Create as many columns as
+possible</h3>
+<ul>
+<li>A common pattern</li>
+<li>Can’t pre-specify the number of columns
+<ul>
+<li>available space is different across devices</li>
+</ul></li>
+<li>Use <code>auto-fit</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="create-as-many-columns-as-possible-1">Create as many columns as
+possible</h3>
+<h4 id="using-auto-fit">Using <code>auto-fit</code></h4>
+<pre ><code class="css">.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="repeat-function"><code>repeat</code> function</h3>
+<pre ><code class="css">/* equivalent rules */
+grid-template-columns: 1fr 1fr 1fr;
+
+grid-template-columns: repeat(3, 1fr);</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="repeat-function-1"><code>repeat</code> function</h3>
+<ul>
+<li>Two arguments
+<ul>
+<li>Number of times to repeat</li>
+<li>Entity to repeat</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fr-unit"><code>fr</code> unit</h3>
+<ul>
+<li>One <strong>fraction</strong> of the available space</li>
+<li>Allows flexible sizing</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Placing items in grids</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="auto-placement-default">Auto placement (default)</h3>
+<ul>
+<li>Items are placed one per cell</li>
+<li>In the same order as in the code</li>
+<li>Default placement is along the rows
+<ul>
+<li>For column placement:
+<ul>
+<li><code>grid-auto-flow: column;</code></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-05.0.zip">Activity
+05</a></li>
+<li>Place items along the column</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="line-based-placement">Line based placement</h3>
+<ul>
+<li>Placing items on specific lines</li>
+<li>For English, column number is 1 on the <strong>left</strong></li>
+</ul>
+<p><img data-src="images/grid-line.svg" style="max-width: 440px" /></p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/css/grid#grid_terminology">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="line-based-placement-1">Line based placement</h3>
+<h4 id="start-and-end-lines-for-an-item">Start and end lines for an
+item</h4>
+<ul>
+<li><code>grid-column-start</code></li>
+<li><code>grid-column-end</code></li>
+<li><code>grid-row-start</code></li>
+<li><code>grid-row-end</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="line-based-placement-2">Line based placement</h3>
+<h4 id="start-and-end-lines-for-an-item-1">Start and end lines for an
+item</h4>
+<pre ><code class="css">.item {
+/* start at column line 1 */
+grid-column-start: 1;
+
+ /* end at column line 4 */
+grid-column-end: 4;
+
+ /*start at row line 2 */
+grid-row-start: 2;
+
+/* end at row line 4 */
+grid-row-end: 4; 
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="shorthand-for-line-placement">Shorthand for line placement</h3>
+<ul>
+<li><code>grid-column</code>
+<ul>
+<li><code>grid-column-start</code> <strong>/</strong>
+<code>grid-column-end</code></li>
+</ul></li>
+<li><code>grid-row</code>
+<ul>
+<li><code>grid-row-start</code> <strong>/</strong>
+<code>grid-row-end</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="shorthand-for-line-placement-1">Shorthand for line
+placement</h3>
+<div class="columns" style="align-items: center">
+<div class="column" style="width:48%;">
+<pre ><code class="css">.item {
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+    grid-row-start: 2;
+    grid-row-end: 4; 
+}</code></pre>
+</div><div class="column" style="width:4%;">
+<p><span class="t-salmon"><strong>=</strong></span></p>
+</div><div class="column" style="width:48%;">
+<pre ><code class="css">.item {
+    grid-column: 1 / 4;
+    grid-row: 1 / 4;
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-1">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-06.0.zip">Activity
+06</a></li>
+<li>Update <code>grid-column</code> and <code>grid-row</code></li>
+</ul>
+<div width="50%">
+<p><img data-src="./images/activity-06.png" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="negative-number-for-line-placement">Negative number for line
+placement</h4>
+<ul>
+<li>You can use negative number</li>
+<li>-1: the end column or row
+<ul>
+<li>count inwards using negative values</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-2">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-06.0.zip">Activity
+06</a></li>
+<li>Update <code>grid-column</code> and <code>grid-row</code>
+<ul>
+<li>using <span class="t-salmon"><strong>negative</strong></span>
+values</li>
+</ul></li>
+</ul>
+<div width="50%">
+<p><img data-src="./images/activity-06.png" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-template-areas"><code>grid-template-areas</code></h3>
+<ul>
+<li>Name areas of the grid</li>
+<li>Place items onto those named areas</li>
+<li>Very useful</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-template-areas-1"><code>grid-template-areas</code></h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre ><code class="css">.container {
+    display: grid;
+    grid-template-columns:
+        repeat(4,1fr);
+    grid-template-areas:
+        "h h h h"
+        "s c c c"
+        "s f f f";
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre ><code class="css">header {
+    grid-area: h;
+}
+
+.sidebar {
+    grid-area: s;
+}
+
+.content {
+    grid-area: c;
+}
+
+footer {
+    grid-area: f;
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="grid-template-areas-2"><code>grid-template-areas</code></h3>
+<ul>
+<li>Every cell must be filled</li>
+<li>repeating name will span cells</li>
+<li><code>.</code> (period) is for empty cell</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-3">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-07.0.zip">Activity
+07</a></li>
+<li>Add <code>grid-template-areas</code></li>
+</ul>
+<div width="50%">
+<p><img data-src="./images/activity-06.png" /></p>
+</div>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-4">Todo</h2>
+<div width="50%">
+<p><img data-src="./images/activity-07-empty.png" /></p>
+</div>
+<p><code>.</code> (period) is for empty cell</p>
+</section>
+<section class="slide level0">
+
+<h3 id="aligning-items-in-grid">Aligning items in Grid</h3>
+<h4 id="similar-to-flexbox">Similar to flexbox!</h4>
+<ul>
+<li>Column axis alignment
+<ul>
+<li><code>align-self</code> and <code>align-items</code></li>
+</ul></li>
+<li>Row axis alignment
+<ul>
+<li><code>justify-items</code> and <code>justify-self</code></li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Box_alignment_in_grid_layout#center_an_item_in_the_area">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="nesting-grids">Nesting grids</h2>
+<ul>
+<li>Making a child item a <code>subgrid</code>
+<ul>
+<li><code>display: grid</code></li>
+<li>Define other grid properties (columns, rows, …)</li>
+</ul></li>
+<li>See an example <a
+href="https://developer.mozilla.org/en-US/play?uuid=bd19e424-151f-436d-b8e8-8af0db8bd168&amp;state=rVNLbtswEL0KwXUUxU67UVUBQTZdZ60NTY4kNhRJkHTtwjCQ0%2FRgPUmHHzl2k6ZF0NVwfm8e%2BYYHOoVZ0Ya2Qn4jXDHvP%2FeUGx2Y1OB62vWakHYCJsB1X5Jp6%2BKm1IyF6YRn5oLkCoob%2B1bdXY4RowEbV885293jGNDh59OPtrYLRn0J8iZm2Jn%2Fjzk5eAfTtj49RMu8FKdZ07q7iz5CrpeY7R5AsQCC8Ay8oCLmqbcdjAn4ytm0dXF73daoFVp6Rbn3qN31SS9yiJ0DutXAZqm%2BN8Qz7SsPTg6fYk5IbxXD%2BOikSJF4qALMNjKquFHbWfuGrAZHbgeXS5htyPrG7tE79jrLf9XrTCkP3RiHwcoxIbfY%2FjEVE2KZEFKPiHdTIhvGH0dntlrEYcY1xMEGOGd266yCVFMSu0kG8LN5zNEA%2B1AxJUfdEI6vBu6cT6aRbsMcsIbkcC5Jz3pJVI5TQFp2T7xRUrzC4gwrtm9YATu%2F9llNDueS3yX527NHBN%2Fk9ehpuVA2PV3ChcSyNM%2BJQiibnr5T1rjALy5VZv3T7jizwwkf8oTLKRJFcjIUMcpXO%2FxhQZJAyOwNaV7dtmP6E1%2Fjl0AbJpgBjyoKTY%2B%2FAA%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FCore%2FCSS_layout%2FGrids%2F">here</a></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-5">Todo</h2>
+<ul>
+<li>Go to <a href="https://cssgridgarden.com/">Grid Garden</a></li>
+<li>Complete levels
+<ul>
+<li>Discuss with your group members</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="assignment-2">Assignment 2</h2>
+<ul>
+<li>Will be published tomorrow</li>
+<li>Due by September 30th</li>
+</ul>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
