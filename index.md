@@ -13,6 +13,15 @@ include-after: |
     </article>
 ---
 
+
+<section>
+## Week 5
+### Responsive Design & PWA Manifest (2025-09-23)
++ [Slides](slides/hcdd340-slides-2025-09-23/hcdd340-slides-2025-09-23.html)
++ [Activity 08](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-08.0)
++ [Activity 09](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-09.0)
+</section>
+
 <section>
 ## Week 4
 ### Grid II (2025-09-18)
