@@ -874,6 +874,58 @@ href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest
 </section>
 <section class="slide level0">
 
+<h3 id="media-query-for-display-mode">Media query for display mode</h3>
+<pre ><code class="css">/* app within the browser only */
+@media (display-mode: browser) {
+}
+
+/* app in standalone mode */
+@media (display-mode: standalone) {
+}
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="media-query-for-display-mode-1">Media query for display
+mode</h3>
+<pre ><code class="css">/* All app modes */
+
+@media (display-mode: standalone),
+       (display-mode: fullscreen),
+       (display-mode: minimal-ui) {
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-11">Todo</h3>
+<h4 id="ui-for-app-vs-browser">UI for app vs browser</h4>
+<div class="columns">
+<div class="column">
+<figure>
+<img data-src="./images/media-browser.png" alt="Browser" />
+<figcaption aria-hidden="true">Browser</figcaption>
+</figure>
+</div><div class="column">
+<figure>
+<img data-src="./images/media-pwa.png" alt="PWA" />
+<figcaption aria-hidden="true">PWA</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="hints">Hints</h2>
+<ul>
+<li><code>::after</code> the image (<a
+href="https://codepen.io/web-dot-dev/pen/qBXVowV">example</a>)</li>
+<li><code>\A</code> in <code>content</code> for <a
+href="https://css-tricks.com/injecting-line-break/#aa-you-can-insert-line-breaks-via-pseudo-element">a
+new line</a></li>
+</ul>
+</section>
+<section class="slide level0">
+
 <h2 id="today-2">Today</h2>
 <ul>
 <li>Responsive design</li>
