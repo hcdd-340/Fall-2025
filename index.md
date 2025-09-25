@@ -16,6 +16,11 @@ include-after: |
 
 <section>
 ## Week 5
+### JS I (2025-09-25)
++ [Slides](slides/hcdd340-slides-2025-09-25/hcdd340-slides-2025-09-25.html)
++ [Activity 10](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-10.0)
++ [Activity 11](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-11.0)
+ 
 ### Responsive Design & PWA Manifest (2025-09-23)
 + [Slides](slides/hcdd340-slides-2025-09-23/hcdd340-slides-2025-09-23.html)
 + [Activity 08](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-08.0)
