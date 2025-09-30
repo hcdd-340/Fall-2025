@@ -1067,7 +1067,7 @@ href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Script
 <h3 id="adding-items">Adding items</h3>
 <ul>
 <li><code>push</code> –&gt; adds at the end</li>
-<li><code>unshift</code> –&gt; add at the front</li>
+<li><code>unshift</code> –&gt; adds at the front</li>
 </ul>
 <pre ><code class="js">const cities = ["Manchester", "Liverpool"];
 cities.push("Cardiff");
@@ -1090,7 +1090,7 @@ href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Script
 cities.unshift("Edinburgh");
 console.log(cities);
 // [ "Edinburgh", "Manchester", "Liverpool" ]</code></pre>
-<p><code>unshift</code> –&gt; add at the front</p>
+<p><code>unshift</code> –&gt; adds at the front</p>
 <div class="t-ref">
 <p><a
 href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
@@ -1164,89 +1164,6 @@ Array methods</a></p>
 <li>Arrays</li>
 <li><span class="t-salmon"><strong>Functions</strong></span></li>
 </ul>
-</section>
-<section class="slide level0">
-
-<h3 id="functions">Functions</h3>
-<pre ><code class="js">function myFunction() {
-  alert("hello");
-}
-
-myFunction();
-// calls the function once</code></pre>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="parameters">Parameters</h3>
-<pre ><code class="js">function addition(a, b) {
-    return a + b;
-}
-
-console.log(addition(1, 2));</code></pre>
-</section>
-<section class="slide level0">
-
-<h4 id="default-parameters">Default parameters</h4>
-<pre ><code class="js">function addition(a, b=10) {
-    return a + b;
-}
-
-console.log(addition(9));
-console.log(addition(9, 3));</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="arrow-function">Arrow function</h3>
-<pre ><code class="js">const myAddition = (a, b = 10) =&gt; {
-    return a + b;
-}
-
-console.log(myAddition(9));
-</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="arrow-function-1">Arrow function</h3>
-<pre ><code class="js">const oneLiner = (a, b) =&gt; a + b;
-console.log(oneLiner(12, 5));</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="arrow-function-2">Arrow function</h3>
-<pre ><code class="js">const noParam = () =&gt; {
-    console.log("hello");
-}</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="todo-10">Todo</h3>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-11.0.zip">Activity
-11</a> in VS Code</li>
-<li>Update <code>main.js</code> (see hints on line 23–27)</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="todo-11">Todo</h3>
-<ul>
-<li>Add a function called <code>chooseCollege</code>
-<ul>
-<li>using arrow syntax</li>
-</ul></li>
-<li>When called the function
-<ul>
-<li>it should select a random item from <code>colleges</code></li>
-<li>update the <code>&lt;h4&gt;</code> with the selected items</li>
-</ul></li>
-</ul>
-<p><img data-src="./images/college-generator.png"
-style="max-width: 340px" /></p>
 </section>
 <section class="slide level0">
 

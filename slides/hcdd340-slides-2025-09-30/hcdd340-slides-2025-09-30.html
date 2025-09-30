@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-09-30">
+  <title>HCDD 340 — 2025-09-30</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="js-ii">JS II</h2>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Function</li>
+<li>Objects</li>
+<li>Document Object Model (DOM)</li>
+<li>Events</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>Variables</li>
+<li>Conditionals</li>
+<li>Loops</li>
+<li>Strings</li>
+<li>Arrays</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="variables">Variables</h3>
+<h4 id="const-let-var"><code>const</code>, <code>let</code>,
+<code>var</code></h4>
+<pre ><code class="js">const x = 1;
+
+let y = 2;
+
+var z = 3;</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="var"><code>var</code></h3>
+<h4 id="global-variable">Global variable</h4>
+<pre ><code class="js">var x = 1;
+
+if (x === 1) {
+  var x = 2;
+  console.log(x);
+  // expected output: 2
+}  
+
+console.log(x); // expected output: 2</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="let"><code>let</code></h3>
+<pre ><code class="js">let y = 1;
+
+if (y === 1) {
+  let y = 2;
+  console.log(y);
+  // expected output: 2
+}  
+
+console.log(y); // expected output: 1</code></pre>
+<p>Local variable (within the block)</p>
+</section>
+<section class="slide level0">
+
+<h3 id="const"><code>const</code></h3>
+<p>Once assigned, can’t change values</p>
+</section>
+<section class="slide level0">
+
+<h3 id="conditionals">Conditionals</h3>
+<pre ><code class="js">if (condition) {
+  /* code to run if condition is true */
+} else {
+  /* run some other code instead */
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="equality-check-in-js">Equality check in JS 😬</h3>
+<p><img data-src="./images/js-equality-meme.png"
+style="max-inline-size: 30%" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="equality-check-in-js-1">Equality check in JS</h3>
+<ul>
+<li>Prefer <strong>===</strong> and <strong>!==</strong>
+<ul>
+<li>Instead of <code>==</code> and <code>!=</code></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Conditionals#a_note_on_comparison_operators">why</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="if-else"><code>if</code>-<code>else</code></h3>
+<pre ><code class="js">if (choice === "sunny") {
+    s = "Wear shorts!";
+} else if (choice === "rainy") {
+    s = "Take umbrella";
+} else {
+    s = "";
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="nesting-if-else">Nesting <code>if</code>-<code>else</code></h3>
+<pre ><code class="js">if (choice === "sunny") {
+    if (temp &gt;= 70) {
+        s = "Wear shorts!";
+    } else if (temp &lt;= 40) {
+        s = "Pants!";
+    } else {
+        s = "Your choice!"
+    }
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="logical-operators">Logical operators</h3>
+<ul>
+<li><code>&amp;&amp;</code> (and)
+<ul>
+<li>all conditions must be true</li>
+</ul></li>
+<li><code>||</code> (or)
+<ul>
+<li>at least one condition is true</li>
+</ul></li>
+<li><code>!</code> (not)
+<ul>
+<li>negate the value</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Conditionals#logical_operators_and_or_and_not">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="logical-operators-1">Logical operators</h3>
+<pre ><code class="js">if ((choice === "sunny") && (temp &gt;= 70)) {
+    s = "Wear shorts!";
+}
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Conditionals#logical_operators_and_or_and_not">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="loops">Loops</h3>
+<h4 id="for"><code>for</code></h4>
+<pre ><code class="js">for (initializer; condition; final-expression) {
+  // code to run
+}</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops#the_standard_for_loop">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="loops-1">Loops</h3>
+<h4 id="for-1"><code>for</code></h4>
+<pre ><code class="js">for (let i = 1; i &lt; 10; i++) {
+  // code to run
+}</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops#the_standard_for_loop">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="while"><code>while</code></h4>
+<pre ><code class="js">initializer
+while (condition) {
+  // code to run
+
+  final-expression
+}</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops#while_and_do...while">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="while-1"><code>while</code></h4>
+<pre ><code class="js">let N = 10;
+let i = 0;
+
+while (i &lt; N) {
+  // code to run
+
+  i++;
+}</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops#while_and_do...while">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="do-while"><code>do-while</code></h4>
+<pre ><code class="js">
+initializer
+do {
+  // code to run
+
+  final-expression
+} while (condition)</code></pre>
+</section>
+<section class="slide level0">
+
+<h4 id="do-while-1"><code>do-while</code></h4>
+<pre ><code class="js">let N = 10;
+let i = 0;
+
+do {
+  // code to run
+
+  i++;
+
+} while (i &lt; N);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops#while_and_do...while">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="strings">Strings</h3>
+<h4 id="handling-text-in-js">Handling text in JS</h4>
+<pre ><code class="js">const single = 'Single quotes';
+const double = "Double quotes";
+const backtick = `Backtick`;
+
+console.log(single);
+console.log(double);
+console.log(backtick);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="concat-strings">Concat strings</h2>
+<pre ><code class="js">const greeting2 = "Hello";
+const name2 = "HCDD 340!";
+console.log(greeting2 + ", " + name2); // "Hello, HCDD340!"</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="template-literal">Template literal</h3>
+<ul>
+<li>Strings declared using backticks
+<ul>
+<li>Can embed JavaScript</li>
+<li>Can span multiple lines</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="template-literal-1">Template literal</h3>
+<h4 id="embed-js">Embed JS</h4>
+<ul>
+<li>Variables or expression within <code>${ }</code>
+<ul>
+<li>Result will replace <code>${ }</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="template-literal-2">Template literal</h3>
+<pre ><code class="js">const name = "HCDD 340";
+const greeting = `Hello, ${name}`;
+console.log(greeting);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="template-literal-3">Template literal</h3>
+<h4 id="multiline-strings">Multiline strings</h4>
+<pre ><code class="js">const newline = `One day you finally knew
+what you had to do, and began,`;
+console.log(newline);
+
+/*
+One day you finally knew
+what you had to do, and began,
+*/
+</code></pre>
+<p>Line breaks are maintained</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="strings-1">Strings</h3>
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Useful_string_methods">Useful
+String methods</a></p>
+</section>
+<section class="slide level0">
+
+<h3 id="arrays">Arrays</h3>
+<h4 id="list-of-values">List of values</h4>
+<pre ><code class="js">const sequence = [1, 1, 2, 3, 5, 8, 13];</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="length">Length</h3>
+<pre ><code class="js">const sequence = [1, 1, 2, 3, 5, 8, 13];
+console.log(sequence.length);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="accessing-items">Accessing items</h3>
+<pre ><code class="js">const shopping = ["bread", "milk", "cheese",
+    "hummus", "noodles"];
+console.log(shopping[0]);</code></pre>
+<p>Index starts at Zero</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="change-items">Change items</h3>
+<pre ><code class="js">const shopping = ["bread", "milk", "cheese",
+    "hummus", "noodles"];
+shopping[0] = "tahini";
+console.log(shopping[0]);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="adding-items">Adding items</h3>
+<ul>
+<li><code>push</code> –&gt; adds at the end</li>
+<li><code>unshift</code> –&gt; adds at the front</li>
+</ul>
+<pre ><code class="js">const cities = ["Manchester", "Liverpool"];
+cities.push("Cardiff");
+console.log(cities); 
+// [ "Manchester", "Liverpool", "Cardiff" ]
+
+cities.push("Bradford", "Brighton");
+console.log(cities);
+// [ "Manchester", "Liverpool", "Cardiff", "Bradford", "Brighton" ]</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="adding-items-1">Adding items</h3>
+<h4 id="unshift"><code>unshift</code></h4>
+<pre ><code class="js">const cities = ["Manchester", "Liverpool"];
+cities.unshift("Edinburgh");
+console.log(cities);
+// [ "Edinburgh", "Manchester", "Liverpool" ]</code></pre>
+<p><code>unshift</code> –&gt; adds at the front</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="removing-items">Removing items</h3>
+<ul>
+<li><code>pop</code> –&gt; from the end</li>
+<li><code>shift</code> –&gt; from the front</li>
+</ul>
+<pre ><code class="js">const cities = ["Manchester", "Liverpool"];
+const removedCity = cities.pop();
+console.log(removedCity); // "Liverpool"</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="removing-items-1">Removing items</h3>
+<h4 id="shift"><code>shift</code></h4>
+<pre ><code class="js">const cities = ["Manchester", "Liverpool"];
+cities.shift();
+console.log(cities); // [ "Liverpool" ]</code></pre>
+<p><code>shift</code> –&gt; from the front</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="iterating-array-values">Iterating array values</h3>
+<h4 id="for-loop"><code>for</code> loop</h4>
+<pre ><code >const arr = [1, 2, 3, 4];
+
+for (let i = 0; i &lt; arr.length; i++) {
+    console.log(arr[i]);
+}
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="iterating-array-values-1">Iterating array values</h3>
+<h4 id="for-of-loop"><code>for</code>-<code>of</code> loop</h4>
+<pre ><code class="js">for (let element of arr) {
+    console.log(element);
+}
+
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrays-1">Arrays</h3>
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays">Useful
+Array methods</a></p>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li><span class="t-salmon"><strong>Function</strong></span></li>
+<li>Object</li>
+<li>Document Object Model (DOM)</li>
+<li>Events</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="great-resource">Great resource</h2>
+<p><a href="https://eloquentjavascript.net/"><img
+data-src="./images/eloquent-js-cover.jpg"
+style="max-inline-size: 240px;" /></a></p>
+<p><a href="https://eloquentjavascript.net/">Eloquent JavaScript</a></p>
+</section>
+<section class="slide level0">
+
+<h3 id="functions">Functions</h3>
+<pre ><code class="js">function myFunction() {
+  alert("hello");
+}
+
+myFunction();
+// calls the function once</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="parameters">Parameters</h3>
+<pre ><code class="js">function addition(a, b) {
+    return a + b;
+}
+
+console.log(addition(1, 2));</code></pre>
+</section>
+<section class="slide level0">
+
+<h4 id="default-parameters">Default parameters</h4>
+<pre ><code class="js">function addition(a, b=10) {
+    return a + b;
+}
+
+console.log(addition(9));
+console.log(addition(9, 3));</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrow-function">Arrow function</h3>
+<pre ><code class="js">const myAddition = (a, b = 10) =&gt; {
+    return a + b;
+}
+
+console.log(myAddition(9));
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrow-function-1">Arrow function</h3>
+<pre ><code class="js">const oneLiner = (a, b) =&gt; a + b;
+console.log(oneLiner(12, 5));</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrow-function-2">Arrow function</h3>
+<pre ><code class="js">const noParam = () =&gt; {
+    console.log("hello");
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h2 id="todo">Todo</h2>
+<ul>
+<li>In Dev Tool –&gt; Console</li>
+<li>Copy/paste <code>noParam</code> function definition</li>
+<li>Call the function</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions">Higher-order functions</h3>
+<h4 id="functions-are-regular-values">Functions are regular
+‘values’</h4>
+<ul>
+<li>Assign functions to variables</li>
+<li>Pass a function as an argument to another function</li>
+<li>Return a function from another function</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions-1">Higher-order functions</h3>
+<ul>
+<li>Functions that
+<ul>
+<li>take other functions as arguments</li>
+<li>or, return other functions</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions-2">Higher-order functions</h3>
+<pre ><code class="js">function repeat(n, action) {
+  for (let i = 0; i &lt; n; i++) {
+    action(i);
+  }
+}
+
+// Note console.log is a function
+repeat(3, console.log);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/05_higher_order.html">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions-3">Higher-order functions</h3>
+<pre ><code class="js">function greaterThan(n) {
+  return m =&gt; m &gt; n;
+}
+let greaterThan10 = greaterThan(10);
+console.log(greaterThan10(11));</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/05_higher_order.html">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-1">Todo</h3>
+<ul>
+<li>Use the <code>repeat</code> function</li>
+<li>Add 5 elements in the <code>labels</code> array</li>
+<li>You can use <code>push</code> or <code>unshift</code></li>
+</ul>
+<pre ><code class="js">let labels = [];
+
+// Add your code here
+// repeat( ... )
+
+console.log(labels);
+// [ 0, 1, 2, 3, 4 ]</code></pre>
+</section>
+<section class="slide level0">
+
+<pre ><code class="js">let labels = [];
+
+// Add your code here
+repeat(5, i =&gt; {
+    labels.push(i);
+});
+
+console.log(labels);
+// [ 0, 1, 2, 3, 4 ]</code></pre>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Function</li>
+<li><span class="t-salmon"><strong>Objects</strong></span></li>
+<li>Document Object Model (DOM)</li>
+<li>Events</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="objects">Objects</h3>
+<h4 id="collection-of-data-and-functions">Collection of data and
+functions</h4>
+<pre ><code class="js">const objectName = {
+  member1Name: member1Value,
+  member2Name: member2Value,
+  member3Name: member3Value,
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="creating-objects">Creating Objects</h3>
+<pre ><code class="js">const person = {
+  name: ["Bob", "Smith"],
+  age: 32,
+  bio() {
+    console.log(`${this.name[0]} is ${this.age} years old.`);
+  },
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name[0]}.`);
+  },
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="accessing-object-properties-and-methods">Accessing object
+properties and methods</h4>
+<pre ><code class="js">person.age;
+person.bio();
+</code></pre>
+<p>Using <code>dot</code></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="accessing-object-properties-and-methods-1">Accessing object
+properties and methods</h4>
+<pre ><code class="js">
+person["age"];
+person["name"]["first"];</code></pre>
+<p>Using bracket</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-2">Todo</h3>
+<h4 id="run-this-code-in-console">Run this code in Console</h4>
+<pre ><code class="js">const person = {
+  name: ["Bob", "Smith"],
+  age: 32,
+  bio() {
+    console.log(`${this.name[0]} is ${this.age} years old.`);
+  },
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name[0]}.`);
+  },
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-3">Todo</h3>
+<h4 id="run-this-code-in-console-1">Run this code in Console</h4>
+<pre ><code class="js">person.name;
+person.name[0];
+person.age;
+person.bio();
+// "Bob is 32 years old."
+person.introduceSelf();
+// "Hi! I'm Bob."</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-this">What’s <code>this</code>?</h3>
+<h4 id="this-points-to-current-object"><code>this</code> points to
+current object</h4>
+<pre ><code class="js" data-line-numbers="4">const person = {
+  // …
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name[0]}.`);
+  },
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="this-points-to-current-object-1"><code>this</code> points to
+current object</h4>
+<pre ><code class="js">const person1 = {
+  name: "Chris",
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name}.`);
+  },
+};
+
+const person2 = {
+  name: "Deepti",
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name}.`);
+  },
+};</code></pre>
+<p>What will happen for <code>person1.introduceSelf()</code>?</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="setting-values">Setting values</h3>
+<h4 id="dot-or-bracket-notation">dot or bracket notation</h4>
+<pre ><code class="js">person.age = 45;
+person["name"]["last"] = "Cratchit";</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-4">Todo</h3>
+<ul>
+<li>Download <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-12.0">Activity
+12</a></li>
+<li>Change <code>main.js</code>:</li>
+<li><code>college</code> should be an array of objects with property
+<code>name</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-3">Today</h2>
+<ul>
+<li>Function</li>
+<li>Objects</li>
+<li><span class="t-salmon"><strong>Document Object Model
+(DOM)</strong></span></li>
+<li>Events</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="dom">DOM</h3>
+<h4 id="document-object-model">Document Object Model</h4>
+<ul>
+<li>Documents are represented by DOM</li>
+<li>“Tree” structure</li>
+<li>We can select and update items in DOM</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="dom-1">DOM</h3>
+<h4 id="index.html-from-the-last-class-activity"><code>index.html</code>
+from the last class activity</h4>
+<p><img data-src="./images/dom-example.png"
+style="max-inline-size: 400px;" /></p>
+<p><a
+href="https://software.hixie.ch/utilities/js/live-dom-viewer/?saved=14086">Live
+DOM Viewer</a></p>
+</section>
+<section class="slide level0">
+
+<h3 id="dom-2">DOM</h3>
+<h4 id="each-entry-in-the-tree-is-a-node">Each entry in the tree is a
+<code>node</code></h4>
+<ul>
+<li>Root node
+<ul>
+<li>Top node (<code>HTML</code>)</li>
+</ul></li>
+<li>Parent node</li>
+<li>Child node</li>
+<li>Descendant node</li>
+<li>Sibling node</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes">Selecting nodes</h3>
+<h4 id="using-css-selectors">Using CSS selectors</h4>
+<ul>
+<li><code>document.querySelector</code> returns
+<ul>
+<li>the first element that matches the selector</li>
+<li>or, <code>null</code> if no match</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes-1">Selecting nodes</h3>
+<h4 id="using-css-selectors-1">Using CSS selectors</h4>
+<pre ><code class="js">// first element matching a class
+document.querySelector(".myclass");
+
+// by id
+document.querySelector("#log");
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes-2">Selecting nodes</h3>
+<h4 id="using-css-selectors-2">Using CSS selectors</h4>
+<pre ><code class="js">/* first element with
+    - with the name "login"
+    - located inside a `&lt;div&gt;`
+    - with the class `user-panel main`
+*/
+
+document.querySelector(
+    "div.user-panel.main input[name='login']"
+);
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes-3">Selecting nodes</h3>
+<h4
+id="queryselectorall-returns-all-matching-nodes-as-an-array"><code>querySelectorAll()</code>
+returns all matching nodes as an array</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="updating-nodes">Updating nodes</h3>
+<h4 id="text-or-link">Text or link</h4>
+<pre ><code class="js">const link = document.querySelector("a");
+link.textContent = "HCDD 340";
+
+link.href = "https://hcdd-340.github.io/"</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="updating-nodes-1">Updating nodes</h3>
+<ul>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#creating_and_placing_new_nodes">Create
+new nodes</a></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#moving_and_removing_elements">Remove
+nodes</a></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="updating-nodes-2">Updating nodes</h3>
+<h4 id="manipulating-styles">Manipulating styles</h4>
+<pre ><code class="js">para.style.color = "white";
+para.style.backgroundColor = "black";
+para.style.padding = "10px";
+para.style.width = "250px";
+para.style.textAlign = "center";</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-5">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-12.0">Activity
+12</a> in Firefox/Chrome</li>
+<li>Change the color of <code>Learn</code> to <code>red</code>
+<ul>
+<li>Using JS in Dev Tools –&gt; Console</li>
+</ul></li>
+</ul>
+<p><img data-src="./images/todo-js-dom-style.png"
+style="max-inline-size: 400px" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-6">Todo</h3>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>First select the node
+<ul>
+<li>using <code>document.querySelector</code></li>
+</ul></li>
+<li>Change color using <code>style.color</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-4">Today</h2>
+<ul>
+<li>Function</li>
+<li>Objects</li>
+<li>Document Object Model (DOM)</li>
+<li><span class="t-salmon"><strong>Events</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-events">Handling events</h3>
+<ul>
+<li>Events
+<ul>
+<li>Selection, Clicking, Typing</li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Events#event_index">Many
+events are possible!</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-events-1">Handling events</h3>
+<ul>
+<li>To handle an event
+<ul>
+<li>Attach an <strong>event listener</strong> to an element
+<ul>
+<li>Using <code>addEventListener()</code></li>
+</ul></li>
+<li>When an event is <strong>fired</strong>
+<ul>
+<li>The event listener will be called</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-events-2">Handling events</h3>
+<pre ><code class="js">const button = document.querySelector("button");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("clicked!")
+  console.log(event);
+
+});</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="the-event-object">The event object</h3>
+<h4 id="contains-useful-information">Contains useful information</h4>
+<pre ><code class="js" data-line-numbers="3">const button = document.querySelector("button");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("clicked!")
+  console.log(event);
+
+});</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-7">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-12.0">Activity
+12</a> in Firefox/Chrome</li>
+<li>Run the following code in Dev Tools –&gt; Console</li>
+<li>Click on the button</li>
+</ul>
+<pre ><code class="js">const button = document.querySelector("button");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("clicked!")
+  console.log(event);
+
+});</code></pre>
+<p>What do you see in Console?</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="the-event-object-1">The event object</h3>
+<pre ><code class="js">button.addEventListener("click", (event) =&gt; {
+    event.target.style.color = "purple";
+    console.log(event);
+});
+</code></pre>
+<p><code>target</code> points to source of the event</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-8">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-11.0.zip">Activity
+11</a> in VS Code</li>
+<li>Update <code>main.js</code> (see hints on line 23–27)</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-9">Todo</h3>
+<ul>
+<li>Add a function called <code>chooseCollege</code>
+<ul>
+<li>using arrow syntax</li>
+</ul></li>
+<li>When called the function
+<ul>
+<li>it should select a random item from <code>colleges</code></li>
+<li>update the <code>&lt;h4&gt;</code> with the selected items</li>
+</ul></li>
+</ul>
+<p><img data-src="./images/college-generator.png"
+style="max-width: 340px" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-10">Todo</h3>
+<ul>
+<li>Download <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-13.0">Activity
+13</a></li>
+<li>Add two event handlers for “HCDD 340: Goals”</li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event">mouseenter</a>
+event:
+<ul>
+<li>print: “Entered”</li>
+<li>change color to red</li>
+</ul></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event">mouseleave</a>
+<ul>
+<li>print: “Left”</li>
+<li>change color to black</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-11">Todo</h3>
+<div style="max-width: 90%;">
+<video data-autoplay src="./images/activity-13.mp4">
+</video>
+</div>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
