@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-10-02">
+  <title>HCDD 340 — 2025-10-02</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="js-iii">JS III</h2>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Event handling</li>
+<li>Asynchronous JS</li>
+<li>Fetching resources</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>Function</li>
+<li>Objects</li>
+<li>Document Object Model (DOM)</li>
+<li>Events</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="functions">Functions</h3>
+<pre ><code class="js">function myFunction() {
+  alert("hello");
+}
+
+myFunction();
+// calls the function once</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="parameters">Parameters</h3>
+<pre ><code class="js">function addition(a, b) {
+    return a + b;
+}
+
+console.log(addition(1, 2));</code></pre>
+</section>
+<section class="slide level0">
+
+<h4 id="default-parameters">Default parameters</h4>
+<pre ><code class="js">function addition(a, b=10) {
+    return a + b;
+}
+
+console.log(addition(9));
+console.log(addition(9, 3));</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrow-function">Arrow function</h3>
+<pre ><code class="js">const myAddition = (a, b = 10) =&gt; {
+    return a + b;
+}
+
+console.log(myAddition(9));
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrow-function-1">Arrow function</h3>
+<pre ><code class="js">const oneLiner = (a, b) =&gt; a + b;
+console.log(oneLiner(12, 5));</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="arrow-function-2">Arrow function</h3>
+<pre ><code class="js">const noParam = () =&gt; {
+    console.log("hello");
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions">Higher-order functions</h3>
+<h4 id="functions-are-regular-values">Functions are regular
+‘values’</h4>
+<ul>
+<li>Assign functions to variables</li>
+<li>Pass a function as an argument to another function</li>
+<li>Return a function from another function</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions-1">Higher-order functions</h3>
+<ul>
+<li>Functions that
+<ul>
+<li>take other functions as arguments</li>
+<li>or, return other functions</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions-2">Higher-order functions</h3>
+<pre ><code class="js">function repeat(n, action) {
+  for (let i = 0; i &lt; n; i++) {
+    action(i);
+  }
+}
+
+// Note console.log is a function
+repeat(3, console.log);</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/05_higher_order.html">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="higher-order-functions-3">Higher-order functions</h3>
+<pre ><code class="js">function greaterThan(n) {
+  return m =&gt; m &gt; n;
+}
+let greaterThan10 = greaterThan(10);
+console.log(greaterThan10(11));</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/05_higher_order.html">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="anonymous-function">Anonymous function</h3>
+<pre ><code class="js">function repeat(n, action) {
+  for (let i = 0; i &lt; n; i++) {
+    action(i);
+  }
+}
+
+
+let labels = [];
+repeat(5, i =&gt; {
+    labels.push(i);
+});
+
+console.log(labels);
+// [ 0, 1, 2, 3, 4 ]</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="dom">DOM</h3>
+<h4 id="document-object-model">Document Object Model</h4>
+<ul>
+<li>Documents are represented by DOM</li>
+<li>“Tree” structure</li>
+<li>We can select and update items in DOM</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="dom-1">DOM</h3>
+<h4 id="index.html-from-the-last-class-activity"><code>index.html</code>
+from the last class activity</h4>
+<p><img data-src="./images/dom-example.png"
+style="max-inline-size: 400px;" /></p>
+<p><a
+href="https://software.hixie.ch/utilities/js/live-dom-viewer/?saved=14086">Live
+DOM Viewer</a></p>
+</section>
+<section class="slide level0">
+
+<h3 id="dom-2">DOM</h3>
+<h4 id="each-entry-in-the-tree-is-a-node">Each entry in the tree is a
+<code>node</code></h4>
+<ul>
+<li>Root node
+<ul>
+<li>Top node (<code>HTML</code>)</li>
+</ul></li>
+<li>Parent node</li>
+<li>Child node</li>
+<li>Descendant node</li>
+<li>Sibling node</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes">Selecting nodes</h3>
+<h4 id="using-css-selectors">Using CSS selectors</h4>
+<ul>
+<li><code>document.querySelector</code> returns
+<ul>
+<li>the first element that matches the selector</li>
+<li>or, <code>null</code> if no match</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes-1">Selecting nodes</h3>
+<h4 id="using-css-selectors-1">Using CSS selectors</h4>
+<pre ><code class="js">// first element matching a class
+document.querySelector(".myclass");
+
+// by id
+document.querySelector("#log");
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes-2">Selecting nodes</h3>
+<h4 id="using-css-selectors-2">Using CSS selectors</h4>
+<pre ><code class="js">/* first element with
+    - with the name "login"
+    - located inside a `&lt;div&gt;`
+    - with the class `user-panel main`
+*/
+
+document.querySelector(
+    "div.user-panel.main input[name='login']"
+);
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="selecting-nodes-3">Selecting nodes</h3>
+<h4
+id="queryselectorall-returns-all-matching-nodes-as-an-array"><code>querySelectorAll()</code>
+returns all matching nodes as an array</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="updating-nodes">Updating nodes</h3>
+<h4 id="text-or-link">Text or link</h4>
+<pre ><code class="js">const link = document.querySelector("a");
+link.textContent = "HCDD 340";
+
+link.href = "https://hcdd-340.github.io/"</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="updating-nodes-1">Updating nodes</h3>
+<ul>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#creating_and_placing_new_nodes">Create
+new nodes</a></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting#moving_and_removing_elements">Remove
+nodes</a></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="updating-nodes-2">Updating nodes</h3>
+<h4 id="manipulating-styles">Manipulating styles</h4>
+<pre ><code class="js">para.style.color = "white";
+para.style.backgroundColor = "black";
+para.style.padding = "10px";
+para.style.width = "250px";
+para.style.textAlign = "center";</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="whats-this">What’s <code>this</code>?</h3>
+<h4 id="this-points-to-current-object"><code>this</code> points to
+current object</h4>
+<pre ><code class="js" data-line-numbers="4">const person = {
+  // …
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name[0]}.`);
+  },
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="this-points-to-current-object-1"><code>this</code> points to
+current object</h4>
+<pre ><code class="js">const person1 = {
+  name: "Chris",
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name}.`);
+  },
+};
+
+const person2 = {
+  name: "Deepti",
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name}.`);
+  },
+};</code></pre>
+<p>What will happen for <code>person1.introduceSelf()</code>?</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="setting-values">Setting values</h3>
+<h4 id="dot-or-bracket-notation">dot or bracket notation</h4>
+<pre ><code class="js">person.age = 45;
+person["name"]["last"] = "Cratchit";</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h1 id="section"></h1>
+<h3 id="objects">Objects</h3>
+<h4 id="collection-of-data-and-functions">Collection of data and
+functions</h4>
+<pre ><code class="js">const objectName = {
+  member1Name: member1Value,
+  member2Name: member2Value,
+  member3Name: member3Value,
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="creating-objects">Creating Objects</h3>
+<pre ><code class="js">const person = {
+  name: ["Bob", "Smith"],
+  age: 32,
+  bio() {
+    console.log(`${this.name[0]} is ${this.age} years old.`);
+  },
+  introduceSelf() {
+    console.log(`Hi! I'm ${this.name[0]}.`);
+  },
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="accessing-object-properties-and-methods">Accessing object
+properties and methods</h4>
+<pre ><code class="js">person.age;
+person.bio();
+</code></pre>
+<p>Using <code>dot</code></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="accessing-object-properties-and-methods-1">Accessing object
+properties and methods</h4>
+<pre ><code class="js">
+person["age"];
+person["name"]["first"];</code></pre>
+<p>Using bracket</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-events">Handling events</h3>
+<ul>
+<li>Events
+<ul>
+<li>Selection, Clicking, Typing</li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Events#event_index">Many
+events are possible!</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li><span class="t-salmon"><strong>Event handling</strong></span></li>
+<li>Fetching resources</li>
+<li>Asynchronous JS</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-events-1">Handling events</h3>
+<ul>
+<li>To handle an event
+<ul>
+<li>Attach an <strong>event listener</strong> to an element
+<ul>
+<li>Using <code>addEventListener()</code></li>
+</ul></li>
+<li>When an event is <strong>fired</strong>
+<ul>
+<li>The event listener will be called</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="handling-events-2">Handling events</h3>
+<pre ><code class="js">const button = document.querySelector("button");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("clicked!")
+  console.log(event);
+
+});</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-11.0.zip">Activity
+11</a> in VS Code</li>
+<li>Update <code>main.js</code> (see hints on line 23–27)</li>
+</ul>
+<p><img data-src="./images/college-generator.png"
+style="max-width: 340px" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="hints">Hints</h3>
+<ul>
+<li>Add a function called <code>chooseCollege</code>
+<ul>
+<li>using arrow syntax</li>
+</ul></li>
+<li>When called the function
+<ul>
+<li>it should select a random item from <code>colleges</code></li>
+<li>update the <code>&lt;h4&gt;</code> with the selected items</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="the-event-object">The event object</h3>
+<h4 id="contains-useful-information">Contains useful information</h4>
+<pre ><code class="js" data-line-numbers="3">const button = document.querySelector("button");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("clicked!")
+  console.log(event);
+
+});</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-1">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-12.0">Activity
+12</a> in Firefox/Chrome</li>
+<li>Run the following code in Dev Tools –&gt; Console</li>
+<li>Click on the button</li>
+</ul>
+<pre ><code class="js">const button = document.querySelector("button");
+
+button.addEventListener("click", (event) =&gt; {
+  console.log("clicked!")
+  console.log(event);
+
+});</code></pre>
+<p>What do you see in Console?</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="the-event-object-1">The event object</h3>
+<pre ><code class="js">button.addEventListener("click", (event) =&gt; {
+    event.target.style.color = "purple";
+    console.log(event);
+});
+</code></pre>
+<p><code>target</code> points to source of the event</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-2">Todo</h3>
+<ul>
+<li>Download <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-13.0">Activity
+13</a></li>
+<li>Add two event handlers for “HCDD 340: Goals”</li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event">mouseenter</a>
+event:
+<ul>
+<li>print: “Entered”</li>
+<li>change color to red</li>
+</ul></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event">mouseleave</a>
+<ul>
+<li>print: “Left”</li>
+<li>change color to black</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-3">Todo</h3>
+<div style="max-width: 90%;">
+<video data-autoplay src="./images/activity-13.mp4">
+</video>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Event handling</li>
+<li><span class="t-salmon"><strong>Asynchronous JS</strong></span></li>
+<li>Fetching resources</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="asynchronous-js">Asynchronous JS</h3>
+<h4 id="resources">Resources</h4>
+<ul>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Introducing">Introducing
+asynchronous JavaScript</a></li>
+<li><a href="https://eloquentjavascript.net/11_async.html">Asynchronous
+Programming</a></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="js-is-single-threaded">JS is single-threaded</h4>
+<ul>
+<li><p>Programs can only do <strong>one-thing at a
+time</strong></p></li>
+<li><p>Long-running tasks will block interactions</p>
+<ul>
+<li><a
+href="https://developer.mozilla.org/en-US/play?uuid=a8f4d1af-5564-401e-84cc-98852b0d2897&amp;state=jVTRbtMwFP2ViwEpYSPdJsFDm1RCaCAkhqbBAxJBzE1uGjPH7mxnWzX137m2k66bNqAPjXN9zj3Hx3ZuWes6yaYsl3yBEhptipJd9trxks2%2F9N0CDegGVkZ0aKf5JMDmpcqFWvUO3HqFRHB440oGor4jg%2BId7rxecdn798OD8KPKhNpQo0XvnFaRu0SFhjsk7Y%2FDcJDOJxE3f8AwKDWvCX8WBjswAnpb3CCP0N6ieR1sk7jR15Zqb2hYaemHb4%2BoS6m%2BmbVflVBLEApaNAii67AW5EWugTeOElkZtNZDSvbAZ8lIdzIKRxu1uIoOdO%2BC%2BjyfUI0m2T6rrKX4t05vSwVQC7uSfD2FhdTVxcyXOm6WQk3h0GAHB1TaBPZvT660sg5O3n3%2FdXr26eQYChhCnnn5pleVEz4ve%2BotJiqNKrTXkEh0IIhxNKNHXsAJd21mL40jGJX29gYwgGggUfDSo4sCDrZ1AIOuNwoaLi3OYnHjH%2BFvmFQwh8Nou1TRsOGq1h1pJx2%2FSaGYR%2FFGam2SMIyIJIVX4CH3lzOelbAom4RzNpiK%2FeOGUP8fP4Or61ZIhCSWM4lq6VrIYZc4UisSFrXf1WKwmWzjTWd3eYyRbvHpTiyD0Kq37Q7gqYAi%2Bn5CwRpZqHXVd6hcdtmjWX9FiZWjjEr2fLhdvmukxCP2V854CmOeT%2BPuLmOa8bo%2BviLUZ2GdL9N8JUV1UbJ9SMLePRb8Y1uUhQ9BjCE6yfzhf68VNfbGzz8IJWyL9Uj39%2BzF7Q55Myg8O%2Fdx%2FWsZ4xfivxexbUWXj%2FujlsUWSTrK0cVzLXZId0%2BKZevY5g8%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FExtensions%2FAsync_JS%2FIntroducing%2F">See
+example</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="asynchronous-programming">Asynchronous programming</h3>
+<ul>
+<li>Don’t wait for a long-running task to complete
+<ul>
+<li>synchronous</li>
+</ul></li>
+<li>Instead, provide a callback function
+<ul>
+<li><p>When the task is completed, it will be called with the
+result</p></li>
+<li><p>Conceptually, similar to event handling</p>
+<ul>
+<li>‘callback’ function to click event</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="promise"><code>Promise</code></h3>
+<h4 id="for-asynchronous-js-programming">For asynchronous JS
+programming</h4>
+<ul>
+<li><p>Proxy for values not necessarily known yet</p></li>
+<li><p>3 possible states in a <code>Promise</code></p>
+<ul>
+<li><strong>pending</strong>: initial state, neither fulfilled nor
+rejected.</li>
+<li><strong>fulfilled</strong>: completed successfully</li>
+<li><strong>rejected</strong>: failed</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="promise-1"><code>Promise</code></h3>
+<ul>
+<li>It has a <span class="t-salmon"><code>then</code></span> method,
+which allows attaching functions</li>
+<li>These functions will be called after the task has completed
+<ul>
+<li>when it reaches “fulfilled” or “rejected” states</li>
+</ul></li>
+<li>You can provide functions for different states
+<ul>
+<li><code>onSuccess</code></li>
+<li><code>onError</code></li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises">Promise</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="fetching-resources">Fetching resources</h3>
+<h4 id="needs-asynchronous-programming">Needs asynchronous
+programming</h4>
+<ul>
+<li>Retrieving data from server can take time
+<ul>
+<li>We don’t want to block everything in the mean time</li>
+</ul></li>
+<li><code>fetch</code> API streamlines these steps
+<ul>
+<li>Uses <code>Promise</code></li>
+<li><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Documentation</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fetch"><code>fetch</code></h3>
+<ul>
+<li>Takes an argument
+<ul>
+<li>Path to resource</li>
+</ul></li>
+<li>Returns a <code>Promise</code></li>
+<li>Use <span class="t-salmon"><code>then</code></span> function to:
+<ul>
+<li>Attach a function to process the data</li>
+<li>Optionally, attach a function to handle errors</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fetch-1"><code>fetch</code></h3>
+<pre ><code class="js">function onSuccess(response) {
+  console.log("Success!" + response.status);
+}
+
+function onError(error) {
+  console.log('Oh no! Error: ' + error);
+}
+
+fetch('hcdd-340.txt')
+    .then(onSuccess, onError)
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-4">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-14.0.zip">Activity
+14</a> in Firefox/Chrome</li>
+<li>Open Dev Tools –&gt; Console</li>
+<li>Copy and paste code from the last slide</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-5">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-14.0.zip">Activity
+14</a> in <span class="t-salmon"><strong>VS Code</strong></span></li>
+<li>Open Live Preview and copy the URL to Firefox/Chrome</li>
+<li>Open Dev Tools –&gt; Console</li>
+<li>Copy and paste code from the last slide</li>
+<li>Error or Success?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fetch-2"><code>fetch</code></h3>
+<ul>
+<li>Considers a success if there is a response from the server
+<ul>
+<li>Even if there is an <code>HTTP</code> error code (e.g., 402)</li>
+</ul></li>
+<li>In our first case:
+<ul>
+<li><code>file:///</code> protocol does not allow network access</li>
+<li><code>onError</code> is called</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="fetch-3"><code>fetch</code></h3>
+<ul>
+<li>Considers a success if there is a response from the server
+<ul>
+<li>Even if there is an <code>HTTP</code> error code (e.g., 402)</li>
+</ul></li>
+<li><strong>In the second case</strong>:
+<ul>
+<li>Got a response from a server</li>
+<li><code>onSuccess</code> is called (even when it is HTTP error
+code)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="promises-for-asynchronous-programming">Promises for asynchronous
+programming</h3>
+<h4 id="shorthand-using-an-anonymous-function">Shorthand using an
+anonymous function</h4>
+<pre ><code class="js">const url = "colleges.json"
+const fetchPromise = fetch(url);
+
+console.log(fetchPromise);
+
+fetchPromise.then((response) =&gt; {
+    console.log(`Received response: ${response.status}`);
+});</code></pre>
+</section>
+<section class="slide level0">
+
+<h4 id="asynchronicity-is-contagious">“Asynchronicity is
+contagious”</h4>
+<ul>
+<li>A function must be asynchronous, if
+<ul>
+<li>it calls an asynchronous function</li>
+<li>uses return values from an asynchronous function</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-chain-promises-to-process-data">You can chain Promises
+to process data</h4>
+<pre ><code class="js">fetchPromise
+   // if successful, then get `json` data
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; {
+    console.log(data[0].name); // `then` for second promise
+  });</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="error-handling-in-promise">Error handling in Promise</h3>
+<h4 id="handling-http-error-codes">Handling HTTP error codes</h4>
+<pre ><code class="js" data-line-numbers="3,4,11-13">fetchPromise
+  .then((response) =&gt; {
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) =&gt; {
+    console.log(data[0].name);
+  })
+  .catch((error) =&gt; {
+    console.error(`Unable to fetch: ${error}`);
+  });
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-6">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-14.0.zip">Activity
+14</a> in VS Code</li>
+<li>Open Live Preview and copy the URL to Firefox/Chrome</li>
+<li>Open Dev Tools –&gt; Network</li>
+<li>Click on ‘Get a college!’
+<ul>
+<li>What happens?</li>
+</ul></li>
+<li>Check Dev Tools –&gt; Console</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-7">Todo</h3>
+<ul>
+<li><code>main.js</code> handles error (<code>.catch ...</code>)</li>
+<li>Make a change so that it prints an error
+<ul>
+<li>i.e., cause an error</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-8">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-15.0.zip">Activity
+15</a></li>
+<li>Update <code>main.js</code></li>
+<li>We are trying to access Camera
+<ul>
+<li>You will have to attach success and error functions in
+<code>main.js</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-1">Hints</h3>
+<ul>
+<li><span class="t-salmon"><code>then</code></span> in a
+<code>Promise</code> takes two functions</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="async-and-await"><code>async</code> and <code>await</code></h3>
+<p>Instead of using <code>then()</code> method</p>
+<pre ><code class="js">async function getData() {
+    const url = "colleges.json"
+    const response  = await fetch(url);
+    console.log(`Received response: ${response.status}`);
+
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="async-and-await-1"><code>async</code> and
+<code>await</code></h3>
+<pre ><code class="js" data-line-numbers="1">async function getData() {
+    const url = "colleges.json"
+    const response  = await fetch(url);
+    console.log(`Received response: ${response.status}`);
+
+}</code></pre>
+<p><code>async</code> marks that it is an asynchronous function</p>
+</section>
+<section class="slide level0">
+
+<h3 id="async-and-await-2"><code>async</code> and
+<code>await</code></h3>
+<pre ><code class="js" data-line-numbers="3">async function getData() {
+    const url = "colleges.json"
+    const response  = await fetch(url);
+    console.log(`Received response: ${response.status}`);
+
+}</code></pre>
+<p><code>await</code> will cause the function to ‘freeze’ till the
+<code>Promise</code> is resolved</p>
+</section>
+<section class="slide level0">
+
+<h3 id="async-and-await-3"><code>async</code> and
+<code>await</code></h3>
+<pre ><code class="js">const url = "colleges.json"
+const fetchPromise = fetch(url);
+fetchPromise
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; {
+    console.log(data[0].name);
+  });</code></pre>
+<p><span class="t-salmon"><strong>==</strong></span></p>
+<pre ><code class="js">const getData = async () =&gt; {
+    const url = "colleges.json"
+    const response = await fetch(url);
+    const data = await response.json()
+    console.log(data[0].name)
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="async-and-await-4"><code>async</code> and
+<code>await</code></h3>
+<pre ><code class="js">const getJson = async (url) =&gt; {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Error! ${response}`)
+    }
+    const data = await response.json()
+    console.log(data[0].name)
+    return data;
+}</code></pre>
+<pre ><code class="js">// Calling it from another `async` function
+try {
+    let colleges = await getJson("colleges.json");
+} catch(error) {
+    console.error(error);
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-9">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-15.0.zip">Activity
+15</a></li>
+<li>Update <code>main.js</code></li>
+<li>We are trying to access Camera
+<ul>
+<li><del>You will have to attach success and error functions in
+<code>main.js</code></del></li>
+<li>Use <code>async</code> and <code>await</code></li>
+</ul></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
