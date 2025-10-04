@@ -20,6 +20,7 @@ include-after: |
 + [Activity 13](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-13.0)
 + [Activity 14](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-14.0)
 + [Activity 15](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-15.0)
++ [Assignment 03](assignments/assignment-03/hcdd-340-assignment-03-2025-10-03.html)
  
 ### JS II (2025-09-30)
 + [Slides](slides/hcdd340-slides-2025-09-30/hcdd340-slides-2025-09-30.html)
