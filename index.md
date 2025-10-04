@@ -20,6 +20,7 @@ include-after: |
 + [Activity 11](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-11.0)
 + [Activity 12](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-12.0)
 + [Activity 13](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-13.0)
++ [Assignment 03](assignments/assignment-03/hcdd-340-assignment-03-2025-10-03.html)
  
 </section>
 
