@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
-  <meta name="dcterms.date" content="2025-10-07">
-  <title>HCDD 340 — 2025-10-07</title>
+  <meta name="dcterms.date" content="2025-10-09">
+  <title>HCDD 340 — 2025-10-09</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -45,318 +45,23 @@
 
 <section class="slide level0">
 
-<h2 id="js-iv">JS IV</h2>
+<h2 id="js-v">JS V</h2>
 </section>
 <section class="slide level0">
 
 <h2 id="today">Today</h2>
 <ul>
-<li>Asynchronous JS (<code>async</code> and <code>await</code>)</li>
 <li>Adding and removing DOM nodes</li>
-<li>Assignment 3</li>
+<li>Keyboard events</li>
+<li>Data storage</li>
 </ul>
 </section>
 <section class="slide level0">
 
-<h3 id="recap-from-last-class">Recap from last class</h3>
-<ul>
-<li>Event handling</li>
-<li>Asynchronous JS</li>
-<li>Fetching resources</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="handling-events">Handling events</h3>
-<ul>
-<li>To handle an event
-<ul>
-<li>Attach an <strong>event listener</strong> to an element
-<ul>
-<li>Using <code>addEventListener()</code></li>
-</ul></li>
-<li>When an event is <strong>fired</strong>
-<ul>
-<li>The event listener will be called</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="handling-events-1">Handling events</h3>
-<pre ><code class="js">const button = document.querySelector("button");
-
-button.addEventListener("click", (event) =&gt; {
-  console.log("clicked!")
-  console.log(event);
-
-});</code></pre>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="the-event-object">The event object</h3>
-<h4 id="contains-useful-information">Contains useful information</h4>
-<pre ><code class="js" data-line-numbers="3">const button = document.querySelector("button");
-
-button.addEventListener("click", (event) =&gt; {
-  console.log("clicked!")
-  console.log(event);
-
-});</code></pre>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="the-event-object-1">The event object</h3>
-<pre ><code class="js">button.addEventListener("click", (event) =&gt; {
-    event.target.style.color = "purple";
-    console.log(event);
-});
-</code></pre>
-<p><code>target</code> points to source of the event</p>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="asynchronous-js">Asynchronous JS</h3>
-<h4 id="resources">Resources</h4>
-<ul>
-<li><a
-href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Introducing">Introducing
-asynchronous JavaScript</a></li>
-<li><a href="https://eloquentjavascript.net/11_async.html">Asynchronous
-Programming</a></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h4 id="js-is-single-threaded">JS is single-threaded</h4>
-<ul>
-<li><p>Programs can only do <strong>one-thing at a
-time</strong></p></li>
-<li><p>Long-running tasks will block interactions</p>
-<ul>
-<li><a
-href="https://developer.mozilla.org/en-US/play?uuid=a8f4d1af-5564-401e-84cc-98852b0d2897&amp;state=jVTRbtMwFP2ViwEpYSPdJsFDm1RCaCAkhqbBAxJBzE1uGjPH7mxnWzX137m2k66bNqAPjXN9zj3Hx3ZuWes6yaYsl3yBEhptipJd9trxks2%2F9N0CDegGVkZ0aKf5JMDmpcqFWvUO3HqFRHB440oGor4jg%2BId7rxecdn798OD8KPKhNpQo0XvnFaRu0SFhjsk7Y%2FDcJDOJxE3f8AwKDWvCX8WBjswAnpb3CCP0N6ieR1sk7jR15Zqb2hYaemHb4%2BoS6m%2BmbVflVBLEApaNAii67AW5EWugTeOElkZtNZDSvbAZ8lIdzIKRxu1uIoOdO%2BC%2BjyfUI0m2T6rrKX4t05vSwVQC7uSfD2FhdTVxcyXOm6WQk3h0GAHB1TaBPZvT660sg5O3n3%2FdXr26eQYChhCnnn5pleVEz4ve%2BotJiqNKrTXkEh0IIhxNKNHXsAJd21mL40jGJX29gYwgGggUfDSo4sCDrZ1AIOuNwoaLi3OYnHjH%2BFvmFQwh8Nou1TRsOGq1h1pJx2%2FSaGYR%2FFGam2SMIyIJIVX4CH3lzOelbAom4RzNpiK%2FeOGUP8fP4Or61ZIhCSWM4lq6VrIYZc4UisSFrXf1WKwmWzjTWd3eYyRbvHpTiyD0Kq37Q7gqYAi%2Bn5CwRpZqHXVd6hcdtmjWX9FiZWjjEr2fLhdvmukxCP2V854CmOeT%2BPuLmOa8bo%2BviLUZ2GdL9N8JUV1UbJ9SMLePRb8Y1uUhQ9BjCE6yfzhf68VNfbGzz8IJWyL9Uj39%2BzF7Q55Myg8O%2Fdx%2FWsZ4xfivxexbUWXj%2FujlsUWSTrK0cVzLXZId0%2BKZevY5g8%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FLearn_web_development%2FExtensions%2FAsync_JS%2FIntroducing%2F">See
-example</a></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="asynchronous-programming">Asynchronous programming</h3>
-<ul>
-<li><p>Don’t wait for a long-running task to complete unlike synchronous
-programming</p></li>
-<li><p>Instead, provide a callback function</p>
-<ul>
-<li><p>When the task is completed, it will be called with the
-result</p></li>
-<li><p>Conceptually, similar to event handling</p>
-<ul>
-<li>‘callback’ function to click event</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="promise"><code>Promise</code></h3>
-<h4 id="for-asynchronous-js-programming">For asynchronous JS
-programming</h4>
-<ul>
-<li><p>Proxy for values not necessarily known yet</p></li>
-<li><p>3 possible states in a <code>Promise</code></p>
-<ul>
-<li><strong>pending</strong>: initial state, neither fulfilled nor
-rejected.</li>
-<li><strong>fulfilled</strong>: completed successfully</li>
-<li><strong>rejected</strong>: failed</li>
-</ul></li>
-</ul>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="promise-1"><code>Promise</code></h3>
-<ul>
-<li>It has a <span class="t-salmon"><code>then</code></span> method,
-which allows attaching functions</li>
-<li>These functions will be called after the task has completed
-<ul>
-<li>when it reaches “fulfilled” or “rejected” states</li>
-</ul></li>
-<li>You can provide functions for different states
-<ul>
-<li><code>onSuccess</code></li>
-<li><code>onError</code></li>
-</ul></li>
-</ul>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises">Promise</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="fetching-resources">Fetching resources</h3>
-<h4 id="needs-asynchronous-programming">Needs asynchronous
-programming</h4>
-<ul>
-<li>Retrieving data from server can take time
-<ul>
-<li>We don’t want to block everything in the mean time</li>
-</ul></li>
-<li><code>fetch</code> API streamlines these steps
-<ul>
-<li>Uses <code>Promise</code></li>
-<li><a
-href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Documentation</a></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="fetch"><code>fetch</code></h3>
-<ul>
-<li>Takes an argument
-<ul>
-<li>Path to resource</li>
-</ul></li>
-<li>Returns a <code>Promise</code></li>
-<li>Use <span class="t-salmon"><code>then</code></span> function to:
-<ul>
-<li>Attach a function to process the data</li>
-<li>Optionally, attach a function to handle errors</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="fetch-1"><code>fetch</code></h3>
-<pre ><code class="js">function onSuccess(response) {
-  console.log("Success!" + response.status);
-}
-
-function onError(error) {
-  console.log('Oh no! Error: ' + error);
-}
-
-fetch('hcdd-340.txt')
-    .then(onSuccess, onError)
-</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="promises-for-asynchronous-programming">Promises for asynchronous
-programming</h3>
-<h4 id="shorthand-using-an-anonymous-function">Shorthand using an
-anonymous function</h4>
-<pre ><code class="js">const url = "colleges.json"
-const fetchPromise = fetch(url);
-
-console.log(fetchPromise);
-
-fetchPromise.then((response) =&gt; {
-    console.log(`Received response: ${response.status}`);
-});</code></pre>
-</section>
-<section class="slide level0">
-
-<h4 id="asynchronicity-is-contagious">“Asynchronicity is
-contagious”</h4>
-<ul>
-<li>A function must be asynchronous, if
-<ul>
-<li>it calls an asynchronous function</li>
-<li>uses return values from an asynchronous function</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h4 id="you-can-chain-promises-to-process-data">You can chain Promises
-to process data</h4>
-<pre ><code class="js">fetchPromise
-   // if successful, then get `json` data
-  .then((response) =&gt; response.json())
-  .then((data) =&gt; {
-    console.log(data[0].name); // `then` for second promise
-  });</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="error-handling-in-promise">Error handling in Promise</h3>
-<h4 id="handling-http-error-codes">Handling HTTP error codes</h4>
-<pre ><code class="js" data-line-numbers="3,4,11-13">fetchPromise
-  .then((response) =&gt; {
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((data) =&gt; {
-    console.log(data[0].name);
-  })
-  .catch((error) =&gt; {
-    console.error(`Unable to fetch: ${error}`);
-  });
-</code></pre>
-</section>
-<section class="slide level0">
-
-<h2 id="today-1">Today</h2>
+<h2 id="recap-from-last-class">Recap from last class</h2>
 <ul>
 <li>Asynchronous JS (<code>async</code> and <code>await</code>)</li>
 <li>Adding and removing DOM nodes</li>
-<li>Assignment 3</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="todo">Todo</h3>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-15.0.zip">Activity
-15</a></li>
-<li>Update <code>main.js</code></li>
-<li>We are trying to access Camera
-<ul>
-<li>You will have to attach success and error functions in
-<code>main.js</code></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="hints">Hints</h3>
-<ul>
-<li><span class="t-salmon"><code>then</code></span> in a
-<code>Promise</code> takes two functions</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="today-2">Today</h2>
-<ul>
-<li><span class="t-salmon"><strong>Asynchronous JS (<code>async</code>
-and <code>await</code>)</strong></span></li>
-<li>Adding and removing DOM nodes</li>
-<li>Assignment 3</li>
 </ul>
 </section>
 <section class="slide level0">
@@ -436,56 +141,10 @@ try {
 </section>
 <section class="slide level0">
 
-<h3 id="todo-1">Todo</h3>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/archive/refs/tags/activity-15.0.zip">Activity
-15</a></li>
-<li>Update <code>main.js</code></li>
-<li>We are trying to access Camera
-<ul>
-<li><del>You will have to attach success and error functions in
-<code>main.js</code></del></li>
-<li>Use <code>async</code> and <code>await</code></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="today-3">Today</h2>
+<h2 id="recap-from-last-class-1">Recap from last class</h2>
 <ul>
 <li>Asynchronous JS (<code>async</code> and <code>await</code>)</li>
-<li><span class="t-salmon"><strong>Adding and removing DOM
-nodes</strong></span></li>
-<li>Keyboard events</li>
-<li>Assignment 3</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="dom">DOM</h3>
-<h4 id="index.html-from-the-last-class-activity"><code>index.html</code>
-from the last class activity</h4>
-<p><img data-src="./images/dom-example.png"
-style="max-inline-size: 400px;" /></p>
-<p><a
-href="https://software.hixie.ch/utilities/js/live-dom-viewer/?saved=14086">Live
-DOM Viewer</a></p>
-</section>
-<section class="slide level0">
-
-<h3 id="dom-1">DOM</h3>
-<h4 id="each-entry-in-the-tree-is-a-node">Each entry in the tree is a
-<code>node</code></h4>
-<ul>
-<li>Root node
-<ul>
-<li>Top node (<code>HTML</code>)</li>
-</ul></li>
-<li>Parent node</li>
-<li>Child node</li>
-<li>Descendant node</li>
-<li>Sibling node</li>
+<li><strong>Adding and removing DOM nodes</strong></li>
 </ul>
 </section>
 <section class="slide level0">
@@ -659,49 +318,469 @@ node.parentNode.removeChild(node);</code></pre>
 </section>
 <section class="slide level0">
 
-<h2 id="todo-2">Todo</h2>
-<div class="columns"
-style="justify-content: center; align-items: center;">
-<div class="column" style="width:50%;">
+<h2 id="today-1">Today</h2>
 <ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-16.0">Activity
-16</a></li>
-<li>Update <code>main.js</code></li>
+<li><span class="t-salmon"><strong>Adding and removing DOM
+nodes</strong></span></li>
+<li>Keyboard events</li>
+<li>Data storage</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<video data-autoplay src="./images/hcdd-340-activity-16.mp4">
-</video>
-</div>
-</div>
 </section>
 <section class="slide level0">
 
-<h3 id="hints-1">Hints</h3>
-<h4 id="focus-on-adding-elements-first">Focus on adding elements
-first</h4>
+<h2 id="todo">Todo</h2>
 <ul>
-<li>We are adding <code>li</code> elements
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-17.0">Activity
+17</a></li>
+<li>Update <code>main.js</code>
 <ul>
-<li>What are the components?</li>
+<li>Add nodes when a button is clicked</li>
+<li>see <code>output.html</code> for the final outcome</li>
 </ul></li>
 </ul>
 </section>
 <section class="slide level0">
 
-<h3 id="hints-ii">Hints II</h3>
-<h4 id="enable-deletion">Enable deletion</h4>
+<h3 id="hints">Hints</h3>
+<h4 id="start-with-overview-section">Start with <code>Overview</code>
+section</h4>
 <ul>
-<li>Which element should have the <code>click</code> event handler?</li>
+<li>Update <code>addOverviewContent</code> in <code>main.js</code></li>
+<li>3 elements
+<ul>
+<li>Image</li>
+<li><code>H2</code></li>
+<li>Text</li>
+</ul></li>
+<li>What’s the parent root for these elements?</li>
 </ul>
 </section>
 <section class="slide level0">
 
-<h2 id="assignment-3">Assignment 3</h2>
+<h3 id="hints-ii">Hints II</h3>
+<h4 id="header">Header</h4>
 <ul>
-<li>Due next Thursday (10/16)</li>
-<li><a
-href="https://hcdd-340.github.io/Fall-2025/assignments/assignment-03/hcdd-340-assignment-03-2025-10-03.html">Details</a></li>
+<li>Update <code>addHeaderContent</code> in <code>main.js</code></li>
+<li>What are the components?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-iii">Hints III</h3>
+<h4 id="objective">Objective</h4>
+<ul>
+<li>Update <code>addObjectiveContent</code> in <code>main.js</code></li>
+<li>Two components
+<ul>
+<li><code>H2</code></li>
+<li><code>list</code></li>
+</ul></li>
+<li>What’s the parent element?</li>
+<li>How would you add the new parent element?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Adding and removing DOM nodes</li>
+<li><span class="t-salmon"><strong>Keyboard events</strong></span></li>
+<li>Data storage</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events">Keyboard events</h3>
+<ul>
+<li>To get text entered by your user, we usually rely on button clicks
+(e.g., “Submit”)</li>
+<li>Button click indicates user is done with text entering</li>
+<li>Then, we can extract the text</li>
+</ul>
+<pre ><code class="html">&lt;input type="text" name="module" id="module"&gt;
+&lt;button id="btn_add"&gt;Add a module!&lt;/button&gt;</code></pre>
+<pre ><code class="js">const addModule = (event) =&gt; {
+    const input = document.querySelector('input');
+    const moduleName = input.value;
+
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4
+id="however-some-use-cases-require-handling-keyboard-events-directly-e.g.-games-shortcuts">However,
+some use cases require handling keyboard events directly (e.g., games,
+shortcuts)</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events-1">Keyboard events</h3>
+<ul>
+<li>Key is pressed — <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event">keydown</a>
+event</li>
+<li>Key is released — <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event">keyup</a>
+event</li>
+</ul>
+<pre ><code class="js">
+target.addEventListener("keydown", (event) =&gt; { 
+    /* Key pressed */
+});
+
+target.addEventListener("keyup", (event) =&gt; { 
+    /* Key released */
+});
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events-2">Keyboard events</h3>
+<h4 id="the-event-object-contains-key-information">The <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent"><code>event</code>
+object</a> contains key information</h4>
+<ul>
+<li><code>key</code>: value of the key pressed</li>
+<li><code>ctrlKey</code>: was <code>Ctrl</code> key active?</li>
+<li><code>shiftKey</code>: was <code>Shift</code> key active?</li>
+<li><code>metaKey</code>: was the meta key active?
+<ul>
+<li>⌘ in Mac, ⊞ in Windows</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-1">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-18.0">Activity
+18</a></li>
+<li>What happens if you press the “v” key?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events-3">Keyboard events</h3>
+<pre ><code class="js">window.addEventListener("keydown", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "violet";
+    }
+});
+window.addEventListener("keyup", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "";
+    }
+});
+</code></pre>
+<p>“Page turns violet when you hold the V key”</p>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="which-element-is-the-event-listener">Which element is the event
+listener?</h4>
+<pre ><code class="js" data-line-numbers="1,6">window.addEventListener("keydown", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "violet";
+    }
+});
+window.addEventListener("keyup", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "";
+    }
+});
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="window-contains-the-dom-document"><code>window</code> contains
+the <code>DOM</code> document</h4>
+<p><img data-src="./images/window-dom.png"
+style="max-width: 440px;" /></p>
+<p><code>window</code> makes items globally available (functions, event
+handlers, objects)</p>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-2">Todo</h2>
+<ul>
+<li>Log the key values in both event handlers</li>
+<li>What happens when you press
+<ul>
+<li>‘Enter’, ‘Delete’, ‘Tab’?</li>
+<li>‘Shift’, ‘Ctrl’, ‘Meta’ key with another key?</li>
+</ul></li>
+<li>What happens when you hold down a key?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-3">Todo</h2>
+<div class="columns" style="justify-content: center;">
+<div class="column" style="width:60%;">
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-18.0">Activity
+18</a></li>
+<li>The balloon should:
+<ul>
+<li>Inflate 20% when ⬆️ is pressed</li>
+<li>Deflate 20% when ⬇️ is pressed</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<video data-autoplay src="./images/hcdd-340-activity-18.mp4">
+</video>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-1">Hints</h3>
+<ul>
+<li>What does the console show when ⬆️ and ⬇️ is pressed?</li>
+<li><code>style.fontSize</code> will change font for a given element
+<ul>
+<li>Remember to include the unit (e..g, <code>px</code>,
+<code>rem</code>, <code>em</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-3">Today</h2>
+<ul>
+<li>Adding and removing DOM nodes</li>
+<li>Keyboard events</li>
+<li><span class="t-salmon"><strong>Data storage</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="data-storage">Data storage</h3>
+<h4 id="client-side-storage">Client side storage</h4>
+<ul>
+<li>JS enables data storage in users’ machines
+<ul>
+<li>browser, app</li>
+</ul></li>
+<li>Cookies
+<ul>
+<li>Simple data</li>
+</ul></li>
+<li>Web Storage
+<ul>
+<li>Simple data</li>
+</ul></li>
+<li>IndexedDB
+<ul>
+<li>Complex data</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="client-side-storage-1">Client side storage</h3>
+<h4 id="we-will-focus-on-web-storage-in-this-class">We will focus on Web
+Storage in this class</h4>
+<ul>
+<li><del>Cookies</del></li>
+<li>Web Storage</li>
+<li><del>IndexedDB</del>
+<ul>
+<li>Complex data</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage">Web Storage</h3>
+<ul>
+<li>Storing data for different origins (e.g., hostname)</li>
+<li>You can’t access data for other origins
+<ul>
+<li>Security</li>
+</ul></li>
+<li>There is a limit
+<ul>
+<li>Around 5 MiB of local storage <em>per origin</em></li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria#web_storage">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage-1">Web Storage</h3>
+<h4 id="use-cases">Use cases</h4>
+<ul>
+<li>Saving preferences (e.g., color scheme, font size)</li>
+<li>Previous site activity (e.g., shopping cart, login info)</li>
+<li>Saving documents for offline use</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage-2">Web Storage</h3>
+<ul>
+<li><code>sessionStorage</code>
+<ul>
+<li>Persists data for as long as the browser is open</li>
+<li>Data is lost when browser is closed</li>
+</ul></li>
+<li><code>localStorage</code>
+<ul>
+<li>Persists data <strong>even after</strong> the browser is closed</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage#storing_simple_data_%E2%80%94_web_storage">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="saving-data-in-localstorage">Saving data in
+<code>localStorage</code></h3>
+<ul>
+<li><code>setItem(key, value)</code>
+<ul>
+<li>Save a data item</li>
+<li>Both <code>key</code> and <code>value</code> must be strings</li>
+</ul></li>
+</ul>
+<pre ><code class="js">localStorage.setItem("bgcolor", "red");
+localStorage.setItem("font", "Helvetica");
+localStorage.setItem("image", "myCat.png");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="getting-data-from-localstorage">Getting data from
+<code>localStorage</code></h3>
+<ul>
+<li><code>getItem(key)</code>
+<ul>
+<li>Return the string data for a given key</li>
+<li><code>null</code>, if the key doesn’t exist</li>
+</ul></li>
+</ul>
+<pre ><code class="js">const currentColor = localStorage.getItem("bgcolor");
+const currentFont = localStorage.getItem("font");
+const currentImage = localStorage.getItem("image");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="removing-data-from-localstorage">Removing data from
+<code>localStorage</code></h3>
+<ul>
+<li><code>removeItem(key)</code>
+<ul>
+<li>Deletes the data item for a given key</li>
+</ul></li>
+</ul>
+<pre ><code class="js">localStorage.removeItem("image");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-4">Todo</h3>
+<h4 id="adding-data-item-to-local-storage">Adding data item to local
+storage</h4>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0">Activity
+19</a> in Chrome/Firefox</li>
+<li>Go to Dev Tools –&gt; Console</li>
+</ul>
+<pre ><code class="js">localStorage.setItem("button_label", "Add a module!");
+localStorage.setItem("name", "YOUR NAME");
+
+sessionStorage.setItem("session_key_1", "Session Value 1");
+sessionStorage.setItem("session_key_2", "Session Value 2");</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-5">Todo</h3>
+<ul>
+<li>Go to:
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Do you see the stored values?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-6">Todo</h2>
+<ul>
+<li>Restart the browser and reopen <code>index.html</code></li>
+<li>Go to:
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Which values persisted?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-7">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0">Activity
+19</a> in <strong>VS Code</strong></li>
+<li>Copy the url and open it in Firefox/Chrome</li>
+<li>Go to:
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Do you see the stored values?
+<ul>
+<li>Why?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage-3">Web Storage</h3>
+<ul>
+<li>Storing data for different origins (e.g., hostname)</li>
+<li>You can’t access data for other origins
+<ul>
+<li>Security</li>
+</ul></li>
 </ul>
 </section>
 <section class="slide level0">
