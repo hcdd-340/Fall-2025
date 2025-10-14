@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-10-14">
+  <title>HCDD 340 — 2025-10-14</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="js-vi">JS VI</h2>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Keyboard events</li>
+<li>Data storage</li>
+<li>Final Project</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>Adding and removing DOM nodes</li>
+<li>Keyboard events</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events">Keyboard events</h3>
+<ul>
+<li>To get text entered by your user, we usually rely on button clicks
+(e.g., “Submit”)</li>
+<li>Button click indicates user is done with text entering</li>
+<li>Then, we can extract the text</li>
+</ul>
+<pre ><code class="html">&lt;input type="text" name="module" id="module"&gt;
+&lt;button id="btn_add"&gt;Add a module!&lt;/button&gt;</code></pre>
+<pre ><code class="js">const addModule = (event) =&gt; {
+    const input = document.querySelector('input');
+    const moduleName = input.value;
+
+};</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4
+id="however-some-use-cases-require-handling-keyboard-events-directly-e.g.-games-shortcuts">However,
+some use cases require handling keyboard events directly (e.g., games,
+shortcuts)</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events-1">Keyboard events</h3>
+<ul>
+<li>Key is pressed — <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event">keydown</a>
+event</li>
+<li>Key is released — <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event">keyup</a>
+event</li>
+</ul>
+<pre ><code class="js">
+target.addEventListener("keydown", (event) =&gt; { 
+    /* Key pressed */
+});
+
+target.addEventListener("keyup", (event) =&gt; { 
+    /* Key released */
+});
+</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events-2">Keyboard events</h3>
+<h4 id="the-event-object-contains-key-information">The <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent"><code>event</code>
+object</a> contains key information</h4>
+<ul>
+<li><code>key</code>: value of the key pressed</li>
+<li><code>ctrlKey</code>: was <code>Ctrl</code> key active?</li>
+<li><code>shiftKey</code>: was <code>Shift</code> key active?</li>
+<li><code>metaKey</code>: was the meta key active?
+<ul>
+<li>⌘ in Mac, ⊞ in Windows</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="keyboard-events-3">Keyboard events</h3>
+<pre ><code class="js">window.addEventListener("keydown", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "violet";
+    }
+});
+window.addEventListener("keyup", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "";
+    }
+});
+</code></pre>
+<p>“Page turns violet when you hold the V key”</p>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="which-element-is-the-event-listener">Which element is the event
+listener?</h4>
+<pre ><code class="js" data-line-numbers="1,6">window.addEventListener("keydown", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "violet";
+    }
+});
+window.addEventListener("keyup", event =&gt; {
+    if (event.key == "v") {
+        document.body.style.background = "";
+    }
+});
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="window-contains-the-dom-document"><code>window</code> contains
+the <code>DOM</code> document</h4>
+<p><img data-src="./images/window-dom.png"
+style="max-width: 440px;" /></p>
+<p><code>window</code> makes items globally available (functions, event
+handlers, objects)</p>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li><span class="t-salmon"><strong>Keyboard events</strong></span></li>
+<li>Data storage</li>
+<li>Final Project</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo">Todo</h2>
+<div class="columns" style="justify-content: center;">
+<div class="column" style="width:60%;">
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-18.0">Activity
+18</a></li>
+<li>The balloon should:
+<ul>
+<li>Inflate 20% when ⬆️ is pressed</li>
+<li>Deflate 20% when ⬇️ is pressed</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<video data-autoplay src="./images/hcdd-340-activity-18.mp4">
+</video>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="hints">Hints</h3>
+<ul>
+<li>What does the console show when ⬆️ and ⬇️ is pressed?</li>
+<li><code>style.fontSize</code> will change font for a given element
+<ul>
+<li>Remember to include the unit (e..g, <code>px</code>,
+<code>rem</code>, <code>em</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Keyboard events</li>
+<li><span class="t-salmon"><strong>Data storage</strong></span></li>
+<li>Final Project</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="data-storage">Data storage</h3>
+<h4 id="client-side-storage">Client side storage</h4>
+<ul>
+<li>JS enables data storage in users’ machines
+<ul>
+<li>browser, app</li>
+</ul></li>
+<li>Cookies
+<ul>
+<li>Simple data</li>
+</ul></li>
+<li>Web Storage
+<ul>
+<li>Simple data</li>
+</ul></li>
+<li>IndexedDB
+<ul>
+<li>Complex data</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="client-side-storage-1">Client side storage</h3>
+<h4 id="we-will-focus-on-web-storage-in-this-class">We will focus on Web
+Storage in this class</h4>
+<ul>
+<li><del>Cookies</del></li>
+<li>Web Storage</li>
+<li><del>IndexedDB</del>
+<ul>
+<li>Complex data</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage">Web Storage</h3>
+<ul>
+<li>Storing data for different origins (e.g., hostname)</li>
+<li>You can’t access data for other origins
+<ul>
+<li>Security</li>
+</ul></li>
+<li>There is a limit
+<ul>
+<li>Around 5 MiB of local storage <em>per origin</em></li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria#web_storage">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage-1">Web Storage</h3>
+<h4 id="use-cases">Use cases</h4>
+<ul>
+<li>Saving preferences (e.g., color scheme, font size)</li>
+<li>Previous site activity (e.g., shopping cart, login info)</li>
+<li>Saving documents for offline use</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage-2">Web Storage</h3>
+<ul>
+<li><span class="t-salmon"><code>sessionStorage</code></span>
+<ul>
+<li>Persists data for as long as the browser is open</li>
+<li>Data is lost when browser is closed</li>
+</ul></li>
+<li><span class="t-salmon"><code>localStorage</code></span>
+<ul>
+<li>Persists data <span class="t-clover"><strong>even
+after</strong></span> the browser is closed</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage#storing_simple_data_%E2%80%94_web_storage">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="saving-data-in-localstorage">Saving data in
+<code>localStorage</code></h3>
+<ul>
+<li><code>setItem(key, value)</code>
+<ul>
+<li>Save a data item</li>
+<li>Both <code>key</code> and <code>value</code> must be strings</li>
+</ul></li>
+</ul>
+<pre ><code class="js">localStorage.setItem("bgcolor", "red");
+localStorage.setItem("font", "Helvetica");
+localStorage.setItem("image", "myCat.png");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="getting-data-from-localstorage">Getting data from
+<code>localStorage</code></h3>
+<ul>
+<li><code>getItem(key)</code>
+<ul>
+<li>Return the string data for a given key</li>
+<li><code>null</code>, if the key doesn’t exist</li>
+</ul></li>
+</ul>
+<pre ><code class="js">const currentColor = localStorage.getItem("bgcolor");
+const currentFont = localStorage.getItem("font");
+const currentImage = localStorage.getItem("image");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/getItem">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="removing-data-from-localstorage">Removing data from
+<code>localStorage</code></h4>
+<ul>
+<li><code>removeItem(key)</code>
+<ul>
+<li>Deletes the data item for a given key</li>
+</ul></li>
+</ul>
+<pre ><code class="js">localStorage.removeItem("image");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-1">Todo</h3>
+<h4 id="adding-data-item-to-local-storage">Adding data item to local
+storage</h4>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0">Activity
+19</a> in Chrome/Firefox</li>
+<li>Go to Dev Tools –&gt; Console</li>
+</ul>
+<pre ><code class="js">localStorage.setItem("button_label", "Add a module!");
+localStorage.setItem("name", "YOUR NAME");
+
+sessionStorage.setItem("session_key_1", "Session Value 1");
+sessionStorage.setItem("session_key_2", "Session Value 2");</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-2">Todo</h3>
+<ul>
+<li>Go to:
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Do you see the stored values?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-3">Todo</h2>
+<ul>
+<li>Restart the browser and reopen <code>index.html</code></li>
+<li>Go to:
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Which values persisted?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-4">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0">Activity
+19</a> in <strong>VS Code</strong></li>
+<li>Copy the url and open it in Firefox/Chrome</li>
+<li>Go to:
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Do you see the stored values?
+<ul>
+<li>Why?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="web-storage-3">Web Storage</h3>
+<ul>
+<li>Storing data for different origins (e.g., hostname)</li>
+<li>You can’t access data for other origins
+<ul>
+<li>Security</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="how-can-we-store-non-string-data-in-localstorage">How can we
+store non-string data in <code>localStorage</code>?</h4>
+<p>We will use <code>JSON</code></p>
+</section>
+<section class="slide level0">
+
+<h2 id="json">JSON</h2>
+<h3 id="structured-data-as-a-string">Structured data as a string</h3>
+<ul>
+<li>Standard text-based format (string)</li>
+<li>Follows JavaScript object syntax</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="json-1">JSON</h2>
+<pre ><code class="json">{
+  "orderId": "12345",
+  "customer": {
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "address": "123 Main St"
+  },
+  "items": [
+    {
+      "product": "Laptop",
+      "quantity": 1,
+      "price": 1200.50
+    }
+  ]
+}</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="converting-between-objects-and-text">Converting between objects
+and text</h3>
+<ul>
+<li><code>JSON.parse</code>
+<ul>
+<li>String –&gt; JS Object (or value)</li>
+</ul></li>
+<li><code>JSON.stringify</code>
+<ul>
+<li>JS Object (or value) –&gt; String</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="json.parse"><code>JSON.parse</code></h3>
+<h4 id="string-js-object-or-value">String –&gt; JS Object (or
+value)</h4>
+<pre ><code class="js">const json = '{"result":true, "count":42}';
+const obj = JSON.parse(json);
+
+console.log(obj.count);
+// Expected output: 42
+
+console.log(obj.result);
+// Expected output: true</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="json.parse-1"><code>JSON.parse</code></h3>
+<h4 id="string-js-object-or-value-1">String –&gt; JS Object (or
+value)</h4>
+<pre ><code class="js">JSON.parse('[1, 5, "false"]');</code></pre>
+<p>What’s the outcome?</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-5">Todo</h3>
+<ul>
+<li>Open Dev Tools –&gt; Console</li>
+<li>Fix the error here:</li>
+</ul>
+<pre ><code class="js">JSON.parse("[1, 2, 3, 4, ]");</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="json.stringify"><code>JSON.stringify</code></h3>
+<h4 id="js-object-or-value-string">JS Object (or value) –&gt;
+String</h4>
+<pre ><code class="js">console.log(JSON.stringify({ x: 5, y: 6 }));
+// Expected output: '{"x":5,"y":6}'
+
+const a = ["foo", "bar"];
+JSON.stringify(a);
+// '["foo","bar"]'</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="how-can-we-store-non-string-data-in-localstorage-1">How can we
+store non-string data in <code>localStorage</code>?</h4>
+<p>We will use <code>JSON</code></p>
+</section>
+<section class="slide level0">
+
+<h3 id="saving-session">Saving <code>session</code></h3>
+<pre ><code class="js">const session = {
+  screens: [],
+  state: true,
+};
+session.screens.push({ name: "screenA", width: 450, height: 250 });
+
+// Converting the JSON string with JSON.stringify()
+// then saving with localStorage in the name of session
+
+localStorage.setItem("session", JSON.stringify(session));</code></pre>
+</section>
+<section class="slide level0">
+
+<h4 id="restoring-saved-session-from-localstorage">Restoring saved
+<code>session</code> from <code>localStorage</code></h4>
+<pre ><code class="js">const restoredSession = JSON.parse(
+    localStorage.getItem("session"));</code></pre>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-6">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-20.0">Activity
+20</a></li>
+<li>Save modules</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-1">Hints</h3>
+<ul>
+<li>One option is to add all module names to an array and then save it
+as an <code>json</code> object</li>
+<li>You can use <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/children"><code>.children</code></a>
+for a given parent node</li>
+<li>You can see saved values (also edit them)
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-7">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-20.0">Activity
+20</a></li>
+<li><span class="t-salmon"><strong>Retrieve previously saved
+modules</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-2">Hints</h3>
+<ul>
+<li>You can use <code>getItem</code> and then <code>JSON.parse</code> to
+extract the array</li>
+<li>Take a look at the <code>addAListItem</code> function in
+<code>main.js</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-3">Today</h2>
+<ul>
+<li>Keyboard events</li>
+<li>Data storage</li>
+<li><span class="t-salmon"><strong>Final Project</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-2-presentations-3-submissions">Final project — 2
+presentations &amp; 3 submissions</h3>
+<ul>
+<li>Proposal submission: 5 points</li>
+<li>Proposal Presentation: 8 points</li>
+<li>Final presentation: 10 point</li>
+<li>Code and documentation: 20 point</li>
+<li>Mandatory group review: 2 points</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-2-presentations-3-submissions-1">Final project — 2
+presentations &amp; 3 submissions</h3>
+<ul>
+<li>Proposal submission: 5 points</li>
+<li>Proposal Presentation: 8 points</li>
+<li>Final presentation: 10 point</li>
+<li><span class="t-salmon"><strong>Code and documentation: 20
+point</strong></span></li>
+<li>Mandatory group review: 2 points</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grading-rubric-for-final-submission-see-syllabus">Grading rubric
+for final submission (see syllabus)</h3>
+<ul>
+<li>The app must be installable using Chrome — <strong>1.5
+points</strong></li>
+<li>The app (and the browser version) should work for different devices
+— <strong>4.5 points</strong></li>
+<li>At least 3 non-trivial pages with user interaction support —
+<strong>3 points</strong></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="grading-rubric-for-final-submission-see-syllabus-contd.">Grading
+rubric for final submission (see syllabus) — contd.</h3>
+<ul>
+<li>Stores and retrieves persistent data — <strong>3
+points</strong></li>
+<li>Includes icon and consistent theme — <strong>3 points</strong></li>
+<li>Ensures accessibility — <strong>3 points</strong></li>
+<li>Documentation for the code and the system — <strong>2
+points</strong></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="bonus-features-maximum-5-points">Bonus Features (maximum 5
+points)</h3>
+<ul>
+<li><p>5 non-trivial pages or more — <strong>1 point</strong></p></li>
+<li><p>Use of camera — <strong>1.5 points</strong></p></li>
+<li><p>Use of microphone — <strong>1.5 points</strong></p></li>
+<li><p>Use of location — <strong>2 points</strong></p></li>
+<li><p>Integrates user facing generative AI features — <strong>3
+points</strong></p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="final-project">Final Project</h2>
+<ul>
+<li>Considerable flexibility in terms of topic
+<ul>
+<li>develop a chatbot interface?</li>
+<li>redesign an existing app (e.g., Penn State Go app, Apple
+Music)?</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project-topic">Final project topic</h3>
+<ul>
+<li>Focus on your portfolio
+<ul>
+<li>Showcasing it in your job/internship applications?</li>
+</ul></li>
+<li>Maybe prototype for broader reach?
+<ul>
+<li><a
+href="https://nittanyai.psu.edu/alliance-programs/nittany-ai-challenge/">Nittany
+AI Challenge</a></li>
+<li><a href="https://pennstateideamakers.weebly.com/">IdeaMakers
+Challenge</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="next-todos-check-canvas">Next todos: Check Canvas</h3>
+<ul>
+<li><a
+href="https://psu.instructure.com/courses/2416260/assignments/17578979">Proposal
+Submission</a></li>
+<li><a
+href="https://psu.instructure.com/courses/2416260/assignments/17578978">Proposal
+Presentation</a></li>
+</ul>
+<p>What questions do you have?</p>
+</section>
+<section class="slide level0">
+
+<h4
+id="we-will-work-on-final-project-during-our-class-from-next-week">We
+will work on final project during our class from next week</h4>
+<ul>
+<li>Thursday (10/23): Selecting topics and sketching UI/user-flow</li>
+<li>Tuesday (10/28): Proposal and presentation</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="we-will-take-attendance-on-those-days">We will take attendance
+on those days</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="mandatory-group-review">Mandatory group review</h3>
+<ul>
+<li>Due at the end of the class</li>
+<li>Report evaluating performance of each group member (including
+yourself)</li>
+<li>Will also be used to <span class="t-salmon"><strong>adjust project
+grades</strong></span></li>
+<li><strong>Be fair, courteous, and respectful</strong> to your group
+member</li>
+</ul>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
