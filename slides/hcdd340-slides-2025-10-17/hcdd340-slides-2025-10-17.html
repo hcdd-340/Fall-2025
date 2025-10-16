@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
-  <meta name="dcterms.date" content="2025-10-14">
-  <title>HCDD 340 — 2025-10-14</title>
+  <meta name="dcterms.date" content="2025-10-17">
+  <title>HCDD 340 — 2025-10-17</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -45,14 +45,14 @@
 
 <section class="slide level0">
 
-<h2 id="js-vi">JS VI</h2>
+<h2 id="js-vii">JS VII</h2>
 </section>
 <section class="slide level0">
 
 <h2 id="today">Today</h2>
 <ul>
-<li>Keyboard events</li>
 <li>Data storage</li>
+<li>JS Modules</li>
 <li>Final Project</li>
 </ul>
 </section>
@@ -60,177 +60,7 @@
 
 <h2 id="recap-from-last-class">Recap from last class</h2>
 <ul>
-<li>Adding and removing DOM nodes</li>
-<li>Keyboard events</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="keyboard-events">Keyboard events</h3>
-<ul>
-<li>To get text entered by your user, we usually rely on button clicks
-(e.g., “Submit”)</li>
-<li>Button click indicates user is done with text entering</li>
-<li>Then, we can extract the text</li>
-</ul>
-<pre ><code class="html">&lt;input type="text" name="module" id="module"&gt;
-&lt;button id="btn_add"&gt;Add a module!&lt;/button&gt;</code></pre>
-<pre ><code class="js">const addModule = (event) =&gt; {
-    const input = document.querySelector('input');
-    const moduleName = input.value;
-
-};</code></pre>
-<div class="t-ref">
-<p><a
-href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4
-id="however-some-use-cases-require-handling-keyboard-events-directly-e.g.-games-shortcuts">However,
-some use cases require handling keyboard events directly (e.g., games,
-shortcuts)</h4>
-</section>
-<section class="slide level0">
-
-<h3 id="keyboard-events-1">Keyboard events</h3>
-<ul>
-<li>Key is pressed — <a
-href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event">keydown</a>
-event</li>
-<li>Key is released — <a
-href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event">keyup</a>
-event</li>
-</ul>
-<pre ><code class="js">
-target.addEventListener("keydown", (event) =&gt; { 
-    /* Key pressed */
-});
-
-target.addEventListener("keyup", (event) =&gt; { 
-    /* Key released */
-});
-</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="keyboard-events-2">Keyboard events</h3>
-<h4 id="the-event-object-contains-key-information">The <a
-href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent"><code>event</code>
-object</a> contains key information</h4>
-<ul>
-<li><code>key</code>: value of the key pressed</li>
-<li><code>ctrlKey</code>: was <code>Ctrl</code> key active?</li>
-<li><code>shiftKey</code>: was <code>Shift</code> key active?</li>
-<li><code>metaKey</code>: was the meta key active?
-<ul>
-<li>⌘ in Mac, ⊞ in Windows</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="keyboard-events-3">Keyboard events</h3>
-<pre ><code class="js">window.addEventListener("keydown", event =&gt; {
-    if (event.key == "v") {
-        document.body.style.background = "violet";
-    }
-});
-window.addEventListener("keyup", event =&gt; {
-    if (event.key == "v") {
-        document.body.style.background = "";
-    }
-});
-</code></pre>
-<p>“Page turns violet when you hold the V key”</p>
-<div class="t-ref">
-<p><a
-href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="which-element-is-the-event-listener">Which element is the event
-listener?</h4>
-<pre ><code class="js" data-line-numbers="1,6">window.addEventListener("keydown", event =&gt; {
-    if (event.key == "v") {
-        document.body.style.background = "violet";
-    }
-});
-window.addEventListener("keyup", event =&gt; {
-    if (event.key == "v") {
-        document.body.style.background = "";
-    }
-});
-</code></pre>
-<div class="t-ref">
-<p><a
-href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="window-contains-the-dom-document"><code>window</code> contains
-the <code>DOM</code> document</h4>
-<p><img data-src="./images/window-dom.png"
-style="max-width: 440px;" /></p>
-<p><code>window</code> makes items globally available (functions, event
-handlers, objects)</p>
-</section>
-<section class="slide level0">
-
-<h2 id="today-1">Today</h2>
-<ul>
-<li><span class="t-salmon"><strong>Keyboard events</strong></span></li>
 <li>Data storage</li>
-<li>Final Project</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="todo">Todo</h2>
-<div class="columns" style="justify-content: center;">
-<div class="column" style="width:60%;">
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-18.0">Activity
-18</a></li>
-<li>The balloon should:
-<ul>
-<li>Inflate 20% when ⬆️ is pressed</li>
-<li>Deflate 20% when ⬇️ is pressed</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:40%;">
-<video data-autoplay src="./images/hcdd-340-activity-18.mp4">
-</video>
-</div>
-</div>
-<div class="t-ref">
-<p><a
-href="https://eloquentjavascript.net/15_event.html#h-974t15Z9oa">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="hints">Hints</h3>
-<ul>
-<li>What does the console show when ⬆️ and ⬇️ is pressed?</li>
-<li><code>style.fontSize</code> will change font for a given element
-<ul>
-<li>Remember to include the unit (e..g, <code>px</code>,
-<code>rem</code>, <code>em</code>)</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="today-2">Today</h2>
-<ul>
-<li>Keyboard events</li>
-<li><span class="t-salmon"><strong>Data storage</strong></span></li>
-<li>Final Project</li>
 </ul>
 </section>
 <section class="slide level0">
@@ -375,67 +205,6 @@ href="https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem">Sourc
 </section>
 <section class="slide level0">
 
-<h3 id="todo-1">Todo</h3>
-<h4 id="adding-data-item-to-local-storage">Adding data item to local
-storage</h4>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0">Activity
-19</a> in Chrome/Firefox</li>
-<li>Go to Dev Tools –&gt; Console</li>
-</ul>
-<pre ><code class="js">localStorage.setItem("button_label", "Add a module!");
-localStorage.setItem("name", "YOUR NAME");
-
-sessionStorage.setItem("session_key_1", "Session Value 1");
-sessionStorage.setItem("session_key_2", "Session Value 2");</code></pre>
-</section>
-<section class="slide level0">
-
-<h3 id="todo-2">Todo</h3>
-<ul>
-<li>Go to:
-<ul>
-<li>Firefox: Dev Tools –&gt; Storage</li>
-<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
-</ul></li>
-<li>Do you see the stored values?</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="todo-3">Todo</h2>
-<ul>
-<li>Restart the browser and reopen <code>index.html</code></li>
-<li>Go to:
-<ul>
-<li>Firefox: Dev Tools –&gt; Storage</li>
-<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
-</ul></li>
-<li>Which values persisted?</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="todo-4">Todo</h2>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0">Activity
-19</a> in <strong>VS Code</strong></li>
-<li>Copy the url and open it in Firefox/Chrome</li>
-<li>Go to:
-<ul>
-<li>Firefox: Dev Tools –&gt; Storage</li>
-<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
-</ul></li>
-<li>Do you see the stored values?
-<ul>
-<li>Why?</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
 <h3 id="web-storage-3">Web Storage</h3>
 <ul>
 <li>Storing data for different origins (e.g., hostname)</li>
@@ -526,19 +295,6 @@ href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_O
 </section>
 <section class="slide level0">
 
-<h3 id="todo-5">Todo</h3>
-<ul>
-<li>Open Dev Tools –&gt; Console</li>
-<li>Fix the error here:</li>
-</ul>
-<pre ><code class="js">JSON.parse("[1, 2, 3, 4, ]");</code></pre>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
 <h3 id="json.stringify"><code>JSON.stringify</code></h3>
 <h4 id="js-object-or-value-string">JS Object (or value) –&gt;
 String</h4>
@@ -582,12 +338,279 @@ localStorage.setItem("session", JSON.stringify(session));</code></pre>
 </section>
 <section class="slide level0">
 
+<h2 id="today-1">Today</h2>
+<ul>
+<li><span class="t-salmon"><strong>Data storage</strong></span></li>
+<li>JS Modules</li>
+<li>Final Project</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-20.0">Activity
+20</a></li>
+<li>Save modules</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints">Hints</h3>
+<ul>
+<li>One option is to add all module names to an array and then save it
+as an <code>json</code> object</li>
+<li>You can use <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/Element/children"><code>.children</code></a>
+for a given parent node</li>
+<li>You can see saved values (also edit them)
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-1">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-20.0">Activity
+20</a></li>
+<li><span class="t-salmon"><strong>Retrieve previously saved
+modules</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-1">Hints</h3>
+<ul>
+<li>You can use <code>getItem</code> and then <code>JSON.parse</code> to
+extract the array</li>
+<li>Take a look at the <code>addAListItem</code> function in
+<code>main.js</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-2">Todo</h3>
+<ul>
+<li>What will happen if no values were saved and user click on
+<code>Load</code>?</li>
+<li>Delete saved modules
+<ul>
+<li>Firefox: Dev Tools –&gt; Storage</li>
+<li>Chrome: Dev Tools –&gt; Application –&gt; Storage</li>
+</ul></li>
+<li>Click on <code>Load modules</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Data storage</li>
+<li><span class="t-salmon"><strong>JS Modules</strong></span></li>
+<li>Final Project</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="js-modules">JS Modules</h3>
+<ul>
+<li>We can split JS functionalities across modules</li>
+<li>You can then <code>import</code> modules as necessary</li>
+<li>Allows better code management</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="a-module-is-a-separate-js-file">A module is a separate JS
+file</h3>
+<ul>
+<li>Other modules then can use features from a given module
+<ul>
+<li>Variables, functions, …</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="js-modules-1">JS Modules</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0">Activity
+21</a> in VS Code</li>
+<li>Two modules
+<ul>
+<li><code>main.js</code></li>
+<li><code>dayname.js</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="making-features-available-to-other-modules">Making features
+available to other modules</h4>
+<h4 id="in-dayname.js">in <code>dayname.js</code></h4>
+<pre ><code class="js">const names = ["Sunday", "Monday", "Tuesday"]
+
+export function dayName(number) {
+  return names[number];
+}
+export function dayNumber(name) {
+  return names.indexOf(name);
+}
+</code></pre>
+<p><code>export</code> in front of features will make them available to
+other modules</p>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/10_modules.html">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-use-a-single-export-statement">You can use a single
+<code>export</code> statement</h4>
+<pre ><code class="js" data-line-numbers="4">const draw = () =&gt; {};
+const reportArea = 16.5;
+
+export { draw, reportArea };
+</code></pre>
+<p>a single <code>export</code> statement at the end of the module with
+a comma-separated list of the features</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="importing-features-from-a-module">Importing features from a
+module</h4>
+<h4 id="in-main.js">in <code>main.js</code></h4>
+<pre ><code class="js">import {dayName} from "./dayname.js";</code></pre>
+<p>The dot (<code>.</code>) in <code>"./dayname.js"</code> indicates
+current folder</p>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-also-rename-imported-features">You can also rename
+imported features</h4>
+<pre ><code class="js">import { name as squareNameOne } from "shapes";</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-import-all-features-as-well">You can import all features
+as well</h4>
+<pre ><code class="js">import * as Module from "./modules/module.js";
+
+Module.function1();
+Module.function2();</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="applying-the-module-to-your-html">Applying the module to your
+HTML</h4>
+<h4 id="index.html"><code>index.html</code></h4>
+<pre ><code class="html">&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</code></pre>
+<p>Must include <code>type="module"</code></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-3">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0">Activity
+21</a> in VS Code</li>
+<li>Two modules</li>
+<li>Try to access <code>names</code> from <code>dayname.js</code> in
+<code>main.js</code>
+<ul>
+<li>e.g., using <code>console.log</code></li>
+</ul></li>
+<li>What happens?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-4">Todo</h3>
+<ul>
+<li>Rewrite <code>dayname.js</code> to use a single <code>export</code>
+statement</li>
+<li><code>names</code> should also be exported</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-5">Todo</h3>
+<ul>
+<li>Rewrite <code>main.js</code> to use <code>import * as ...</code>
+syntax</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-6">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-22.0">Activity
+22</a> in VS Code</li>
+<li>Check Dev Tools –&gt; Console</li>
+<li>Can you fix the errors?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-2">Hints</h3>
+<ul>
+<li>Export features</li>
+<li><code>canvas.js</code>
+<ul>
+<li><code>create</code>, <code>createReportList</code></li>
+</ul></li>
+<li><code>square.js</code>
+<ul>
+<li><code>draw</code>, <code>reportArea</code>,
+<code>reportPerimeter</code>, <code>randomSquare</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-3">Hints</h3>
+<ul>
+<li>Import those features in <code>main.js</code> from
+<code>canvas.js</code> and <code>square.js</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
 <h2 id="today-3">Today</h2>
 <ul>
-<li>Keyboard events</li>
 <li>Data storage</li>
+<li>JS Modules</li>
 <li><span class="t-salmon"><strong>Final Project</strong></span></li>
 </ul>
+</section>
+<section class="slide level0">
+
+<h4 id="have-you-started-thinking-about-the-final-project-topic">Have
+you started thinking about the final project topic?</h4>
 </section>
 <section class="slide level0">
 
@@ -727,6 +750,14 @@ member</li>
 </section>
 <section class="slide level0">
 
+<h3 id="assignment-3">Assignment 3</h3>
+<ul>
+<li>In the video, the app <strong>theme</strong> is set to Pugh blue
+<ul>
+<li>Updated <a
+href="https://hcdd-340.github.io/Fall-2025/assignments/assignment-03/hcdd-340-assignment-03-2025-10-03.html#:~:text=The%20app%20background%20theme%20color%20is%20Pugh%20blue">description</a></li>
+</ul></li>
+</ul>
 </section>
     </div>
   </div>
