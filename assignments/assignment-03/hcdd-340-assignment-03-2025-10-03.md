@@ -54,7 +54,7 @@ Please upload the following files (as a zip file):
 
 * The app has a "standalone" [display](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/display#standalone) (**1 point**)
 
-* The app background color is Pugh blue (`#96BEE6`) (**1 point**)
+* The app ~~background~~ theme color is Pugh blue (`#96BEE6`) (**1 point**)
 
 ### Event handling
 * Each `<a>` element within `<nav>` has a click event handler (**2 point**)
