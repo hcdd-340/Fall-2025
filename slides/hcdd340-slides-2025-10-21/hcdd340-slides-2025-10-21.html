@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-10-21">
+  <title>HCDD 340 — 2025-10-21</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="accessibility">Accessibility</h2>
+</section>
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>JS Modules</li>
+<li>Accessibility</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="recap-from-last-class">Recap from last class</h2>
+<ul>
+<li>JS Modules</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="js-modules">JS Modules</h3>
+<ul>
+<li>We can split JS functionalities across modules</li>
+<li>You can then <code>import</code> modules as necessary</li>
+<li>Allows better code management</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="a-module-is-a-separate-js-file">A module is a separate JS
+file</h3>
+<ul>
+<li>Other modules then can use features from a given module
+<ul>
+<li>Variables, functions, …</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="js-modules-1">JS Modules</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0">Activity
+21</a> in VS Code</li>
+<li>Two modules
+<ul>
+<li><code>main.js</code></li>
+<li><code>dayname.js</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="making-features-available-to-other-modules">Making features
+available to other modules</h4>
+<h4 id="in-dayname.js">in <code>dayname.js</code></h4>
+<pre ><code class="js">const names = ["Sunday", "Monday", "Tuesday"]
+
+export function dayName(number) {
+  return names[number];
+}
+export function dayNumber(name) {
+  return names.indexOf(name);
+}
+</code></pre>
+<p><code>export</code> in front of features will make them available to
+other modules</p>
+<div class="t-ref">
+<p><a
+href="https://eloquentjavascript.net/10_modules.html">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-use-a-single-export-statement">You can use a single
+<code>export</code> statement</h4>
+<pre ><code class="js" data-line-numbers="4">const draw = () =&gt; {};
+const reportArea = 16.5;
+
+export { draw, reportArea };
+</code></pre>
+<p>a single <code>export</code> statement at the end of the module with
+a comma-separated list of the features</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="importing-features-from-a-module">Importing features from a
+module</h4>
+<h4 id="in-main.js">in <code>main.js</code></h4>
+<pre ><code class="js">import {dayName} from "./dayname.js";</code></pre>
+<p>The dot (<code>.</code>) in <code>"./dayname.js"</code> indicates
+current folder</p>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-also-rename-imported-features">You can also rename
+imported features</h4>
+<pre ><code class="js">import { name as squareNameOne } from "shapes";</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="you-can-import-all-features-as-well">You can import all features
+as well</h4>
+<pre ><code class="js">import * as Module from "./modules/module.js";
+
+Module.function1();
+Module.function2();</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="applying-the-module-to-your-html">Applying the module to your
+HTML</h4>
+<h4 id="index.html"><code>index.html</code></h4>
+<pre ><code class="html">&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</code></pre>
+<p>Must include <code>type="module"</code></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li><span class="t-salmon"><strong>JS Modules</strong></span></li>
+<li>Accessibility</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo">Todo</h3>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0">Activity
+21</a> in VS Code</li>
+<li>Two modules</li>
+<li>Try to access the <span
+class="t-salmon"><strong>names</strong></span> variable from
+<code>dayname.js</code> in <code>main.js</code>
+<ul>
+<li>e.g., print using <code>console.log</code></li>
+</ul></li>
+<li>What happens?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-1">Todo</h3>
+<ul>
+<li>Rewrite <code>dayname.js</code> to use a single <code>export</code>
+statement</li>
+<li><code>names</code> should also be exported</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-2">Todo</h3>
+<ul>
+<li>Rewrite <code>main.js</code> to use <code>import * as ...</code>
+syntax</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="todo-3">Todo</h2>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-22.0">Activity
+22</a> in VS Code</li>
+<li>Check Dev Tools –&gt; Console</li>
+<li>Can you fix the errors?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints">Hints</h3>
+<ul>
+<li>Export features</li>
+<li><code>canvas.js</code>
+<ul>
+<li><code>create</code>, <code>createReportList</code></li>
+</ul></li>
+<li><code>square.js</code>
+<ul>
+<li><code>draw</code>, <code>reportArea</code>,
+<code>reportPerimeter</code>, <code>randomSquare</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="hints-1">Hints</h3>
+<ul>
+<li>Import those features in <code>main.js</code> from
+<code>canvas.js</code> and <code>square.js</code></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>JS Modules</li>
+<li><span class="t-salmon"><strong>Accessibility</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="accessibility-1">Accessibility</h2>
+<p>Commonly abbreviated as <a
+href="https://www.a11yproject.com/posts/a11y-and-other-numeronyms/">a11y</a></p>
+</section>
+<section class="slide level0">
+
+<h2 id="accessibility-2">Accessibility</h2>
+<ul>
+<li>Nearly <span class="t-salmon"><strong>20% of
+individuals</strong></span> in the US have some form of disability
+<ul>
+<li>1 billion people around the world</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="users-might-have-specific-requirements-and-constraints">Users
+might have specific requirements and constraints</h4>
+<ul>
+<li>Visual impairment</li>
+<li>Hearing impairment</li>
+<li>Physical impairment</li>
+<li>Speech impairment</li>
+<li>Seizures</li>
+<li>Cognitive and learning disabilities</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="visual-impairment">Visual impairment</h3>
+<p><a href="https://www.youtube.com/watch?v=dEbl5jvLKGQ">Screen Reader
+Demo for Digital Accessibility</a></p>
+</section>
+<section class="slide level0">
+
+<h2 id="accessibility-3">Accessibility</h2>
+<p>As a designer and developer, it is <span class="t-salmon"><strong>our
+responsibility</strong></span> to provide ways for these users to engage
+with our system</p>
+</section>
+<section class="slide level0">
+
+<h4
+id="better-accessibility-results-in-improved-usability-for-everyone">Better
+accessibility results in improved usability for everyone</h4>
+</section>
+<section class="slide level0">
+
+<h4 id="better-accessibility-improved-usability-for-all">Better
+accessibility === Improved usability for all</h4>
+<h4 id="closed-captioning-and-transcripts">Closed captioning and
+transcripts</h4>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Initially designed for deaf users</li>
+<li><span class="t-salmon">Almost every college student</span> has used
+captioning and transcripts</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="./images/caption-accessibility.png" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://www.sciencedaily.com/releases/2016/11/161101102535.htm">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="better-accessibility-improved-usability-for-all-1">Better
+accessibility === Improved usability for all</h4>
+<h4 id="curb-cuts">Curb cuts</h4>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Initially for wheelchair users</li>
+<li>Improves experience for all (pedestrians, cyclists, …)</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="./images/curb-cut.jpg" /></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="better-accessibility-improved-usability-for-all-2">Better
+accessibility === Improved usability for all</h4>
+<h4 id="electric-toothbrush">Electric toothbrush</h4>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Initially designed for
+<ul>
+<li>Patients with limited motor skills</li>
+<li>Orthodontic patients (e.g., with braces)</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<p><img data-src="./images/electric-toothbrush.jpg" /></p>
+</div>
+</div>
+<div class="t-ref">
+<p><a
+href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7148448/">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="we-all-can-benefit-from-better-accessibility">We all can benefit
+from better accessibility</h4>
+<ul>
+<li>Temporarily disabled
+<ul>
+<li>Broken wrist</li>
+</ul></li>
+<li>Situationally disabled
+<ul>
+<li>Unable to play audio in public for a video message</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/why#additional_beneficiaries_of_accessibility">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="accessibility-is-about-enabling-all-of-your-users">Accessibility
+is about enabling <span class="t-salmon">all</span> of your users</h4>
+<ul>
+<li>Failing to make your product accessible means potentially excluding
+a significant number of users
+<ul>
+<li>Business implications</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4
+id="accessibility-might-be-legally-required-for-some-products">Accessibility
+might be legally required for some products</h4>
+<ul>
+<li>Requirement for public sector entities
+<ul>
+<li>Government funded programs, nonprofits, …</li>
+</ul></li>
+<li>Might be required for some private sector companies</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4
+id="accessibility-might-be-legally-required-for-some-products-1">Accessibility
+might be legally required for some products</h4>
+<p>“In the US, Over ten lawsuits are filed daily focused on digital
+accessibility”</p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/why#legal_impact">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="accessibility-4">Accessibility</h3>
+<ul>
+<li>Principles</li>
+<li>Guidelines</li>
+<li>Tools</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="accessibility-principles">Accessibility principles</h3>
+<h4
+id="perceivable-operable-understandable-and-robust-pour">Perceivable,
+Operable, Understandable, and Robust (<a
+href="https://www.w3.org/WAI/fundamentals/accessibility-principles/">POUR</a>)</h4>
+<p><a
+href="https://web.dev/learn/accessibility/measure#accessibility_principles"><img
+data-src="./images/pour-accessibility-principles.png"
+style="max-width: 400px;" /></a></p>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/measure#accessibility_principles">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="perceivable">Perceivable</h3>
+<ul>
+<li>All essential information must be perceivable to
+<strong>all</strong> users
+<ul>
+<li>For different types of disabilities (e.g., visual, mobility, …)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="making-information-perceivable-to-all-users">Making information
+perceivable to all users</h4>
+<ul>
+<li>Examples
+<ul>
+<li>Text alternatives to essential icons and images</li>
+<li>Captions</li>
+<li>Not relying on only color to convey meaning</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/measure#perceivable">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="operable">Operable</h3>
+<ul>
+<li>Users must be able to operate the interface
+<ul>
+<li>Can’t require interaction that a user is unable to perform</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="operable-by-all-users">Operable by all users</h4>
+<ul>
+<li>Examples
+<ul>
+<li>Keyboard and touchscreen support to all active elements</li>
+<li>Giving users enough time to fill out a form</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/measure#operable">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="understandable">Understandable</h3>
+<ul>
+<li>Information and the interface operation must be understandable</li>
+<li>Examples
+<ul>
+<li>Has predictable navigation</li>
+<li>Error messages are clear and easy to resolve</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/measure#understandable">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="robust">Robust</h3>
+<ul>
+<li>Accessible to users using both older and future technologies</li>
+<li>Examples
+<ul>
+<li>Works for different screen reader technologies</li>
+<li>Content and functions work for different device sizes</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://web.dev/learn/accessibility/measure#robust">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="accessibility-5">Accessibility</h3>
+<ul>
+<li>Principles</li>
+<li><span class="t-salmon"><strong>Guidelines</strong></span></li>
+<li>Tools</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="semantic-html-leads-to-better-accessibility">Semantic html leads
+to better accessibility</h4>
+<div class="columns" style="align-items: center;">
+<div class="column" style="width:50%;">
+<pre ><code class="html">&lt;div&gt;Play video&lt;/div&gt;</code></pre>
+<p><strong>👎🏾 Don’t</strong></p>
+</div><div class="column" style="width:50%;">
+<pre ><code >&lt;button&gt;Play video&lt;/button&gt;</code></pre>
+<p><strong>👍🏾 Do</strong></p>
+</div>
+</div>
+<p>Use the correct HTML elements</p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="structure-page-sections-logically">Structure page sections
+logically</h4>
+<ul>
+<li><code>&lt;header&gt;</code></li>
+<li><code>&lt;nav&gt;</code></li>
+<li><code>&lt;main&gt;</code></li>
+<li><code>&lt;article&gt;</code></li>
+<li><code>&lt;aside&gt;</code></li>
+<li><code>&lt;footer&gt;</code></li>
+<li>…</li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML#structure_page_sections_logically">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="structure-page-sections-logically-1">Structure page sections
+logically</h4>
+<pre ><code class="html">&lt;header&gt;
+  &lt;h1&gt;Header&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+  &lt;!-- main navigation in here --&gt;
+&lt;/nav&gt;
+
+&lt;!-- Here is our page's main content --&gt;
+&lt;main&gt;
+  &lt;!-- It contains an article --&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Article heading&lt;/h2&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;!-- aside content in here --&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+
+&lt;footer&gt;
+  &lt;!-- footer content in here --&gt;
+&lt;/footer&gt;
+</code></pre>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML#structure_page_sections_logically">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="use-semantic-ui-controls-whenever-possible">Use semantic UI
+controls whenever possible</h4>
+<ul>
+<li>Use buttons, links, and form controls
+<ul>
+<li>Provides default keyboard accessibility</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="use-semantic-ui-controls-whenever-possible-1">Use semantic UI
+controls whenever possible</h4>
+<pre ><code class="html">&lt;!-- Using &lt;div&gt; for buttons --&gt;
+&lt;div data-message="First button"&gt;Click me!&lt;/div&gt;
+&lt;div data-message="Second button"&gt;Click me too!&lt;/div&gt;</code></pre>
+<p><strong>👎🏾 Don’t. Use buttons instead</strong></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML#use_semantic_ui_controls_where_possible">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="use-meaningful-text-labels">Use meaningful text labels</h3>
+<ul>
+<li>Button and link text labels should be understandable and
+distinctive</li>
+<li>Try to avoid using “Click here”
+<ul>
+<li>Context might be lost for screen reader users</li>
+</ul></li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="make-sure-your-labels-make-sense-out-of-context">Make sure your
+labels make sense out of context</h4>
+<h5 id="try-to-avoid-using-click-here">Try to avoid using “Click
+here”</h5>
+<pre ><code class="html" data-line-numbers="3">Whales are really awesome creatures.
+To find out more about whales,
+&lt;a href="whales.html"&gt;click here&lt;/a&gt;.
+</code></pre>
+<p><strong>👎🏾 Don’t</strong></p>
+<p><br> <br></p>
+<pre ><code class="html" data-line-numbers="2">Whales are really awesome creatures. 
+&lt;a href="whales.html"&gt;Find out more about whales&lt;/a&gt;.</code></pre>
+<p><strong>👍🏾 Do</strong></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="use-form-label-to-provide-context">Use <a
+href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label">Form
+label</a> to provide context</h4>
+<pre ><code class="html">Fill in your name: &lt;input type="text" id="name" name="name" /&gt;</code></pre>
+<p><strong>👎🏾 Don’t</strong></p>
+<p><br> <br></p>
+<pre ><code class="html">&lt;label for="name"&gt;Fill in your name:&lt;/label&gt;
+&lt;input type="text" id="name" name="name" /&gt;</code></pre>
+<p><strong>👍🏾 Do</strong></p>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="text-alternatives">Text alternatives</h3>
+<ul>
+<li>Images can’t be seen by people with visual impairment</li>
+<li>We should provide <code>alt</code> description for the screen
+reader</li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML#text_alternatives">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="provide-alt-description-for-non-decorative-images">Provide
+<code>alt</code> description for non-decorative images</h4>
+<pre ><code class="html">&lt;img src="old-main.png" /&gt;</code></pre>
+<p><strong>👎🏾 Don’t</strong></p>
+<p><br> <br></p>
+<pre ><code class="html">&lt;img
+    src="old-main.png" 
+    alt="The Penn State Old Main building"/&gt;</code></pre>
+<p><strong>👍🏾 Do</strong></p>
+</section>
+<section class="slide level0">
+
+<h4 id="provide-alt-description-for-non-decorative-images-1">Provide
+<code>alt</code> description for non-decorative images</h4>
+<ul>
+<li>Describe the image and what it conveys visually</li>
+<li>Should be brief and concise</li>
+<li>Do not duplicate the surrounding text</li>
+</ul>
+<div class="t-ref">
+<p><a
+href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML#text_alternatives">Source</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="empty-alt-is-ok-for-decorative-images">Empty <code>alt</code> is
+ok for decorative images</h4>
+<pre ><code class="html">&lt;img src="article-icon.png" alt="" /&gt;</code></pre>
+<p>When the image is only for visual decoration</p>
+</section>
+<section class="slide level0">
+
+<h3 id="color">Color</h3>
+<h4 id="dont-rely-on-only-color-to-convey-information">Don’t rely on
+only color to convey information</h4>
+<div class="columns"
+style="justify-content: center; align-items: center;">
+<div class="column">
+<pre ><code class="html">Click the green button for next item</code></pre>
+<p><strong>👎🏾 Don’t</strong></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="color-contrast">Color contrast</h3>
+<ul>
+<li>The foreground and background color contrast is important</li>
+<li>Make sure that people with color blindness can read the content</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="accessibility-6">Accessibility</h3>
+<ul>
+<li>Principles</li>
+<li>Guidelines</li>
+<li><span class="t-salmon"><strong>Tools</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="firefox-dev-tools-accessibility">Firefox (Dev Tools –&gt;
+Accessibility)</h4>
+<p><img data-src="./images/firefox-accessibility.jpg" /></p>
+<div class="t-ref">
+<p><a
+href="https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/index.html">Firefox
+Accessibility Inspector</a></p>
+</div>
+</section>
+<section class="slide level0">
+
+<h4 id="chrome-dev-tools-lighthouse">Chrome (Dev Tools –&gt;
+Lighthouse)</h4>
+<p><img data-src="./images/chrome-lighthouse.jpg" /></p>
+</section>
+<section class="slide level0">
+
+<h4 id="todo-4">Todo</h4>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-23.0">Activity
+23</a> in Chrome</li>
+<li>Run an accessibility audit
+<ul>
+<li>Dev Tools –&gt; Lighthouse</li>
+</ul></li>
+<li>Fix the issues</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="accessibility-and-gaming">Accessibility and gaming</h2>
+<p><a href="https://www.youtube.com/watch?v=4NGe4dzlukc">Making Games
+Better for the Deaf and Hard of Hearing</a></p>
+</section>
+<section class="slide level0">
+
+<h4 id="have-you-started-thinking-about-the-final-project-topic">Have
+you started thinking about the final project topic?</h4>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
