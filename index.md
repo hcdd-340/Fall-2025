@@ -16,11 +16,14 @@ include-after: |
 <section>
 ## Week 8
 
+### Final project I (2025-10-23)
++ [Slides](slides/hcdd340-slides-2025-10-23/hcdd340-slides-2025-10-23.html)
++ [Activity 23](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-23.0)
+
 ### Accessibility (2025-10-21)
 + [Slides](slides/hcdd340-slides-2025-10-21/hcdd340-slides-2025-10-21.html)
 + [Activity 21](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0)
 + [Activity 22](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-22.0)
-+ [Activity 23](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-23.0)
 
 </section>
 

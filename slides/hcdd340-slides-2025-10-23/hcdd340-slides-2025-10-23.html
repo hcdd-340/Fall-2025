@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
-  <meta name="dcterms.date" content="2025-10-21">
-  <title>HCDD 340 — 2025-10-21</title>
+  <meta name="dcterms.date" content="2025-10-23">
+  <title>HCDD 340 — 2025-10-23</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -45,397 +45,33 @@
 
 <section class="slide level0">
 
-<h2 id="accessibility">Accessibility</h2>
+<h2 id="final-project-i">Final project I</h2>
 </section>
 <section class="slide level0">
 
 <h2 id="today">Today</h2>
 <ul>
-<li>JS Modules</li>
 <li>Accessibility</li>
+<li>Final project</li>
 </ul>
 </section>
 <section class="slide level0">
 
 <h2 id="recap-from-last-class">Recap from last class</h2>
 <ul>
-<li>JS Modules</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="js-modules">JS Modules</h3>
-<ul>
-<li>We can split JS functionalities across modules</li>
-<li>You can then <code>import</code> modules as necessary</li>
-<li>Allows better code management</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="a-module-is-a-separate-js-file">A module is a separate JS
-file</h3>
-<ul>
-<li>Other modules then can use features from a given module
-<ul>
-<li>Variables, functions, …</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="js-modules-1">JS Modules</h3>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0">Activity
-21</a> in VS Code</li>
-<li>Two modules
-<ul>
-<li><code>main.js</code></li>
-<li><code>dayname.js</code></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h4 id="making-features-available-to-other-modules">Making features
-available to other modules</h4>
-<h4 id="in-dayname.js">in <code>dayname.js</code></h4>
-<pre ><code class="js">const names = ["Sunday", "Monday", "Tuesday"]
-
-export function dayName(number) {
-  return names[number];
-}
-export function dayNumber(name) {
-  return names.indexOf(name);
-}
-</code></pre>
-<p><code>export</code> in front of features will make them available to
-other modules</p>
-<div class="t-ref">
-<p><a
-href="https://eloquentjavascript.net/10_modules.html">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="you-can-use-a-single-export-statement">You can use a single
-<code>export</code> statement</h4>
-<pre ><code class="js" data-line-numbers="4">const draw = () =&gt; {};
-const reportArea = 16.5;
-
-export { draw, reportArea };
-</code></pre>
-<p>a single <code>export</code> statement at the end of the module with
-a comma-separated list of the features</p>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="importing-features-from-a-module">Importing features from a
-module</h4>
-<h4 id="in-main.js">in <code>main.js</code></h4>
-<pre ><code class="js">import {dayName} from "./dayname.js";</code></pre>
-<p>The dot (<code>.</code>) in <code>"./dayname.js"</code> indicates
-current folder</p>
-</section>
-<section class="slide level0">
-
-<h4 id="you-can-also-rename-imported-features">You can also rename
-imported features</h4>
-<pre ><code class="js">import { name as squareNameOne } from "shapes";</code></pre>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="you-can-import-all-features-as-well">You can import all features
-as well</h4>
-<pre ><code class="js">import * as Module from "./modules/module.js";
-
-Module.function1();
-Module.function2();</code></pre>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="applying-the-module-to-your-html">Applying the module to your
-HTML</h4>
-<h4 id="index.html"><code>index.html</code></h4>
-<pre ><code class="html">&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</code></pre>
-<p>Must include <code>type="module"</code></p>
-<div class="t-ref">
-<p><a
-href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h2 id="today-1">Today</h2>
-<ul>
-<li><span class="t-salmon"><strong>JS Modules</strong></span></li>
-<li>Accessibility</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="todo">Todo</h3>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-21.0">Activity
-21</a> in VS Code</li>
-<li>Two modules</li>
-<li>Try to access the <span
-class="t-salmon"><strong>names</strong></span> variable from
-<code>dayname.js</code> in <code>main.js</code>
-<ul>
-<li>e.g., print using <code>console.log</code></li>
-</ul></li>
-<li>What happens?</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="todo-1">Todo</h3>
-<ul>
-<li>Rewrite <code>dayname.js</code> to use a single <code>export</code>
-statement</li>
-<li><code>names</code> should also be exported</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="todo-2">Todo</h3>
-<ul>
-<li>Rewrite <code>main.js</code> to use <code>import * as ...</code>
-syntax</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="todo-3">Todo</h2>
-<ul>
-<li>Open <a
-href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-22.0">Activity
-22</a> in VS Code</li>
-<li>Check Dev Tools –&gt; Console</li>
-<li>Can you fix the errors?</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="hints">Hints</h3>
-<ul>
-<li>Export features</li>
-<li><code>canvas.js</code>
-<ul>
-<li><code>create</code>, <code>createReportList</code></li>
-</ul></li>
-<li><code>square.js</code>
-<ul>
-<li><code>draw</code>, <code>reportArea</code>,
-<code>reportPerimeter</code>, <code>randomSquare</code></li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="hints-1">Hints</h3>
-<ul>
-<li>Import those features in <code>main.js</code> from
-<code>canvas.js</code> and <code>square.js</code></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="today-2">Today</h2>
-<ul>
-<li>JS Modules</li>
-<li><span class="t-salmon"><strong>Accessibility</strong></span></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h2 id="accessibility-1">Accessibility</h2>
-<p>Commonly abbreviated as <a
-href="https://www.a11yproject.com/posts/a11y-and-other-numeronyms/">a11y</a></p>
-</section>
-<section class="slide level0">
-
-<h2 id="accessibility-2">Accessibility</h2>
-<ul>
-<li>Nearly <span class="t-salmon"><strong>20% of
-individuals</strong></span> in the US have some form of disability
-<ul>
-<li>1 billion people around the world</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h4 id="users-might-have-specific-requirements-and-constraints">Users
-might have specific requirements and constraints</h4>
-<ul>
-<li>Visual impairment</li>
-<li>Hearing impairment</li>
-<li>Physical impairment</li>
-<li>Speech impairment</li>
-<li>Seizures</li>
-<li>Cognitive and learning disabilities</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h3 id="visual-impairment">Visual impairment</h3>
-<p><a href="https://www.youtube.com/watch?v=dEbl5jvLKGQ">Screen Reader
-Demo for Digital Accessibility</a></p>
-</section>
-<section class="slide level0">
-
-<h2 id="accessibility-3">Accessibility</h2>
-<p>As a designer and developer, it is <span class="t-salmon"><strong>our
-responsibility</strong></span> to provide ways for these users to engage
-with our system</p>
-</section>
-<section class="slide level0">
-
-<h4
-id="better-accessibility-results-in-improved-usability-for-everyone">Better
-accessibility results in improved usability for everyone</h4>
-</section>
-<section class="slide level0">
-
-<h4 id="better-accessibility-improved-usability-for-all">Better
-accessibility === Improved usability for all</h4>
-<h4 id="closed-captioning-and-transcripts">Closed captioning and
-transcripts</h4>
-<div class="columns">
-<div class="column" style="width:60%;">
-<ul>
-<li>Initially designed for deaf users</li>
-<li><span class="t-salmon">Almost every college student</span> has used
-captioning and transcripts</li>
-</ul>
-</div><div class="column" style="width:40%;">
-<p><img data-src="./images/caption-accessibility.png" /></p>
-</div>
-</div>
-<div class="t-ref">
-<p><a
-href="https://www.sciencedaily.com/releases/2016/11/161101102535.htm">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="better-accessibility-improved-usability-for-all-1">Better
-accessibility === Improved usability for all</h4>
-<h4 id="curb-cuts">Curb cuts</h4>
-<div class="columns">
-<div class="column" style="width:60%;">
-<ul>
-<li>Initially for wheelchair users</li>
-<li>Improves experience for all (pedestrians, cyclists, …)</li>
-</ul>
-</div><div class="column" style="width:40%;">
-<p><img data-src="./images/curb-cut.jpg" /></p>
-</div>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="better-accessibility-improved-usability-for-all-2">Better
-accessibility === Improved usability for all</h4>
-<h4 id="electric-toothbrush">Electric toothbrush</h4>
-<div class="columns">
-<div class="column" style="width:70%;">
-<ul>
-<li>Initially designed for
-<ul>
-<li>Patients with limited motor skills</li>
-<li>Orthodontic patients (e.g., with braces)</li>
-</ul></li>
-</ul>
-</div><div class="column" style="width:30%;">
-<p><img data-src="./images/electric-toothbrush.jpg" /></p>
-</div>
-</div>
-<div class="t-ref">
-<p><a
-href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7148448/">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="we-all-can-benefit-from-better-accessibility">We all can benefit
-from better accessibility</h4>
-<ul>
-<li>Temporarily disabled
-<ul>
-<li>Broken wrist</li>
-</ul></li>
-<li>Situationally disabled
-<ul>
-<li>Unable to play audio in public for a video message</li>
-</ul></li>
-</ul>
-<div class="t-ref">
-<p><a
-href="https://web.dev/learn/accessibility/why#additional_beneficiaries_of_accessibility">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h4 id="accessibility-is-about-enabling-all-of-your-users">Accessibility
-is about enabling <span class="t-salmon">all</span> of your users</h4>
-<ul>
-<li>Failing to make your product accessible means potentially excluding
-a significant number of users
-<ul>
-<li>Business implications</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h4
-id="accessibility-might-be-legally-required-for-some-products">Accessibility
-might be legally required for some products</h4>
-<ul>
-<li>Requirement for public sector entities
-<ul>
-<li>Government funded programs, nonprofits, …</li>
-</ul></li>
-<li>Might be required for some private sector companies</li>
-</ul>
-</section>
-<section class="slide level0">
-
-<h4
-id="accessibility-might-be-legally-required-for-some-products-1">Accessibility
-might be legally required for some products</h4>
-<p>“In the US, Over ten lawsuits are filed daily focused on digital
-accessibility”</p>
-<div class="t-ref">
-<p><a
-href="https://web.dev/learn/accessibility/why#legal_impact">Source</a></p>
-</div>
-</section>
-<section class="slide level0">
-
-<h3 id="accessibility-4">Accessibility</h3>
+<li>Accessibility
 <ul>
 <li>Principles</li>
 <li>Guidelines</li>
 <li>Tools</li>
+</ul></li>
 </ul>
+</section>
+<section class="slide level0">
+
+<h2 id="accessibility">Accessibility</h2>
+<p>Commonly abbreviated as <a
+href="https://www.a11yproject.com/posts/a11y-and-other-numeronyms/">a11y</a></p>
 </section>
 <section class="slide level0">
 
@@ -540,7 +176,7 @@ href="https://web.dev/learn/accessibility/measure#robust">Source</a></p>
 </section>
 <section class="slide level0">
 
-<h3 id="accessibility-5">Accessibility</h3>
+<h3 id="accessibility-1">Accessibility</h3>
 <ul>
 <li>Principles</li>
 <li><span class="t-salmon"><strong>Guidelines</strong></span></li>
@@ -758,7 +394,7 @@ only color to convey information</h4>
 </section>
 <section class="slide level0">
 
-<h3 id="accessibility-6">Accessibility</h3>
+<h3 id="accessibility-2">Accessibility</h3>
 <ul>
 <li>Principles</li>
 <li>Guidelines</li>
@@ -784,14 +420,165 @@ Lighthouse)</h4>
 </section>
 <section class="slide level0">
 
-<h2 id="accessibility-and-gaming">Accessibility and gaming</h2>
-<p><a href="https://www.youtube.com/watch?v=4NGe4dzlukc">Making Games
-Better for the Deaf and Hard of Hearing</a></p>
+<h4 id="todo">Todo</h4>
+<ul>
+<li>Open <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-23.0">Activity
+23</a> in Chrome</li>
+<li>Run an accessibility audit
+<ul>
+<li>Dev Tools –&gt; Lighthouse</li>
+</ul></li>
+<li>Fix the issues</li>
+</ul>
 </section>
 <section class="slide level0">
 
-<h4 id="have-you-started-thinking-about-the-final-project-topic">Have
-you started thinking about the final project topic?</h4>
+<h2 id="today-1">Today</h2>
+<ul>
+<li>Accessibility</li>
+<li><span class="t-salmon"><strong>Final project</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="final-project">Final project</h3>
+<ul>
+<li>Proposal submission: 5 points</li>
+<li>Proposal presentation: 8 points</li>
+<li>Final presentation: 10 point</li>
+<li>Code and documentation: 20 point</li>
+<li>Mandatory group review: 2 points</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="next-todos-1030">Next todos — 10/30</h3>
+<ul>
+<li>Proposal submission</li>
+<li>Proposal presentation</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="proposal-submission">Proposal submission</h3>
+<h4 id="outline-of-plan-and-timeline-around-2-pages">Outline of plan and
+timeline — around 2 pages</h4>
+<p>Check syllabus for details</p>
+</section>
+<section class="slide level0">
+
+<h4 id="presentation-rubric-files-final-project">Presentation Rubric
+(Files –&gt; Final Project)</h4>
+<p><img data-src="./images/rubric.png" style="max-width: 60%;" /></p>
+</section>
+<section class="slide level0">
+
+<h3 id="proposal-presentation">Proposal presentation</h3>
+<ul>
+<li>No in-person presentation</li>
+<li>You will upload links for video and slides</li>
+<li>We will talk about presentation next Tuesday</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="today-2">Today</h2>
+<ul>
+<li>Selecting project topic</li>
+<li>Sketching out UI and interaction</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="grading-rubric-for-final-submission-see-syllabus">Grading rubric
+for final submission (see syllabus)</h4>
+<ul>
+<li>The app must be installable using Chrome — <strong>1.5
+points</strong></li>
+<li>The app (and the browser version) should work for different devices
+— <strong>4.5 points</strong></li>
+<li>At least 3 non-trivial pages with user interaction support —
+<strong>3 points</strong></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="grading-rubric-for-final-submission-see-syllabus-contd.">Grading
+rubric for final submission (see syllabus) — contd.</h4>
+<ul>
+<li>Stores and retrieves persistent data — <strong>3
+points</strong></li>
+<li>Includes icon and consistent theme — <strong>3 points</strong></li>
+<li>Ensures accessibility — <strong>3 points</strong></li>
+<li>Documentation for the code and the system — <strong>2
+points</strong></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="bonus-features-maximum-5-points">Bonus Features (maximum 5
+points)</h3>
+<ul>
+<li><p>5 non-trivial pages or more — <strong>1 point</strong></p></li>
+<li><p>Use of camera — <strong>1.5 points</strong></p></li>
+<li><p>Use of microphone — <strong>1.5 points</strong></p></li>
+<li><p>Use of location — <strong>2 points</strong></p></li>
+<li><p>Integrates <a
+href="https://developer.chrome.com/docs/ai/built-in-apis">user facing
+generative AI features</a> — <strong>3 points</strong></p></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="examples-from-previous-classes">Examples from previous
+classes</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Fitness app</li>
+<li>Music sharing</li>
+<li>Cooking/Recipe</li>
+<li>IST Career Solution</li>
+<li>Athlete profile</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Public Transit/CATA</li>
+<li>TV recommendation</li>
+<li>Fashion</li>
+<li>Sustainability</li>
+<li>Budgeting</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="group-activity">Group activity</h3>
+<h4 id="select-project-topic-create-a-doc">Select project topic — Create
+a doc</h4>
+<ul>
+<li>Describe the app</li>
+<li>What problem are you trying to address?</li>
+<li>Who are the potential users?</li>
+<li>What are the features?</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="group-activity-1">Group activity</h3>
+<h4 id="sketch-out-at-least-three-screens-of-the-app">Sketch out at
+least three screens of the app</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="group-activity-2">Group activity</h3>
+<ul>
+<li>Post the doc and screen images to the <a
+href="https://psu.instructure.com/courses/2416260/discussion_topics/16912697">discussion
+forum</a></li>
+</ul>
 </section>
 <section class="slide level0">
 
