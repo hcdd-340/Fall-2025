@@ -15,6 +15,8 @@ include-after: |
 
 <section>
 ## Week 10
+### Implementation II
++ [Slides](slides/hcdd340-slides-2025-11-06/hcdd340-slides-2025-11-06.html)
 
 ### Implementation I
 + [Slides](slides/hcdd340-slides-2025-11-04/hcdd340-slides-2025-11-04.html)
