@@ -14,11 +14,20 @@ include-after: |
 ---
 
 <section>
+## Week 11
+### Badges (2025-11-11)
+
++ [Slides](slides/hcdd340-slides-2025-11-11/hcdd340-slides-2025-11-11.html)
++ [Activity 24](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-24.0)
+
+</section>
+
+<section>
 ## Week 10
-### Implementation II
+### Implementation II (2025-11-06)
 + [Slides](slides/hcdd340-slides-2025-11-06/hcdd340-slides-2025-11-06.html)
 
-### Implementation I
+### Implementation I (2025-11-04)
 + [Slides](slides/hcdd340-slides-2025-11-04/hcdd340-slides-2025-11-04.html)
 
 </section>
@@ -47,12 +56,12 @@ include-after: |
 
 <section>
 ## Week 7
-### JS VI (2025-10-17)
+### JS VII — Data Storage, Modules (2025-10-17)
 + [Slides](slides/hcdd340-slides-2025-10-17/hcdd340-slides-2025-10-17.html)
 + [Activity 20](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-20.0)
 
 
-### JS VI (2025-10-14)
+### JS VI — Keyboard Events, Data Storage (2025-10-14)
 + [Slides](slides/hcdd340-slides-2025-10-14/hcdd340-slides-2025-10-14.html)
 + [Activity 19](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-19.0)
 + [Activity 20](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-20.0)
@@ -61,12 +70,12 @@ include-after: |
 
 <section>
 ## Week 7
-### JS V (2025-10-09)
+### JS V — Dynamic DOM, Keyboard Events (2025-10-09)
 + [Slides](slides/hcdd340-slides-2025-10-09/hcdd340-slides-2025-10-09.html)
 + [Activity 17](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-17.0)
 + [Activity 18](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-18.0)
 
-### JS IV (2025-10-07)
+### JS IV — async/await, Dynamic DOM (2025-10-07)
 + [Slides](slides/hcdd340-slides-2025-10-07/hcdd340-slides-2025-10-07.html)
 + [Activity 16](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-16.0)
 + [Assignment 03](assignments/assignment-03/hcdd-340-assignment-03-2025-10-03.html)
@@ -75,14 +84,14 @@ include-after: |
 
 <section>
 ## Week 6
-### JS III (2025-10-02)
+### JS III — Events, Asynchronous Programming, Fetch (2025-10-02)
 + [Slides](slides/hcdd340-slides-2025-10-02/hcdd340-slides-2025-10-02.html)
 + [Activity 13](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-13.0)
 + [Activity 14](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-14.0)
 + [Activity 15](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-15.0)
 + [Assignment 03](assignments/assignment-03/hcdd-340-assignment-03-2025-10-03.html)
  
-### JS II (2025-09-30)
+### JS II — Function, Object, DOM, Events (2025-09-30)
 + [Slides](slides/hcdd340-slides-2025-09-30/hcdd340-slides-2025-09-30.html)
 + [Activity 11](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-11.0)
 + [Activity 12](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-12.0)
