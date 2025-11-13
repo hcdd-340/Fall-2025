@@ -20,6 +20,14 @@ include-after: |
 + [Slides](slides/hcdd340-slides-2025-11-11/hcdd340-slides-2025-11-11.html)
 + [Activity 24](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-24.0)
 
+### Dark mode (2025-11-13)
+
++ [Slides](slides/hcdd340-slides-2025-11-13/hcdd340-slides-2025-11-13.html)
++ [Activity 25](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-25.0)
++ [Activity 26](https://github.com/hcdd-340/Activity-Fall-2025/releases/tag/activity-26.0)
+
+
+
 </section>
 
 <section>
