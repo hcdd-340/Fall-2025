@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Saeed Abdullah (saeed@psu.edu)">
+  <meta name="dcterms.date" content="2025-11-18">
+  <title>HCDD 340 — 2025-11-18</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../reveal.js/dist/theme/hcdd340-dark.css" id="theme">
+  <link rel="stylesheet" href="../reveal.js/plugin/highlight/dracula.css">
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level0">
+
+<h2 id="today">Today</h2>
+<ul>
+<li>Version Control</li>
+<li>Project implementation</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="what-is-version-control">What is Version Control?</h4>
+<p><strong>Version control is like an infinite undo button with a
+perfect memory</strong></p>
+</section>
+<section class="slide level0">
+
+<h4 id="what-is-version-control-1">What is Version Control?</h4>
+<ul>
+<li>Tracks every change you make to your files</li>
+<li>Lets you see who changed what and when</li>
+<li>Allows you to rewind to any previous version</li>
+<li>Enables safe collaboration with others</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4
+id="git-is-a-version-control-system-used-by-millions-worldwide"><span
+class="t-salmon">Git</span> is a version control system used by <span
+class="t-salmon">millions</span> worldwide</h4>
+</section>
+<section class="slide level0">
+
+<h3 id="git">Git</h3>
+<ul>
+<li>A time machine for your projects</li>
+<li>A collaboration tool for teams</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="git-is-becoming-an-essential-skill">Git is becoming an <span
+class="t-salmon">essential</span> skill</h3>
+<ul>
+<li><span class="t-salmon">Both</span> for designers and developers</li>
+<li>Worth spending time to learn it well</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="key-concepts">Key concepts</h3>
+<ul>
+<li>Repositories</li>
+<li>Commits</li>
+<li>Branches</li>
+<li>Merging</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="key-concepts-1">Key concepts</h3>
+<ul>
+<li><span class="t-salmon"><strong>Repositories</strong></span></li>
+<li>Commits</li>
+<li>Branches</li>
+<li>Merging</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="repository-or-repo">Repository or (“repo”)</h3>
+<h4 id="a-folder-monitored-by-git">A folder monitored by git</h4>
+<ul>
+<li>Contains all your project files</li>
+<li>Stores the complete history of changes</li>
+</ul>
+<p><span class="t-salmon"><strong>One project = One
+repository</strong></span></p>
+</section>
+<section class="slide level0">
+
+<h3 id="creating-a-repository">Creating a Repository</h3>
+<ul>
+<li>Choose a folder for your project</li>
+<li>Tell Git to start tracking it</li>
+<li>Git creates a hidden folder to store history</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="key-concepts-2">Key concepts</h3>
+<ul>
+<li>Repositories</li>
+<li><span class="t-salmon"><strong>Commits</strong></span></li>
+<li>Branches</li>
+<li>Merging</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="commit-a-snapshot-of-a-repo-at-a-given-moment">Commit: A <span
+class="t-salmon">snapshot</span> of a repo at a given moment</h4>
+<ul>
+<li>Commit includes:
+<ul>
+<li>What changed</li>
+<li>When it changed</li>
+<li>Who changed it</li>
+<li>Why it changed (your message)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="steps-to-make-a-commit">Steps to make a commit</h3>
+<ol type="1">
+<li>Make changes to your files</li>
+<li>Stage the changes you want to save</li>
+<li>Commit with a clear message</li>
+</ol>
+</section>
+<section class="slide level0">
+
+<h4 id="writing-good-commit-messages">Writing Good Commit Messages</h4>
+<h4 id="be-clear-and-descriptive">Be clear and descriptive</h4>
+<ul>
+<li>✅ Good examples:
+<ul>
+<li>“Add introduction paragraph”</li>
+<li>“Fix typo in chapter 3”</li>
+<li>“Update bibliography with new sources”</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="writing-good-commit-messages-1">Writing Good Commit
+Messages</h4>
+<h4 id="be-clear-and-descriptive-1">Be clear and descriptive</h4>
+<ul>
+<li>❌ Poor examples:
+<ul>
+<li>“stuff”</li>
+<li>“changes”</li>
+<li>“asdf”</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="commit-early-commit-often">Commit <span
+class="t-salmon">early</span>, commit <span
+class="t-salmon">often</span></h4>
+<ul>
+<li>See exactly what changed and when</li>
+<li>Undo mistakes by going back to earlier commits</li>
+<li>Understand the project’s evolution</li>
+<li>Find when bugs were introduced</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="key-concepts-3">Key concepts</h3>
+<ul>
+<li>Repositories</li>
+<li>Commits</li>
+<li><span class="t-salmon"><strong>Branches</strong></span></li>
+<li>Merging</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="branch-a-parallel-version-of-the-project">Branch: a parallel
+version of the project</h4>
+<ul>
+<li>A safe space to experiment</li>
+<li>A way to work on multiple things at once</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="every-repo-has-a-main-branch">Every repo has a “main”
+Branch</h4>
+<ul>
+<li>Called <code>main</code> (or <code>master</code> in older
+repos)</li>
+<li>The primary version of your project</li>
+<li>Usually the “stable” or “official” version</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="reasons-for-creating-other-branches">Reasons for creating other
+branches</h4>
+<ul>
+<li>Try a new idea without risk</li>
+<li>Work on a feature while others work on different features</li>
+<li>Fix a bug while keeping the main version stable</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="working-with-branches">Working with branches</h3>
+<ol type="1">
+<li>Create a new branch for your work</li>
+<li>Switch to that branch</li>
+<li>Make commits as usual</li>
+<li>Switch back to main when needed</li>
+</ol>
+<p>Changes in one branch <span
+class="t-salmon"><strong>don’t</strong></span> affect others</p>
+</section>
+<section class="slide level0">
+
+<h3 id="key-concepts-4">Key concepts</h3>
+<ul>
+<li>Repositories</li>
+<li>Commits</li>
+<li>Branches</li>
+<li><span class="t-salmon"><strong>Merging</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="merging-combine-changes-across-branches">Merging: combine
+changes across branches</h4>
+<ol type="1">
+<li>Finish your work on a branch</li>
+<li>Switch to the branch you want to merge into (usually
+<code>main</code>)</li>
+<li>Merge your feature branch</li>
+<li>Delete the feature branch (optional)</li>
+</ol>
+</section>
+<section class="slide level0">
+
+<h4 id="git-automatically-combines-non-conflicting-changes.-but">Git
+automatically combines non-conflicting changes. <span
+class="t-salmon">But</span> …</h4>
+</section>
+<section class="slide level0">
+
+<h4 id="merge-conflicts">Merge conflicts 😱</h4>
+<ul>
+<li>Happens when two people edit the same line differently</li>
+<li>Git can’t automatically decide which change to keep</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="resolving-merge-conflicts">Resolving merge conflicts</h3>
+<ul>
+<li>Review both versions</li>
+<li>Decide what to keep</li>
+<li>Mark the conflict as resolved</li>
+<li>Complete the merge</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="collaboration">Collaboration</h3>
+</section>
+<section class="slide level0">
+
+<h3 id="collaboration-1">Collaboration</h3>
+<h4 id="key-concepts-5">Key concepts</h4>
+<ul>
+<li><strong>Remote</strong>: A copy of your repo on a server</li>
+<li><strong>Push</strong>: Send your commits to the remote</li>
+<li><strong>Pull</strong>: Get others’ commits from the remote</li>
+<li><strong>Clone</strong>: Download a copy of a remote repo</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="collaboration-workflow">Collaboration workflow</h3>
+<ol type="1">
+<li><strong>Pull</strong> - Get the latest changes from others</li>
+<li><strong>Create a branch</strong> - Make your own workspace</li>
+<li><strong>Make commits</strong> - Save your progress</li>
+<li><strong>Push</strong> - Share your branch</li>
+<li><strong>Merge</strong> - Combine your work with the main branch</li>
+</ol>
+</section>
+<section class="slide level0">
+
+<h3 id="pull-requests">Pull requests</h3>
+<h4 id="asking-to-merge-your-changes">Asking to merge your changes</h4>
+<p>“Can I add my work to the main project?”</p>
+</section>
+<section class="slide level0">
+
+<h4 id="essential-commands">Essential commands</h4>
+<ul>
+<li><code>git init</code> - Create a new repository</li>
+<li><code>git status</code> - See what’s changed</li>
+<li><code>git add</code> - Stage files for commit</li>
+<li><code>git commit -m "message"</code> - Save a snapshot</li>
+<li><code>git branch</code> - List or create branches</li>
+<li><code>git merge</code> - Combine branches</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h2 id="best-practices">Best practices</h2>
+<ul>
+<li>Commit small, complete changes</li>
+<li>Write clear commit messages</li>
+<li>Pull before starting new work</li>
+<li>Create branches for new features</li>
+<li>Don’t commit sensitive information (passwords, keys)</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="when-things-go-wrong">When things go wrong</h3>
+<ul>
+<li>Git makes it very hard to lose work permanently</li>
+<li>Almost every mistake can be undone</li>
+<li>Check <code>git status</code> often to see what’s happening</li>
+<li>Don’t panic - search for solutions or ask for help</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="learning-resources">Learning Resources</h3>
+<ul>
+<li><a href="https://git-scm.com">Official Git documentation</a></li>
+<li><a href="https://skills.github.com">GitHub’s tutorials</a></li>
+<li><a href="https://learngitbranching.js.org">Interactive
+practice</a></li>
+<li><a href="https://ohshitgit.com">“Oh Sh*t, Git!?”</a></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todo">Todo</h3>
+<ul>
+<li>Complete first 3 tasks in <a
+href="https://learngitbranching.js.org">Interactive practice</a></li>
+</ul>
+<div class="columns"
+style="justify-content: center; align-items: center; align-items: center;">
+<div class="column" style="background-color: #ffff; max-width: 55%;">
+<p><img data-src="./images/interactive-git.jpg" /></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h2 id="using-git-with-vs-code">Using Git with VS Code</h2>
+</section>
+<section class="slide level0">
+
+<div class="columns"
+style="justify-content: center; align-items: center; align-items: center;">
+<div class="column" style="background-color: #ffff; max-width: 85%;">
+<p><a href="https://www.youtube.com/watch?v=i_23KUAEtUM"><img
+data-src="./images/vscode-git.jpg"
+title="Using git with VS Code" /></a></p>
+</div>
+</div>
+</section>
+<section class="slide level0">
+
+<h3 id="todo-using-git-with-vs-code">Todo — Using git with VS Code</h3>
+<ul>
+<li>Clone <a
+href="https://github.com/hcdd-340/Activity-Fall-2025">Activity</a>
+github repo</li>
+<li>Create a new branch ‘dev’</li>
+<li>Add <code>index.html</code>
+<ul>
+<li>Stage <code>index.html</code></li>
+<li>Commit the changes</li>
+</ul></li>
+<li>Merge those changes in <code>main</code> branch</li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h4 id="todo-collaboration-in-github">Todo — Collaboration in
+github</h4>
+<ul>
+<li>Create a new repo in github for the group</li>
+<li>Clone it in VS Code</li>
+<li>Make following changes
+<ul>
+<li>Group member 1: Add <a
+href="https://github.com/hcdd-340/Activity-Fall-2025/blob/main/.gitignore">.gitignore</a>
+file</li>
+<li>Group member 2: Add <code>index.html</code></li>
+<li>Group member 3: Add <code>styles.css</code></li>
+</ul></li>
+<li>Merge and push your changes to the github repo</li>
+</ul>
+<p><a
+href="https://code.visualstudio.com/docs/sourcecontrol/overview">Useful
+resource</a></p>
+</section>
+<section class="slide level0">
+
+<h4 id="todo-collaboration-in-github-1">Todo — Collaboration in
+github</h4>
+<ul>
+<li>Edit <code>index.html</code> — a new <code>&lt;p&gt;</code> element
+<ul>
+<li>Group member 1: Add your favorite holiday</li>
+<li>Group member 2: Add your favorite food</li>
+<li>Group member 3: Add your favorite city</li>
+</ul></li>
+<li>What’s the strategy to prevent merge conflict?</li>
+</ul>
+<p><a
+href="https://code.visualstudio.com/docs/sourcecontrol/overview">Useful
+resource</a></p>
+</section>
+<section class="slide level0">
+
+<h2 id="today-1">Today</h2>
+<ul>
+<li>Version Control</li>
+<li><span class="t-salmon"><strong>Project
+implementation</strong></span></li>
+</ul>
+</section>
+<section class="slide level0">
+
+<h3 id="todos">Todos</h3>
+<ul>
+<li>What needs to be completed to show a prototype during the final
+presentation?
+<ul>
+<li>December 4 (Thursday after the break)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level0">
+
+</section>
+    </div>
+  </div>
+
+  <script src="../reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="../reveal.js/plugin/notes/notes.js"></script>
+  <script src="../reveal.js/plugin/search/search.js"></script>
+  <script src="../reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: true,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealHighlight,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
