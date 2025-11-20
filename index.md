@@ -16,7 +16,10 @@ include-after: |
 <section>
 ## Week 12
 
-### Version control (2025-11-18)
+### Version control II (2025-11-20)
++ [Slides](slides/hcdd340-slides-2025-11-20/hcdd340-slides-2025-11-20.html)
+
+### Version control I (2025-11-18)
 + [Slides](slides/hcdd340-slides-2025-11-18/hcdd340-slides-2025-11-18.html)
 
 </section>
