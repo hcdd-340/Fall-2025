@@ -14,6 +14,16 @@ include-after: |
 ---
 
 <section>
+## Week 14
+
+### Final Submission I (2025-12-09)
++ [Slides](slides/hcdd340-slides-2025-12-09/hcdd340-slides-2025-12-09.html)
+
+</section>
+
+
+
+<section>
 ## Week 13
 
 ### Final Presentation I (2025-12-02)
