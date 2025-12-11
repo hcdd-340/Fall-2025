@@ -16,6 +16,9 @@ include-after: |
 <section>
 ## Week 14
 
+### Final Submission I (2025-12-11)
++ [Slides](slides/hcdd340-slides-2025-12-11/hcdd340-slides-2025-12-11.html)
+
 ### Final Submission I (2025-12-09)
 + [Slides](slides/hcdd340-slides-2025-12-09/hcdd340-slides-2025-12-09.html)
 
